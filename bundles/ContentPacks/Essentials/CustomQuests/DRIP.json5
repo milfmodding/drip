@@ -1,0 +1,3061 @@
+{
+  "DRIP_0": {
+    "QuestName": "A Wild Night",
+    "_id": "DRIP_0",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_0 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_0_AFF_0",
+            "index": 0,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": true,
+            "dynamicLocale": false,
+            "target": [
+              "5d40407c86f774318526545a"
+            ],
+            "value": "2",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_0_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 2,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        }  
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_0 description",
+    "failMessageText": "DRIP_0 failMessageText",
+    "name": "DRIP_0 name",
+    "note": "DRIP_0 note",
+    "traderId": "moron",
+    "location": "any",
+    "image": "/files/quest/icon/Boozey.png",
+    "type": "PickUp",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_0 description",
+    "successMessageText": "DRIP_0 successMessageText",
+    "templateId": "DRIP_0",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "4000",
+          "id": "DRIP_0_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "0.03",
+          "id": "DRIP_0_Reward1",
+          "type": "TraderStanding",
+          "target": "moron",
+          "index": 1
+        },
+        {
+          "value": "30000",
+          "id": "DRIP_0_Reward2",
+          "type": "Item",
+          "target": "DRIP_0_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_0_ItemReward0",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 55000
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_1": {
+    "QuestName": "The Morning After",
+    "_id": "DRIP_1",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_1 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_1_AFF_0",
+            "index": 0,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "5bc9c29cd4351e003562b8a3"
+            ],
+            "value": "2",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        },
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_1_AFF_1",
+            "index": 1,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "5e2af4d286f7746d4159f07a"
+            ],
+            "value": "1",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_1_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 3,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        },
+        {
+          "_parent": "Quest",
+          "_props": {
+            "id": "DRIP_1_AFS_1",
+            "index": 1,
+            "parentId": "",
+            "dynamicLocale": false,
+            "target": "DRIP_0",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_1 description",
+    "failMessageText": "DRIP_1 failMessageText",
+    "name": "DRIP_1 name",
+    "note": "DRIP_1 note",
+    "traderId": "moron",
+    "location": "any",
+    "image": "/files/quest/icon/Drunkard.png",
+    "type": "PickUp",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_1 description",
+    "successMessageText": "DRIP_1 successMessageText",
+    "templateId": "DRIP_1",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "3000",
+          "id": "DRIP_1_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "0.05",
+          "id": "DRIP_1_Reward1",
+          "type": "TraderStanding",
+          "target": "moron",
+          "index": 1
+        },
+        {
+          "value": "350",
+          "id": "DRIP_1_Reward2",
+          "type": "Item",
+          "target": "DRIP_1_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_1_ItemReward0",
+              "_tpl": "5696686a4bdc2da3298b456a",
+              "upd": {
+                "StackObjectsCount": 350
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_2": {
+    "QuestName": "Material Handler",
+    "_id": "DRIP_2",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_2 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_2_AFF_0",
+            "index": 0,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": true,
+            "dynamicLocale": false,
+            "target": [
+              "59e3556c86f7741776641ac2"
+            ],
+            "value": "2",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        },
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_2_AFF_1",
+            "index": 1,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": true,
+            "dynamicLocale": false,
+            "target": [
+              "61bf83814088ec1a363d7097"
+            ],
+            "value": "1",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        },
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_2_AFF_2",
+            "index": 2,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": true,
+            "dynamicLocale": false,
+            "target": [
+              "5e2af47786f7746d404f3aaa"
+            ],
+            "value": "2",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_2_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 3,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        }
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_2 description",
+    "failMessageText": "DRIP_2 failMessageText",
+    "name": "DRIP_2 name",
+    "note": "DRIP_2 note",
+    "traderId": "moron",
+    "location": "any",
+    "image": "/files/quest/icon/MaterialHandler.png",
+    "type": "PickUp",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_2 description",
+    "successMessageText": "DRIP_2 successMessageText",
+    "templateId": "DRIP_2",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "9000",
+          "id": "DRIP_2_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "0.07",
+          "id": "DRIP_2_Reward1",
+          "type": "TraderStanding",
+          "target": "moron",
+          "index": 1
+        },
+        {
+          "value": "100000",
+          "id": "DRIP_2_Reward2",
+          "type": "Item",
+          "target": "DRIP_2_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_2_ItemReward0",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 100000
+              }
+            }
+          ]
+        },
+        {
+          "value": "1",
+          "id": "DRIP_2_Reward3",
+          "type": "Item",
+          "target": "DRIP_2_ItemReward1",
+          "index": 3,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_2_ItemReward1",
+              "_tpl": "COMTAC4_BLACK_HEADSET",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ]
+        },
+        {
+          "value": "1",
+          "id": "DRIP_2_Reward4",
+          "type": "Item",
+          "target": "DRIP_2_ItemReward2",
+          "index": 4,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_2_ItemReward2",
+              "_tpl": "RIG_ZHUK_SIXCOLOURURBAN",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_3": {
+    "QuestName": "Glock Wick: Part 1",
+    "_id": "DRIP_3",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_3 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "CounterCreator",
+          "_props": {
+            "counter": {
+              "id": "DRIP_3_AFF_0_0",
+              "conditions": [
+                {
+                  "_parent": "Kills",
+                  "_props": {
+                    "target": "AnyPmc",
+                    "compareMethod": ">=",
+                    "value": "1",
+                    "weapon": [
+                      "5a7ae0c351dfba0017554310",
+                      "5b1fa9b25acfc40018633c01",
+                      "63088377b5cd696784087147"
+                    ],
+                    "id": "DRIP_3_AFF_0_1"
+                  }
+                },
+                {
+                  "_parent": "Location",
+                  "_props": {
+                    "target": [
+                      "Interchange"
+                    ],
+                    "id": "DRIP_3_AFF_0_2"
+                  }
+                }
+              ]
+            },
+            "id": "DRIP_3_AFF_0",
+            "index": 0,
+            "parentId": "",
+            "oneSessionOnly": false,
+            "dynamicLocale": false,
+            "type": "Elimination",
+            "doNotResetIfCounterCompleted": false,
+            "value": "5",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_3_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 5,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        }
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_3 description",
+    "failMessageText": "DRIP_3 failMessageText",
+    "name": "DRIP_3 name",
+    "note": "DRIP_3 note",
+    "traderId": "moron",
+    "location": "5714dbc024597771384a510d",
+    "image": "/files/quest/icon/GlockWick.png",
+    "type": "Elimination",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_3 description",
+    "successMessageText": "DRIP_3 successMessageText",
+    "templateId": "DRIP_3",
+    "rewards": {
+      "Started": [
+        {
+          "findInRaid": true,
+          "id": "DRIP_3_RewardStart_0",
+          "index": 0,
+          "items": [
+            {
+              "_id": "DRIP_3_RewardStart_0_0",
+              "_tpl": "5a7ae0c351dfba0017554310",
+              "upd": {
+                "Repairable": {
+                  "MaxDurability": 100,
+                  "Durability": 100
+                },
+                "FireMode": {
+                  "FireMode": "single"
+                }
+              }
+            },
+            {
+              "_id": "DRIP_3_RewardStart_0_1",
+              "_tpl": "5a6b5e468dc32e001207faf5",
+              "parentId": "DRIP_3_RewardStart_0_0",
+              "slotId": "mod_barrel"
+            },
+            {
+              "_id": "DRIP_3_RewardStart_0_2",
+              "_tpl": "5a7b4960e899ef197b331a2d",
+              "parentId": "DRIP_3_RewardStart_0_0",
+              "slotId": "mod_pistol_grip"
+            },
+            {
+              "_id": "DRIP_3_RewardStart_0_3",
+              "_tpl": "5a6f5e048dc32e00094b97da",
+              "parentId": "DRIP_3_RewardStart_0_0",
+              "slotId": "mod_reciever"
+            },
+            {
+              "_id": "DRIP_3_RewardStart_0_4",
+              "_tpl": "5a718b548dc32e000d46d262",
+              "parentId": "DRIP_3_RewardStart_0_0",
+              "slotId": "mod_magazine"
+            },
+            {
+              "_id": "DRIP_3_RewardStart_0_5",
+              "_tpl": "5b07dd285acfc4001754240d",
+              "parentId": "DRIP_3_RewardStart_0_0",
+              "slotId": "mod_tactical",
+              "upd": {
+                "Light": {
+                  "IsActive": true,
+                  "SelectedMode": 0
+                }
+              }
+            },
+            {
+              "_id": "DRIP_3_RewardStart_0_6",
+              "_tpl": "5a6b585a8dc32e5a9c28b4f1",
+              "parentId": "DRIP_3_RewardStart_0_1",
+              "slotId": "mod_muzzle"
+            },
+            {
+              "_id": "DRIP_3_RewardStart_0_7",
+              "_tpl": "630765cb962d0247b029dc45",
+              "parentId": "DRIP_3_RewardStart_0_3",
+              "slotId": "mod_sight_rear",
+              "upd": {
+                "Sight": {
+                  "ScopesCurrentCalibPointIndexes": [
+                    0
+                  ],
+                  "ScopesSelectedModes": [
+                    0
+                  ],
+                  "SelectedScope": 0
+                }
+              }
+            },
+            {
+              "_id": "DRIP_3_RewardStart_0_8",
+              "_tpl": "630765777d50ff5e8a1ea718",
+              "parentId": "DRIP_3_RewardStart_0_3",
+              "slotId": "mod_sight_front",
+              "upd": {
+                "Sight": {
+                  "ScopesCurrentCalibPointIndexes": [
+                    0
+                  ],
+                  "ScopesSelectedModes": [
+                    0
+                  ],
+                  "SelectedScope": 0
+                }
+              }
+            }
+          ],
+          "target": "DRIP_3_RewardStart_0_0",
+          "type": "Item",
+          "value": "1"
+        }
+      ],
+      "Success": [
+        {
+          "value": "4500",
+          "id": "DRIP_3_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "0.05",
+          "id": "DRIP_3_Reward1",
+          "type": "TraderStanding",
+          "target": "moron",
+          "index": 1
+        },
+        {
+          "value": "300",
+          "id": "DRIP_3_Reward2",
+          "type": "Item",
+          "target": "DRIP_3_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_3_ItemReward0",
+              "_tpl": "5696686a4bdc2da3298b456a",
+              "upd": {
+                "StackObjectsCount": 300
+              }
+            }
+          ]
+        },
+        {
+          "value": "1",
+          "id": "DRIP_3_Reward3",
+          "type": "Item",
+          "target": "DRIP_3_ItemReward1",
+          "index": 3,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_3_ItemReward1",
+              "_tpl": "MUSTACHE_DARKGREY_FACE",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ]
+        },
+        {
+          "value": "1",
+          "id": "DRIP_3_Reward4",
+          "type": "Item",
+          "target": "DRIP_3_ItemReward2",
+          "index": 4,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_3_ItemReward2",
+              "_tpl": "5d6d2ef3a4b93618084f58bd",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ]
+        },
+        {
+          "value": "1",
+          "id": "DRIP_3_Reward5",
+          "type": "Item",
+          "target": "DRIP_3_ItemReward3",
+          "index": 4,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_3_ItemReward3",
+              "_tpl": "62a09f32621468534a797acb",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_4": {
+    "QuestName": "Glock Wick: Part 2",
+    "_id": "DRIP_4",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_4 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "CounterCreator",
+          "_props": {
+            "counter": {
+              "id": "DRIP_4_AFF_0_0",
+              "conditions": [
+                {
+                  "_parent": "Kills",
+                  "_props": {
+                    "target": "Savage",
+                    "compareMethod": ">=",
+                    "value": "1",
+                    "weapon": [
+                      "5a7ae0c351dfba0017554310",
+                      "5b1fa9b25acfc40018633c01",
+                      "63088377b5cd696784087147"
+                    ],
+                    "id": "DRIP_4_AFF_0_1"
+                  }
+                },
+                {
+                  "_parent": "Location",
+                  "_props": {
+                    "target": [
+                      "bigmap"
+                    ],
+                    "id": "DRIP_4_AFF_0_2"
+                  }
+                }
+              ]
+            },
+            "id": "DRIP_4_AFF_0",
+            "index": 0,
+            "parentId": "",
+            "oneSessionOnly": false,
+            "dynamicLocale": false,
+            "type": "Elimination",
+            "doNotResetIfCounterCompleted": false,
+            "value": "10",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_4_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 5,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        },
+        {
+          "_parent": "Quest",
+          "_props": {
+            "id": "DRIP_4_AFS_1",
+            "index": 1,
+            "parentId": "",
+            "dynamicLocale": false,
+            "target": "DRIP_3",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_4 description",
+    "failMessageText": "DRIP_4 failMessageText",
+    "name": "DRIP_4 name",
+    "note": "DRIP_4 note",
+    "traderId": "moron",
+    "location": "56f40101d2720b2a4d8b45d6",
+    "image": "/files/quest/icon/GlockWick.png",
+    "type": "Elimination",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_4 description",
+    "successMessageText": "DRIP_4 successMessageText",
+    "templateId": "DRIP_4",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "6000",
+          "id": "DRIP_4_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "0.07",
+          "id": "DRIP_4_Reward1",
+          "type": "TraderStanding",
+          "target": "moron",
+          "index": 1
+        },
+        {
+          "value": "275",
+          "id": "DRIP_4_Reward2",
+          "type": "Item",
+          "target": "DRIP_4_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_4_ItemReward0",
+              "_tpl": "569668774bdc2da2298b4568",
+              "upd": {
+                "StackObjectsCount": 275
+              }
+            }
+          ]
+        },
+        {
+          "value": "60",
+          "id": "DRIP_4_Reward3",
+          "type": "Item",
+          "target": "DRIP_4_ItemReward1",
+          "index": 3,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_4_ItemReward1",
+              "_tpl": "5c925fa22e221601da359b7b",
+              "upd": {
+                "StackObjectsCount": 60
+              }
+            }
+          ]
+        },
+        {
+          "value": "60",
+          "id": "DRIP_4_Reward4",
+          "type": "Item",
+          "target": "DRIP_4_ItemReward2",
+          "index": 4,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_4_ItemReward2",
+              "_tpl": "5c0d56a986f774449d5de529",
+              "upd": {
+                "StackObjectsCount": 60
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_5": {
+    "QuestName": "Glock Wick: Part 3",
+    "_id": "DRIP_5",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_5 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "CounterCreator",
+          "_props": {
+            "counter": {
+              "id": "DRIP_5_AFF_0_0",
+              "conditions": [
+                {
+                  "_parent": "Kills",
+                  "_props": {
+                    "target": "AnyPmc",
+                    "compareMethod": ">=",
+                    "value": "1",
+                    "weapon": [
+                      "5a7ae0c351dfba0017554310",
+                      "63088377b5cd696784087147"
+                    ],
+                    "weaponModsInclusive": [
+                      [
+                        "5a32a064c4a28200741e22de"
+                      ],
+                      [
+                        "5c7e8fab2e22165df16b889b"
+                      ],
+                      [
+                        "5c6165902e22160010261b28"
+                      ],
+                      [
+                        "5a33a8ebc4a282000c5a950d"
+                      ],
+                      [
+                        "5a7ad74e51dfba0015068f45"
+                      ]
+                    ],
+                    "id": "DRIP_5_AFF_0_1"
+                  }
+                },
+                {
+                  "_parent": "Location",
+                  "_props": {
+                    "target": [
+                      "TarkovStreets"
+                    ],
+                    "id": "DRIP_5_AFF_0_2"
+                  }
+                }
+              ]
+            },
+            "id": "DRIP_5_AFF_0",
+            "index": 0,
+            "parentId": "",
+            "oneSessionOnly": false,
+            "dynamicLocale": false,
+            "type": "Elimination",
+            "doNotResetIfCounterCompleted": false,
+            "value": "7",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_5_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 5,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        },
+        {
+          "_parent": "Quest",
+          "_props": {
+            "id": "DRIP_5_AFS_1",
+            "index": 1,
+            "parentId": "",
+            "dynamicLocale": false,
+            "target": "DRIP_4",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_5 description",
+    "failMessageText": "DRIP_5 failMessageText",
+    "name": "DRIP_5 name",
+    "note": "DRIP_5 note",
+    "traderId": "moron",
+    "location": "5714dc692459777137212e12",
+    "image": "/files/quest/icon/GlockWick3.png",
+    "type": "Elimination",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_5 description",
+    "successMessageText": "DRIP_5 successMessageText",
+    "templateId": "DRIP_5",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "8500",
+          "id": "DRIP_5_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "0.07",
+          "id": "DRIP_5_Reward1",
+          "type": "TraderStanding",
+          "target": "moron",
+          "index": 1
+        },
+        {
+          "value": "275",
+          "id": "DRIP_5_Reward2",
+          "type": "Item",
+          "target": "DRIP_5_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_5_ItemReward0",
+              "_tpl": "569668774bdc2da2298b4568",
+              "upd": {
+                "StackObjectsCount": 275
+              }
+            }
+          ]
+        },
+        {
+          "value": "60",
+          "id": "DRIP_5_Reward3",
+          "type": "Item",
+          "target": "DRIP_5_ItemReward1",
+          "index": 3,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_5_ItemReward1",
+              "_tpl": "5c925fa22e221601da359b7b",
+              "upd": {
+                "StackObjectsCount": 60
+              }
+            }
+          ]
+        },
+        {
+          "value": "60",
+          "id": "DRIP_5_Reward4",
+          "type": "Item",
+          "target": "DRIP_5_ItemReward2",
+          "index": 4,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_5_ItemReward2",
+              "_tpl": "5c0d56a986f774449d5de529",
+              "upd": {
+                "StackObjectsCount": 60
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_6": {
+    "QuestName": "Full Life Consequences",
+    "_id": "DRIP_6",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_6 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "CounterCreator",
+          "_props": {
+            "counter": {
+              "id": "DRIP_6_AFF_0_0",
+              "conditions": [
+                {
+                  "_parent": "Kills",
+                  "_props": {
+                    "target": "Usec",
+                    "compareMethod": ">=",
+                    "value": "1",
+                    "weapon": [
+                      "5c07df7f0db834001b73588a"
+                    ],
+                    "id": "DRIP_6_AFF_0_1"
+                  }
+                }
+              ]
+            },
+            "id": "DRIP_6_AFF_0",
+            "index": 0,
+            "parentId": "",
+            "oneSessionOnly": false,
+            "dynamicLocale": false,
+            "type": "Elimination",
+            "doNotResetIfCounterCompleted": false,
+            "value": "3",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_6_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 6,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        }
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_6 description",
+    "failMessageText": "DRIP_6 failMessageText",
+    "name": "DRIP_6 name",
+    "note": "DRIP_6 note",
+    "traderId": "moron",
+    "location": "any",
+    "image": "/files/quest/icon/5ae325c586f77444fa45d0de.jpg",
+    "type": "Elimination",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_6 description",
+    "successMessageText": "DRIP_6 successMessageText",
+    "templateId": "DRIP_6",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "3000",
+          "id": "DRIP_6_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "0.03",
+          "id": "DRIP_6_Reward1",
+          "type": "TraderStanding",
+          "target": "moron",
+          "index": 1
+        },
+        {
+          "value": "100",
+          "id": "DRIP_6_Reward2",
+          "type": "Item",
+          "target": "DRIP_6_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_6_ItemReward0",
+              "_tpl": "569668774bdc2da2298b4568",
+              "upd": {
+                "StackObjectsCount": 100
+              }
+            }
+          ]
+        },
+        {
+          "value": "2",
+          "id": "DRIP_6_Reward3",
+          "type": "Item",
+          "target": "DRIP_6_ItemReward1",
+          "index": 3,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_6_ItemReward1",
+              "_tpl": "5e2af4a786f7746d3f3c3400",
+              "upd": {
+                "StackObjectsCount": 2
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_7": {
+    "QuestName": "Shock and Awe",
+    "_id": "DRIP_7",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_7 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "CounterCreator",
+          "_props": {
+            "counter": {
+              "id": "DRIP_7_AFF_0_0",
+              "conditions": [
+                {
+                  "_parent": "Kills",
+                  "_props": {
+                    "target": "AnyPmc",
+                    "compareMethod": ">=",
+                    "value": "1",
+                    "weapon": [
+                      "5a7828548dc32e5a9c28b516"
+                    ],
+                    "id": "DRIP_7_AFF_0_1"
+                  }
+                },
+                {
+                  "_parent": "Location",
+                  "_props": {
+                    "target": [
+                      "factory4_day",
+                      "factory4_night"
+                    ],
+                    "id": "DRIP_7_AFF_0_2"
+                  }
+                }
+              ]
+            },
+            "id": "DRIP_7_AFF_0",
+            "index": 0,
+            "parentId": "",
+            "oneSessionOnly": false,
+            "dynamicLocale": false,
+            "type": "Elimination",
+            "doNotResetIfCounterCompleted": false,
+            "value": "8",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_7_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 6,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        },
+        {
+          "_parent": "Quest",
+          "_props": {
+            "id": "DRIP_8_AFS_1",
+            "index": 1,
+            "parentId": "",
+            "dynamicLocale": false,
+            "target": "DRIP_5",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_7 description",
+    "failMessageText": "DRIP_7 failMessageText",
+    "name": "DRIP_7 name",
+    "note": "DRIP_7 note",
+    "traderId": "moron",
+    "location": "any",
+    "image": "/files/quest/icon/5ae325c586f77444fa45d0de.jpg",
+    "type": "Elimination",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_7 description",
+    "successMessageText": "DRIP_7 successMessageText",
+    "templateId": "DRIP_7",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "4500",
+          "id": "DRIP_7_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "0.06",
+          "id": "DRIP_7_Reward1",
+          "type": "TraderStanding",
+          "target": "moron",
+          "index": 1
+        },
+        {
+          "value": "42500",
+          "id": "DRIP_7_Reward2",
+          "type": "Item",
+          "target": "DRIP_7_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_7_ItemReward0",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 42500
+              }
+            }
+          ]
+        },
+        {
+          "value": "1",
+          "id": "DRIP_7_Reward3",
+          "type": "Item",
+          "target": "DRIP_7_ItemReward1",
+          "index": 3,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_7_ItemReward1",
+              "_tpl": "FLAKJACKET_3COLOURDESERT_VEST",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ]
+        }
+        ,
+        {
+          "value": "1",
+          "id": "DRIP_7_Reward4",
+          "type": "Item",
+          "target": "DRIP_7_ItemReward2",
+          "index": 4,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_7_ItemReward2",
+              "_tpl": "5d96141523f0ea1b7f2aacab",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_8": {
+    "QuestName": "Lack of Lubrication",
+    "_id": "DRIP_8",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_8 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_8_AFF_0",
+            "index": 0,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": true,
+            "dynamicLocale": false,
+            "target": [
+              "5755383e24597772cb798966"
+            ],
+            "value": "4",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_8_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 10,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        },
+        {
+          "_parent": "Quest",
+          "_props": {
+            "id": "DRIP_8_AFS_1",
+            "index": 1,
+            "parentId": "",
+            "dynamicLocale": false,
+            "target": "DRIP_1",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_8 description",
+    "failMessageText": "DRIP_8 failMessageText",
+    "name": "DRIP_8 name",
+    "note": "DRIP_8 note",
+    "traderId": "moron",
+    "location": "any",
+    "image": "/files/quest/icon/5ae4a74386f7744748710d72.jpg",
+    "type": "PickUp",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_8 description",
+    "successMessageText": "DRIP_8 successMessageText",
+    "templateId": "DRIP_8",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "3000",
+          "id": "DRIP_8_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "0.03",
+          "id": "DRIP_8_Reward1",
+          "type": "TraderStanding",
+          "target": "moron",
+          "index": 1
+        },
+        {
+          "value": "55000",
+          "id": "DRIP_8_Reward2",
+          "type": "Item",
+          "target": "DRIP_8_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_8_ItemReward0",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 55000
+              }
+            }
+          ]
+        },
+        {
+          "value": "2",
+          "id": "DRIP_8_Reward3",
+          "type": "Item",
+          "target": "DRIP_8_ItemReward1",
+          "index": 3,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_8_ItemReward1",
+              "_tpl": "FLAKJACKET_OLIVEDRAB_ARMOR",
+              "upd": {
+                "StackObjectsCount": 2
+              }
+            }
+          ]
+        },
+        {
+          "value": "4",
+          "id": "DRIP_8_Reward4",
+          "type": "Item",
+          "target": "DRIP_8_ItemReward2",
+          "index": 4,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_8_ItemReward2",
+              "_tpl": "SLING_OLIVEDRAB_BAG",
+              "upd": {
+                "StackObjectsCount": 4
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_9": {
+    "QuestName": "Junker",
+    "_id": "DRIP_9",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_9 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "CounterCreator",
+          "_props": {
+            "counter": {
+              "id": "DRIP_9_AFF_0_0",
+              "conditions": [
+                {
+                  "_parent": "Kills",
+                  "_props": {
+                    "target": "AnyPmc",
+                    "compareMethod": ">=",
+                    "value": "1",
+                    "weapon": [
+                      "61f7c9e189e6fb1a5e3ea78d"
+                    ],
+                    "id": "DRIP_9_AFF_0_1"
+                  }
+                }
+              ]
+            },
+            "id": "DRIP_9_AFF_0",
+            "index": 0,
+            "parentId": "",
+            "oneSessionOnly": false,
+            "dynamicLocale": false,
+            "type": "Elimination",
+            "doNotResetIfCounterCompleted": false,
+            "value": "10",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_9_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 8,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        },
+        {
+          "_parent": "Quest",
+          "_props": {
+            "id": "DRIP_9_AFS_1",
+            "index": 1,
+            "parentId": "",
+            "dynamicLocale": false,
+            "target": "DRIP_1",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_9 description",
+    "failMessageText": "DRIP_9 failMessageText",
+    "name": "DRIP_9 name",
+    "note": "DRIP_9 note",
+    "traderId": "moron",
+    "location": "any",
+    "image": "/files/quest/icon/5ae325c586f77444fa45d0de.jpg",
+    "type": "Elimination",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_9 description",
+    "successMessageText": "DRIP_9 successMessageText",
+    "templateId": "DRIP_9",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "5000",
+          "id": "DRIP_9_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "0.06",
+          "id": "DRIP_9_Reward1",
+          "type": "TraderStanding",
+          "target": "moron",
+          "index": 1
+        },
+        {
+          "value": "35000",
+          "id": "DRIP_9_Reward2",
+          "type": "Item",
+          "target": "DRIP_9_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_9_ItemReward0",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 35000
+              }
+            }
+          ]
+        },
+        {
+          "value": "40",
+          "id": "DRIP_9_Reward3",
+          "type": "Item",
+          "target": "DRIP_9_ItemReward1",
+          "index": 3,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_9_ItemReward1",
+              "_tpl": "560d61e84bdc2da74d8b4571",
+              "upd": {
+                "StackObjectsCount": 40
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_10": {
+    "QuestName": "Party City",
+    "_id": "DRIP_10",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_10 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_10_AFF_0",
+            "index": 0,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "5d40407c86f774318526545a"
+            ],
+            "value": "1",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        },
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_10_AFF_1",
+            "index": 1,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "5734781f24597737e04bf32a"
+            ],
+            "value": "1",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        },
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_10_AFF_2",
+            "index": 2,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "57347da92459774491567cf5"
+            ],
+            "value": "2",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        },
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_10_AFF_3",
+            "index": 3,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "62a09f32621468534a797acb"
+            ],
+            "value": "3",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        },
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_10_AFF_4",
+            "index": 4,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "5448ff904bdc2d6f028b456e"
+            ],
+            "value": "4",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_10_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 8,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        },
+        {
+          "_parent": "Quest",
+          "_props": {
+            "id": "DRIP_10_AFS_1",
+            "index": 1,
+            "parentId": "",
+            "dynamicLocale": false,
+            "target": "DRIP_5",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_10 description",
+    "failMessageText": "DRIP_10 failMessageText",
+    "name": "DRIP_10 name",
+    "note": "DRIP_10 note",
+    "traderId": "moron",
+    "location": "any",
+    "image": "/files/quest/icon/Drunkard.png",
+    "type": "PickUp",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_10 description",
+    "successMessageText": "DRIP_10 successMessageText",
+    "templateId": "DRIP_10",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "4500",
+          "id": "DRIP_10_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "0.06",
+          "id": "DRIP_10_Reward1",
+          "type": "TraderStanding",
+          "target": "moron",
+          "index": 1
+        },
+        {
+          "value": "1",
+          "id": "DRIP_10_Reward2",
+          "type": "Item",
+          "target": "DRIP_10_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_10_ItemReward0",
+              "_tpl": "GEN4_FULL_DIGITALTIGERSTRIPE",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ]
+        },
+        {
+          "value": "2",
+          "id": "DRIP_10_Reward3",
+          "type": "Item",
+          "target": "DRIP_10_ItemReward1",
+          "index": 3,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_10_ItemReward1",
+              "_tpl": "RAID_BLACK_BAG",
+              "upd": {
+                "StackObjectsCount": 2
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_11": {
+    "QuestName": "System Destroyer: Part 1",
+    "_id": "DRIP_11",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_11 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "CounterCreator",
+          "_props": {
+            "counter": {
+              "id": "DRIP_11_AFF_0_0",
+              "conditions": [
+                {
+                  "_parent": "Kills",
+                  "_props": {
+                    "savageRole": [
+                      "bossBully"
+                    ],
+                    "target": "Savage",
+                    "compareMethod": ">=",
+                    "value": "1",
+                    "weapon": [],
+                    "id": "DRIP_11_AFF_0_1"
+                  }
+                }
+              ]
+            },
+            "id": "DRIP_11_AFF_0",
+            "index": 0,
+            "parentId": "",
+            "oneSessionOnly": false,
+            "dynamicLocale": false,
+            "type": "Elimination",
+            "doNotResetIfCounterCompleted": false,
+            "value": "1",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        },
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_11_AFF_1",
+            "index": 1,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "5b3b713c5acfc4330140bd8d"
+            ],
+            "value": "1",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        },
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_11_AFF_2",
+            "index": 1,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "59faf7ca86f7740dbe19f6c2"
+            ],
+            "value": "1",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_11_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 10,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        },
+        {
+          "_parent": "Quest",
+          "_props": {
+            "id": "DRIP_11_AFS_1",
+            "index": 1,
+            "parentId": "",
+            "dynamicLocale": false,
+            "target": "DRIP_10",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_11 description",
+    "failMessageText": "DRIP_11 failMessageText",
+    "name": "DRIP_11 name",
+    "note": "DRIP_11 note",
+    "traderId": "moron",
+    "location": "any",
+    "image": "/files/quest/icon/5ae325c586f77444fa45d0de.jpg",
+    "type": "Elimination",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_11 description",
+    "successMessageText": "DRIP_11 successMessageText",
+    "templateId": "DRIP_11",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "8000",
+          "id": "DRIP_11_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "0.1",
+          "id": "DRIP_11_Reward1",
+          "type": "TraderStanding",
+          "target": "moron",
+          "index": 1
+        },
+        {
+          "value": "65000",
+          "id": "DRIP_11_Reward2",
+          "type": "Item",
+          "target": "DRIP_11_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_11_ItemReward0",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 65000
+              }
+            }
+          ]
+        },
+        {
+          "value": "1",
+          "id": "DRIP_11_Reward3",
+          "type": "Item",
+          "target": "DRIP_11_ItemReward1",
+          "index": 3,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_11_ItemReward1",
+              "_tpl": "NICECOMM_3COLOURDESERT_BAG",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_12": {
+    "QuestName": "System Destroyer: Part 2",
+    "_id": "DRIP_12",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_12 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_12_AFF_0",
+            "index": 0,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "5c06779c86f77426e00dd782"
+            ],
+            "value": "4",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        },
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_12_AFF_1",
+            "index": 1,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "5d4042a986f7743185265463"
+            ],
+            "value": "1",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        },
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_12_AFF_2",
+            "index": 2,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "5c06782b86f77426df5407d2"
+            ],
+            "value": "2",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_12_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 10,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        },
+        {
+          "_parent": "Quest",
+          "_props": {
+            "id": "DRIP_12_AFS_1",
+            "index": 1,
+            "parentId": "",
+            "dynamicLocale": false,
+            "target": "DRIP_11",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_12 description",
+    "failMessageText": "DRIP_12 failMessageText",
+    "name": "DRIP_12 name",
+    "note": "DRIP_12 note",
+    "traderId": "moron",
+    "location": "any",
+    "image": "/files/quest/icon/Drunkard.png",
+    "type": "PickUp",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_12 description",
+    "successMessageText": "DRIP_12 successMessageText",
+    "templateId": "DRIP_12",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "5000",
+          "id": "DRIP_12_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "0.08",
+          "id": "DRIP_12_Reward1",
+          "type": "TraderStanding",
+          "target": "moron",
+          "index": 1
+        },
+        {
+          "value": "1",
+          "id": "DRIP_12_Reward2",
+          "type": "Item",
+          "target": "DRIP_12_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_12_ItemReward0",
+              "_tpl": "TROOPER35_BLACK_BAG",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ]
+        },
+        {
+          "value": "1",
+          "id": "DRIP_12_Reward3",
+          "type": "Item",
+          "target": "DRIP_12_ItemReward1",
+          "index": 3,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_12_ItemReward1",
+              "_tpl": "59faff1d86f7746c51718c9c",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_13": {
+    "QuestName": "Head, eyes",
+    "_id": "DRIP_13",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_13 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "CounterCreator",
+          "_props": {
+            "counter": {
+              "id": "DRIP_13_AFF_0_0",
+              "conditions": [
+                {
+                  "_parent": "Kills",
+                  "_props": {
+                    "bodyPart": [
+                      "Head"
+                    ],
+                    "target": "AnyPmc",
+                    "compareMethod": ">=",
+                    "value": "1",
+                    "weapon": [
+                      "55801eed4bdc2d89578b4588",
+                      "5de652c31b7e3716273428be",
+                      "588892092459774ac91d4b11",
+                      "5ae08f0a5acfc408fb1398a1",
+                      "5df24cf80dee1b22f862e9bc",
+                      "5bfea6e90db834001b7347f3",
+                      "5bfd297f0db834001a669119",
+                      "61f7c9e189e6fb1a5e3ea78d",
+                      "627e14b21713922ded6f2c15",
+                      "5a38e6bac4a2826c6e06d79b"
+                    ],
+                    "id": "DRIP_13_AFF_0_1"
+                  }
+                }
+              ]
+            },
+            "id": "DRIP_13_AFF_0",
+            "index": 0,
+            "parentId": "",
+            "oneSessionOnly": false,
+            "dynamicLocale": false,
+            "type": "Elimination",
+            "doNotResetIfCounterCompleted": false,
+            "value": "30",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_13_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 11,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        },
+        {
+          "_parent": "Quest",
+          "_props": {
+            "id": "DRIP_13_AFS_1",
+            "index": 1,
+            "parentId": "",
+            "dynamicLocale": false,
+            "target": "DRIP_9",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_13 description",
+    "failMessageText": "DRIP_13 failMessageText",
+    "name": "DRIP_13 name",
+    "note": "DRIP_13 note",
+    "traderId": "moron",
+    "location": "any",
+    "image": "/files/quest/icon/Drunkard.png",
+    "type": "PickUp",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_13 description",
+    "successMessageText": "DRIP_13 successMessageText",
+    "templateId": "DRIP_13",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "10000",
+          "id": "DRIP_13_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "0.07",
+          "id": "DRIP_13_Reward1",
+          "type": "TraderStanding",
+          "target": "moron",
+          "index": 1
+        },
+        {
+          "value": "2",
+          "id": "DRIP_13_Reward2",
+          "type": "Item",
+          "target": "DRIP_13_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_13_ItemReward0",
+              "_tpl": "5d403f9186f7743cac3f229b",
+              "upd": {
+                "StackObjectsCount": 2
+              }
+            }
+          ]
+        },
+        {
+          "value": "1",
+          "id": "DRIP_13_Reward3",
+          "type": "Item",
+          "target": "DRIP_13_ItemReward1",
+          "index": 3,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_13_ItemReward1",
+              "_tpl": "5d1b5e94d7ad1a2b865a96b0",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ]
+        },
+        {
+          "value": "2500",
+          "id": "DRIP_11_Reward2",
+          "type": "Item",
+          "target": "DRIP_11_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_11_ItemReward0",
+              "_tpl": "5696686a4bdc2da3298b456a",
+              "upd": {
+                "StackObjectsCount": 2500
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_14": {
+    "QuestName": "Mosin Man",
+    "_id": "DRIP_14",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_14 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "CounterCreator",
+          "_props": {
+            "counter": {
+              "id": "DRIP_14_AFF_0_0",
+              "conditions": [
+                {
+                  "_parent": "Kills",
+                  "_props": {
+                    "bodyPart": [
+                      "Chest",
+                      "Stomach"
+                    ],
+                    "savageRole": [
+                      "pmcBot"
+                    ],
+                    "target": "Savage",
+                    "compareMethod": ">=",
+                    "value": "1",
+                    "weapon": [
+                      "5bfd297f0db834001a669119",
+                      "5ae08f0a5acfc408fb1398a1"
+                    ],
+                    "id": "DRIP_14_AFF_0_1"
+                  }
+                },
+                {
+                  "_parent": "Location",
+                  "_props": {
+                    "target": [
+                      "RezervBase"
+                    ],
+                    "id": "DRIP_14_AFF_0_2"
+                  }
+                }
+              ]
+            },
+            "id": "DRIP_14_AFF_0",
+            "index": 0,
+            "parentId": "",
+            "oneSessionOnly": false,
+            "dynamicLocale": false,
+            "type": "Elimination",
+            "doNotResetIfCounterCompleted": false,
+            "value": "10",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_14_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 12,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        },
+        {
+          "_parent": "Quest",
+          "_props": {
+            "id": "DRIP_14_AFS_1",
+            "index": 1,
+            "parentId": "",
+            "dynamicLocale": false,
+            "target": "DRIP_13",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_14 description",
+    "failMessageText": "DRIP_14 failMessageText",
+    "name": "DRIP_14 name",
+    "note": "DRIP_14 note",
+    "traderId": "moron",
+    "location": "5704e5fad2720bc05b8b4567",
+    "image": "/files/quest/icon/5ae325c586f77444fa45d0de.jpg",
+    "type": "Elimination",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_14 description",
+    "successMessageText": "DRIP_14 successMessageText",
+    "templateId": "DRIP_14",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "7500",
+          "id": "DRIP_14_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "0.05",
+          "id": "DRIP_14_Reward1",
+          "type": "TraderStanding",
+          "target": "moron",
+          "index": 1
+        },
+        {
+          "value": "50000",
+          "id": "DRIP_14_Reward2",
+          "type": "Item",
+          "target": "DRIP_14_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_14_ItemReward0",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 50000
+              }
+            }
+          ]
+        },
+        {
+          "value": "1",
+          "id": "DRIP_14_Reward3",
+          "type": "Item",
+          "target": "DRIP_14_ItemReward1",
+          "index": 3,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_14_ItemReward1",
+              "_tpl": "MUSTACHE_GINGER_FACE",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_15": {
+    "QuestName": "Power Supply and Demand",
+    "_id": "DRIP_15",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_15 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_15_AFF_0",
+            "index": 0,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": true,
+            "dynamicLocale": false,
+            "target": [
+              "57347c2e24597744902c94a1"
+            ],
+            "value": "1",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_15_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 5,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        },
+        {
+          "_parent": "Quest",
+          "_props": {
+            "id": "DRIP_15_AFS_1",
+            "index": 1,
+            "parentId": "",
+            "dynamicLocale": false,
+            "target": "DRIP_8",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }  
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_15 description",
+    "failMessageText": "DRIP_15 failMessageText",
+    "name": "DRIP_15 name",
+    "note": "DRIP_15 note",
+    "traderId": "moron",
+    "location": "any",
+    "image": "/files/quest/icon/Boozey.png",
+    "type": "PickUp",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_15 description",
+    "successMessageText": "DRIP_15 successMessageText",
+    "templateId": "DRIP_15",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "3621",
+          "id": "DRIP_15_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "id": "DRIP_15_Reward1",
+          "type": "TraderUnlock",
+          "target": "georgia",
+          "index": 1
+        },
+        {
+          "value": "40000",
+          "id": "DRIP_15_Reward2",
+          "type": "Item",
+          "target": "DRIP_15_ItemReward0",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_15_ItemReward0",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 40000
+              }
+            }
+          ]
+        },
+        {
+          "value": "1",
+          "id": "DRIP_15_Reward3",
+          "type": "Item",
+          "target": "DRIP_15_ItemReward1",
+          "index": 3,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_15_ItemReward1",
+              "_tpl": "TRITON_LES_RIG",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ]
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_16": {
+    "QuestName": "First Impressions",
+    "_id": "DRIP_16",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_16 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_16_AFF_0",
+            "index": 0,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "5751a25924597722c463c472"
+            ],
+            "value": "10",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_16_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 11,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        },
+        {
+          "_parent": "Quest",
+          "_props": {
+            "id": "DRIP_16_AFS_1",
+            "index": 1,
+            "parentId": "",
+            "dynamicLocale": false,
+            "target": "DRIP_15",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }  
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_16 description",
+    "failMessageText": "DRIP_16 failMessageText",
+    "name": "DRIP_16 name",
+    "note": "DRIP_16 note",
+    "traderId": "georgia",
+    "location": "any",
+    "image": "/files/quest/icon/Boozey.png",
+    "type": "PickUp",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_16 description",
+    "successMessageText": "DRIP_16 successMessageText",
+    "templateId": "DRIP_16",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "4200",
+          "id": "DRIP_16_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "20000",
+          "id": "DRIP_16_Reward1",
+          "type": "Item",
+          "target": "DRIP_16_ItemReward0",
+          "index": 1,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_16_ItemReward0",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 20000
+              }
+            }
+          ]
+        },
+        {
+          "value": "3",
+          "id": "DRIP_16_Reward2",
+          "type": "Item",
+          "target": "DRIP_16_ItemReward1",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_16_ItemReward1",
+              "_tpl": "COMTAC4_BLACK_HEADSET",
+              "upd": {
+                "StackObjectsCount": 3
+              }
+            }
+          ]
+        },
+        {
+          "value": "1",
+          "id": "DRIP_16_Reward3",
+          "type": "Item",
+          "target": "DRIP_16_ItemReward2",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_16_ItemReward2",
+              "_tpl": "5d40407c86f774318526545a",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ]
+        },
+        {
+          "value": "0.05",
+          "id": "DRIP_16_Reward4",
+          "type": "TraderStanding",
+          "target": "georgia",
+          "index": 3
+        },
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_17": {
+    "QuestName": "The Best Defense",
+    "_id": "DRIP_17",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_17 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_17_AFF_0",
+            "index": 0,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "5a7828548dc32e5a9c28b516"
+            ],
+            "value": "1",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        },
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_17_AFF_1",
+            "index": 1,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "5d6e6806a4b936088465b17e"
+            ],
+            "value": "20",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_17_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 12,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        },
+        {
+          "_parent": "Quest",
+          "_props": {
+            "id": "DRIP_17_AFS_1",
+            "index": 1,
+            "parentId": "",
+            "dynamicLocale": false,
+            "target": "DRIP_16",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }  
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_17 description",
+    "failMessageText": "DRIP_17 failMessageText",
+    "name": "DRIP_17 name",
+    "note": "DRIP_17 note",
+    "traderId": "georgia",
+    "location": "any",
+    "image": "/files/quest/icon/Boozey.png",
+    "type": "PickUp",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_17 description",
+    "successMessageText": "DRIP_17 successMessageText",
+    "templateId": "DRIP_17",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "4550",
+          "id": "DRIP_17_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "45000",
+          "id": "DRIP_17_Reward1",
+          "type": "Item",
+          "target": "DRIP_17_ItemReward0",
+          "index": 1,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_17_ItemReward0",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 45000
+              }
+            }
+          ]
+        },
+        {
+          "value": "4",
+          "id": "DRIP_17_Reward2",
+          "type": "Item",
+          "target": "DRIP_17_ItemReward1",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_17_ItemReward1",
+              "_tpl": "HALFMASK_SMILE1",
+              "upd": {
+                "StackObjectsCount": 4
+              }
+            }
+          ]
+        },
+        {
+          "value": "0.06",
+          "id": "DRIP_17_Reward1",
+          "type": "TraderStanding",
+          "target": "georgia",
+          "index": 3
+        },
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  },
+  "DRIP_18": {
+    "QuestName": "Friendly Feud",
+    "_id": "DRIP_18",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "DRIP_18 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_18_AFF_0",
+            "index": 0,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "5c05308086f7746b2101e90b"
+            ],
+            "value": "2",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        },
+        {
+          "_parent": "HandoverItem",
+          "_props": {
+            "dogtagLevel": 0,
+            "id": "DRIP_18_AFF_1",
+            "index": 1,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "parentId": "",
+            "onlyFoundInRaid": false,
+            "dynamicLocale": false,
+            "target": [
+              "590c37d286f77443be3d7827"
+            ],
+            "value": "2",
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "_parent": "Level",
+          "_props": {
+            "id": "DRIP_18_AFS_0",
+            "index": 0,
+            "parentId": "",
+            "dynamicLocale": false,
+            "value": 12,
+            "compareMethod": ">=",
+            "visibilityConditions": []
+          }
+        },
+        {
+          "_parent": "Quest",
+          "_props": {
+            "id": "DRIP_18_AFS_1",
+            "index": 1,
+            "parentId": "",
+            "dynamicLocale": false,
+            "target": "DRIP_17",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "visibilityConditions": []
+          },
+          "dynamicLocale": false
+        }  
+      ],
+      "Fail": []
+    },
+    "description": "DRIP_18 description",
+    "failMessageText": "DRIP_18 failMessageText",
+    "name": "DRIP_18 name",
+    "note": "DRIP_18 note",
+    "traderId": "georgia",
+    "location": "any",
+    "image": "/files/quest/icon/Boozey.png",
+    "type": "PickUp",
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": false,
+    "secretQuest": false,
+    "startedMessageText": "DRIP_18 description",
+    "successMessageText": "DRIP_18 successMessageText",
+    "templateId": "DRIP_18",
+    "rewards": {
+      "Started": [],
+      "Success": [
+        {
+          "value": "4550",
+          "id": "DRIP_18_Reward0",
+          "type": "Experience",
+          "index": 0
+        },
+        {
+          "value": "45000",
+          "id": "DRIP_18_Reward1",
+          "type": "Item",
+          "target": "DRIP_18_ItemReward0",
+          "index": 1,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_18_ItemReward0",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 45000
+              }
+            }
+          ]
+        },
+        {
+          "value": "4",
+          "id": "DRIP_18_Reward2",
+          "type": "Item",
+          "target": "DRIP_18_ItemReward1",
+          "index": 2,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "DRIP_18_ItemReward1",
+              "_tpl": "HALFMASK_SMILE1",
+              "upd": {
+                "StackObjectsCount": 4
+              }
+            }
+          ]
+        },
+        {
+          "value": "0.06",
+          "id": "DRIP_18_Reward3",
+          "type": "TraderStanding",
+          "target": "georgia",
+          "index": 3
+        }
+      ],
+      "Fail": []
+    },
+    "side": "Pmc"
+  }
+}

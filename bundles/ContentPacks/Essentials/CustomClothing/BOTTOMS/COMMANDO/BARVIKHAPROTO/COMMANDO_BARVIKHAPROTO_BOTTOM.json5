@@ -1,0 +1,30 @@
+{
+    // This will get injected into all of the locales as the item name.
+    "name": "Commando - Barvikha Prototype",
+	"type": "BOTTOM",
+
+    // "outfitId": "is auto calculated from the file name",
+    // "handsBaseId": "will default to 5d1f5b5386f7744bcc048757",
+    "traderId": "moron",
+
+    "bottomBundlePath": "BOTTOM.bundle",
+    "bottomDependencies": [
+        "shaders",
+        "cubemaps"
+    ],
+
+    // RUB, EUR, and USD are acceptable values here, and will be translated
+    // to their internal BSG IDs before being passed to JustNU Core.
+    "currency": "RUB",
+
+    // Other properties are exactly as specified in JustNU Core, and will
+    // just be filled in as given here.
+    "loyaltyLevel": 1,
+    "profileLevel": 13,
+    "standing": 0,
+    "price": 43000,
+    "tags": {
+        "woodland": 1,
+        "barvikhaproto": 1
+    }
+}

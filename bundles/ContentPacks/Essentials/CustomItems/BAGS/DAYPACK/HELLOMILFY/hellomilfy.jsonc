@@ -1,0 +1,34 @@
+﻿{
+  // "HELLO MILFY" Bag
+  // This config file serves as a template for what other CustomItem configs will look like.
+
+  // This is the original item that we'll clone and override to make this new item.
+  "itemTplToClone": "5e9dcf5986f7746c417435b3",
+
+  // Here we can override almost any property from the original item to make our new one work. In this case, we're
+  // specifying that we should use the item bundle co-located with this config.
+  "overrideProperties": {
+    "Prefab": {
+      "path": "ContentPacks/Essentials/CustomItems/BAGS/DAYPACK/HELLOMILFY/hellomilfy.bundle",
+    },
+  },
+
+  // If multiple locales are specified, then they'll be used. Otherwise, all locales will have the "en" items injected.
+  "locales": {
+    "en": {
+      "name": "LBT-8005A Day Pack backpack (Hello MILFY)",
+      "shortName": "Day Pack",
+      "description": "A simple and reliable 14-liter backpack. Manufactured by London Bridge Trading. Special \"Hello MILFY\" edition.",
+    },
+  },
+
+  // Should we add this to potential bot loadouts?
+  "addToBots": true,
+
+  // Should we copy the original assort from the item we cloned?
+  "copyAssort": true,
+  // When using `copyAssort`, this field will specify that a different trader should get the new item instead of the
+  // original one. A normal MongoID can be used here, or two special values are also recognized: "moron" and "georgia"
+  // (casing is important!) which are properly routed to our traders.
+  "traderId": "georgia",
+}
