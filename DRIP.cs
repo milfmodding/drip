@@ -27,7 +27,7 @@ namespace DRIP
             "Virtual"
             // TODO: anyone I missed?
         ];
-        public SemanticVersioning.Version Version { get; init; } = new("2.0.0");
+        public SemanticVersioning.Version Version { get; init; } = new("2.1.0");
         public SemanticVersioning.Range SptVersion { get; init; } = new("~4.1.0");
 
 

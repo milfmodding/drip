@@ -41,7 +41,7 @@ import zipfile
 MOD_ROOT = pathlib.Path(__file__).resolve().parent.parent
 # Sibling of the clone, so the layout travels: <wherever you cloned>/drip + .../DRIP-bundles.
 BUNDLE_STORE = MOD_ROOT.parent / "DRIP-bundles"
-BUILD_OUTPUT = MOD_ROOT / "bin" / "Release" / "DRIP" / "DRIP"
+BUILD_OUTPUT = MOD_ROOT / "bin" / "Release" / "DRIP"
 PACKS_ROOT = MOD_ROOT / "bundles" / "ContentPacks"
 DIST = MOD_ROOT / "dist"
 
@@ -216,13 +216,46 @@ def copy_bundles_for(pack: str, into_pack_dir: pathlib.Path) -> int:
 
 
 def stage_base(stage: pathlib.Path) -> bool:
-    """The mod, its config, and the base pack only."""
+    """The mod, its config, the base pack only, and the authoring tools."""
     if stage.exists():
         shutil.rmtree(stage)
     stage.mkdir(parents=True)
 
     say("  Staging the build output...")
-    shutil.copytree(BUILD_OUTPUT, stage, dirs_exist_ok=True)
+    # docs/tools/dist can exist inside bin from ad-hoc deploy copies; the real ones are
+    # staged from the repo root below, and stale copies must not reach the archive.
+    shutil.copytree(BUILD_OUTPUT, stage, dirs_exist_ok=True,
+                    ignore=shutil.ignore_patterns("dist", "docs", "tools", "staging"))
+
+    # The authoring tools ship with the mod (Sophia's call, 2026-08-15): the content
+    # owners install a release and get drip.cmd's menu - check packs, make items, find
+    # IDs - with no repo, no git, no terminal knowledge. The build output alone carries
+    # only the JSONs the SDK globs pick up, so the tools are staged from the repo root.
+    say("  Staging the authoring tools...")
+    for entry in ("drip.cmd", "Review Prices.cmd", "Setup.cmd", "tools"):
+        src = MOD_ROOT / entry
+        if not src.exists():
+            say(f"    MISSING: {entry} - the tools cannot ship without it")
+            return False
+        dst = stage / entry
+        if src.is_dir():
+            shutil.copytree(
+                src, dst,
+                ignore=shutil.ignore_patterns(
+                    "__pycache__",          # machine-generated, stale in any clone
+                    "spt-path.txt",          # per-machine: points at an install by path
+                    "test-fixtures",         # converter fixtures, not authoring tools
+                    "*.xlsx",                # the generated working spreadsheet
+                ))
+        else:
+            shutil.copy2(src, dst)
+    # Only the docs the tools point at: the schema drip check validates against, the
+    # authoring guide, the price-review guide, and the field reference its diagnostics
+    # name. Team documents (STATUS, migration, review notes) stay internal.
+    (stage / "docs").mkdir(exist_ok=True)
+    for doc in ("drip-item.schema.json", "AUTHORING.md", "REVIEWING-PRICES.md",
+                "CONFIG-SCHEMA-v2.md"):
+        shutil.copy2(MOD_ROOT / "docs" / doc, stage / "docs" / doc)
 
     # The build copies every pack it finds in the repo; a base archive ships only its own.
     packs_out = stage / "bundles" / "ContentPacks"
@@ -287,6 +320,10 @@ def verify_stage(stage: pathlib.Path, expect_base: bool) -> bool:
             problems.append("the mod assembly is not in the package")
         if not (stage / "config").exists():
             problems.append("the config folder is not in the package")
+        if not (stage / "drip.cmd").exists():
+            problems.append("the authoring tools (drip.cmd) are not in the package")
+        if not (stage / "tools" / "drip.py").exists():
+            problems.append("tools/drip.py is not in the package - drip.cmd cannot work")
         present = sorted(p.name for p in packs_out.iterdir() if p.is_dir())
         if present != [BASE_PACK]:
             problems.append(f"base archive should hold only {BASE_PACK}, holds {present}")
@@ -388,7 +425,7 @@ README = """\
 DRIP {version}
 ==============
 
-Clothing and gear for SPT. Requires SPT 4.0.
+Clothing and gear for SPT. Requires SPT 4.1.
 
 This is the full install and includes the Essentials content pack. Parts 2 and 3 are
 separate downloads -- see ADD-ON PACKS below.
@@ -430,6 +467,15 @@ OPTIONS
 config\\config.jsonc changes how DRIP behaves -- whether bots wear DRIP clothing, whether
 everything is free, and so on. Each setting says what it does. Edit it with any text editor,
 then restart the server.
+
+
+MAKING YOUR OWN ITEMS
+---------------------
+
+Double-click drip.cmd, inside the DRIP folder, for the authoring menu: check the content
+packs for mistakes, start a new item, or look up an item's ID by its name. "Review Prices.cmd"
+exports the pricing sheet. Both need Python installed; Setup.cmd checks for it and tells you
+where to get it. See docs\\AUTHORING.md, also inside the DRIP folder.
 
 
 IF RAIDS FEEL HEAVY
