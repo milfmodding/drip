@@ -39,10 +39,22 @@ import sys
 import zipfile
 
 MOD_ROOT = pathlib.Path(__file__).resolve().parent.parent
-BUNDLE_STORE = pathlib.Path(r"F:\SPT\Mods\DRIP-bundles")
+# Sibling of the clone, so the layout travels: <wherever you cloned>/drip + .../DRIP-bundles.
+BUNDLE_STORE = MOD_ROOT.parent / "DRIP-bundles"
 BUILD_OUTPUT = MOD_ROOT / "bin" / "Release" / "DRIP" / "DRIP"
 PACKS_ROOT = MOD_ROOT / "bundles" / "ContentPacks"
 DIST = MOD_ROOT / "dist"
+
+# --- bundle-store release assets ----------------------------------------------------------
+# GitHub caps a release asset at 2 GiB and the store is bigger, so it ships as several
+# INDEPENDENT zips (not a byte-split join) plus a manifest. All three names are stable
+# across releases so Setup.cmd can always fetch
+#   <repo>/releases/latest/download/DRIP-bundle-store.json
+# without knowing the version. bootstrap.py carries the same three names - this module's
+# filename has a hyphen, so it cannot be imported; the manifest IS the contract.
+STORE_MANIFEST = "DRIP-bundle-store.json"
+STORE_PART_PREFIX = "DRIP-bundle-store-"
+STORE_PART_LIMIT = int(1.9 * 1024 ** 3)      # stay under GitHub's 2 GiB with margin
 
 # The pack that ships inside the base install. Everything else is a separate download.
 BASE_PACK = "Essentials"
@@ -310,6 +322,66 @@ def zip_stage(stage: pathlib.Path, name: str) -> pathlib.Path:
     return archive
 
 
+def zip_store_assets(version: str) -> list[pathlib.Path]:
+    """Zip the bundle store into <2 GiB parts plus a stable-named manifest.
+
+    These are the developer-bootstrap assets Setup.cmd downloads - not the player archives.
+    Bundles only: configs live in git, and a checkout that has both would be one more place
+    for them to disagree. Each part is a complete zip of a subset of files, so extraction is
+    just "unzip each part into the store folder" with no join step.
+    """
+    if not BUNDLE_STORE.exists():
+        say(f"  No bundle store at {BUNDLE_STORE} - skipping store assets.")
+        return []
+    files = sorted(BUNDLE_STORE.rglob("*.bundle"))
+    if not files:
+        say("  The bundle store is empty - skipping store assets.")
+        return []
+
+    say(f"  Packing {len(files)} store bundles into parts of at most "
+        f"{STORE_PART_LIMIT / (1024 ** 3):.1f} GiB...")
+
+    # Split by cumulative size. A single file larger than the cap still ships (it would be
+    # a problem for GitHub, so it is worth naming rather than silently producing an
+    # unuploadable part).
+    parts: list[list[pathlib.Path]] = [[]]
+    running = 0
+    for f in files:
+        size = f.stat().st_size
+        if parts[-1] and running + size > STORE_PART_LIMIT:
+            parts.append([])
+            running = 0
+        parts[-1].append(f)
+        running += size
+
+    DIST.mkdir(exist_ok=True)
+    written: list[pathlib.Path] = []
+    total_files = 0
+    for i, group in enumerate(parts, 1):
+        name = f"{STORE_PART_PREFIX}{i:02d}.zip"
+        archive = DIST / name
+        say(f"    {name}: {len(group)} bundles, "
+            f"{sum(f.stat().st_size for f in group) / (1024 ** 3):.2f} GiB")
+        with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as z:
+            for f in group:
+                z.write(f, f.relative_to(BUNDLE_STORE))
+        written.append(archive)
+        total_files += len(group)
+
+    manifest = DIST / STORE_MANIFEST
+    manifest.write_text(json.dumps({
+        "version": version,
+        "files": total_files,
+        "bytes": sum(f.stat().st_size for f in files),
+        "parts": [w.name for w in written],
+        "note": "Developer bootstrap. Extract every part into the bundle-store folder "
+                "(a sibling of the repo clone named DRIP-bundles). Setup.cmd does this "
+                "for you. Bundles only - configs come from git.",
+    }, indent=2) + "\n", encoding="utf-8")
+    say(f"    {STORE_MANIFEST} written")
+    return written + [manifest]
+
+
 # ------------------------------------------------------------------------------------------
 
 README = """\
@@ -447,11 +519,28 @@ def main() -> int:
                     help="use the existing Release output instead of building")
     ap.add_argument("--no-zip", action="store_true",
                     help="leave the staged folders in place, don't compress")
+    ap.add_argument("--store-only", action="store_true",
+                    help="only produce the bundle-store assets Setup.cmd downloads "
+                         "(developer bootstrap, not the player archives)")
+    ap.add_argument("--no-store-zip", action="store_true",
+                    help="skip the bundle-store assets a full build normally also produces")
     ap.add_argument("--check-only", action="store_true",
                     help="report whether each pack could ship; copy nothing")
     args = ap.parse_args()
 
     version = mod_version()
+
+    # Developer bootstrap assets are bundle data only, so the content gate does not apply:
+    # a checkout needing bundles is exactly a checkout that can't pass it yet.
+    if args.store_only:
+        written = zip_store_assets(version)
+        say()
+        for w in written:
+            say(f"  {w.name}   {w.stat().st_size / (1024 ** 3):.2f} GB")
+        say("\n  Upload everything in dist/ to the GitHub release. Setup.cmd fetches the "
+            "manifest and parts by name.\n")
+        return 0 if written else 1
+
     present = packs_present()
 
     say(f"\n{'=' * 74}\nDRIP {version} release\n{'=' * 74}")
@@ -517,7 +606,15 @@ def main() -> int:
         return 0
     for archive in built:
         say(f"  {archive.name}   {archive.stat().st_size / (1024 ** 3):.2f} GB")
-    say("\n  Players extract these into user\\mods. The base install first.\n")
+    say("\n  Players extract these into user\\mods. The base install first.")
+
+    if not args.no_store_zip:
+        say()
+        written = zip_store_assets(version)
+        if written:
+            say("\n  The DRIP-bundle-store files are developer bootstrap, not player installs - "
+                "upload them to the same GitHub release.")
+    say()
     return 0
 
 

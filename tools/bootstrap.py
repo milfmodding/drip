@@ -23,10 +23,15 @@ Nothing here writes to an SPT install. The only file it creates is tools/spt-pat
 from __future__ import annotations
 
 import json
+import os
 import pathlib
 import re
+import shutil
 import subprocess
 import sys
+import urllib.error
+import urllib.request
+import zipfile
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import sptdb  # noqa: E402
@@ -35,6 +40,18 @@ HERE = pathlib.Path(__file__).resolve().parent
 MOD_ROOT = HERE.parent
 PACKS_ROOT = MOD_ROOT / "bundles" / "ContentPacks"
 VSCODE = MOD_ROOT / ".vscode" / "settings.json"
+
+# Sibling of the clone - the same place build-release.py looks for it.
+BUNDLE_STORE = MOD_ROOT.parent / "DRIP-bundles"
+
+# --- bundle download ----------------------------------------------------------------------
+# These three names are the contract with build-release.py, which WRITES them (it can't be
+# imported - hyphen in the filename). "latest/download" needs no version: whatever release
+# is newest serves the assets, so Setup never has to know one.
+STORE_RELEASE = "https://github.com/milfmodding/drip/releases/latest/download"
+STORE_MANIFEST = "DRIP-bundle-store.json"
+# DRIP_STORE_URL overrides the release base (for testing this flow without a release).
+STORE_URL = os.environ.get("DRIP_STORE_URL", STORE_RELEASE)
 
 OK, INFO, TODO, SKIP = "  ok  ", " info ", " todo ", "SKIPPED"
 
@@ -155,6 +172,68 @@ def step_editor() -> None:
             "that is the one way this can look set up and not be.")
 
 
+def _fetch(url: str, dest: pathlib.Path) -> None:
+    """Stream a file to disk with progress, so a multi-GB part isn't a silent minute."""
+    with urllib.request.urlopen(url, timeout=60) as r, open(dest, "wb") as out:
+        total = int(r.headers.get("Content-Length") or 0)
+        done, next_report = 0, 0
+        while chunk := r.read(1 << 20):
+            out.write(chunk)
+            done += len(chunk)
+            if total and done >= next_report:
+                print(f"            {done / (1024 ** 2):6.0f} / {total / (1024 ** 2):.0f} MB",
+                      end="\r", flush=True)
+                next_report = done + 200 * (1 << 20)      # every ~200 MB
+    print()
+
+
+def download_bundles() -> tuple[bool, list[str]]:
+    """Fetch the bundle store from the latest GitHub release. Returns (ok, notes)."""
+    notes: list[str] = []
+    downloads = MOD_ROOT / "dist" / "downloads"
+    downloads.mkdir(parents=True, exist_ok=True)
+
+    try:
+        manifest_path = downloads / STORE_MANIFEST
+        _fetch(f"{STORE_URL}/{STORE_MANIFEST}", manifest_path)
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except urllib.error.HTTPError as e:
+        notes.append(f"no store manifest at the release ({e.code})")
+        return False, notes
+    except (urllib.error.URLError, OSError, ValueError) as e:
+        notes.append(f"couldn't reach the download ({type(e).__name__}: {e})")
+        return False, notes
+
+    parts = manifest.get("parts") or []
+    if not parts:
+        notes.append("the manifest lists no parts")
+        return False, notes
+
+    for name in parts:
+        target = downloads / name
+        try:
+            _fetch(f"{STORE_URL}/{name}", target)
+        except (urllib.error.HTTPError, urllib.error.URLError, OSError) as e:
+            notes.append(f"{name} didn't download ({type(e).__name__}: {e})")
+            return False, notes
+
+        # Each part is an independent zip: extract it, verify it, and only then continue -
+        # a corrupt part stops the install with the part named rather than a broken store.
+        try:
+            with zipfile.ZipFile(target) as z:
+                bad = z.testzip()
+                if bad:
+                    notes.append(f"{name} is corrupt at {bad}")
+                    return False, notes
+                z.extractall(BUNDLE_STORE)
+        except zipfile.BadZipFile:
+            notes.append(f"{name} isn't a valid zip (delete it from the release and re-upload)")
+            return False, notes
+        notes.append(f"{name}: extracted")
+
+    return True, notes
+
+
 def step_bundles() -> None:
     if not PACKS_ROOT.exists():
         say(TODO, f"No content packs at {PACKS_ROOT}.")
@@ -164,13 +243,41 @@ def step_bundles() -> None:
     configs = sum(1 for d in ("CustomItems", "CustomClothing")
                   for _ in PACKS_ROOT.rglob(f"*/{d}/**/*.jsonc"))
     bundles = sum(1 for _ in PACKS_ROOT.rglob("*.bundle"))
-    if bundles == 0:
-        say(TODO, f"{configs} item configs, no .bundle files - normal for a fresh copy.",
-            "Bundles are large binaries and are kept out of git. To fetch them:",
-            "  python tools/convert-legacy.py --part 1 "
-            "--out bundles/ContentPacks/Essentials --bundles link")
-    else:
+    if bundles:
         say(OK, f"{configs} item configs and {bundles} bundles on disk.")
+        return
+
+    say(TODO, f"{configs} item configs, no .bundle files - fetching them now...")
+    ok, notes = download_bundles()
+    for n in notes:
+        print(f"            {n}")
+    if not ok:
+        print("            Either the bundle store hasn't been uploaded as a release asset yet,")
+        print("            or this machine has no connection to github.com.")
+        print("            With the legacy corpus on disk instead, populate by hand:")
+        print("              python tools/convert-legacy.py --part 1 "
+              "--out bundles/ContentPacks/Essentials --bundles link")
+        return
+
+    # The store is populated; mirror its bundles into the packs so the loader sees them.
+    copied = 0
+    for pack_dir in (p for p in BUNDLE_STORE.iterdir() if p.is_dir()):
+        target_pack = PACKS_ROOT / pack_dir.name
+        if not target_pack.exists():
+            continue                     # a pack this checkout's configs don't have
+        for bundle in pack_dir.rglob("*.bundle"):
+            target = target_pack / bundle.relative_to(pack_dir)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(bundle, target)
+            copied += 1
+
+    bundles = sum(1 for _ in PACKS_ROOT.rglob("*.bundle"))
+    if bundles:
+        say(OK, f"Downloaded the bundle store and copied {copied} bundles into the packs.",
+            f"Store: {BUNDLE_STORE}")
+    else:
+        say(TODO, "Download ran but no bundles landed in the packs.",
+            "Tell whoever set up the release - the assets extracted but matched nothing.")
 
 
 CONTENT: list[str] = []

@@ -640,8 +640,11 @@ def seller_check(items: list, db) -> tuple[list[Diag], list[str]]:
             unsold.append((rel, base, db.name_of(base)))
 
     for rel, base, name in unsold:
+        # Severity is Sophia's call, 2026-08-15: a warning, so the first releases can be cut
+        # while the pricing queue waits for Colette and Amber - visible in every check, never
+        # blocking a build, and no longer the first thing a fresh author sees as an "error".
         diags.append(Diag(
-            "DRIP-408", "error", rel,
+            "DRIP-408", "warning", rel,
             f"No trader sells {name}, so copying its offers gives this item nowhere to be "
             "sold and nobody can buy it.",
             'Give it a price of its own: set "copyOriginalOffers" to false, then add '

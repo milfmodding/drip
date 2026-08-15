@@ -99,11 +99,39 @@ Useful flags:
 | `--pack <name>` | one add-on pack on its own |
 | `--skip-build` | package an existing Release build |
 | `--no-zip` | leave the staged folders for inspection |
+| `--store-only` | produce only the bundle-store assets Setup.cmd downloads |
+| `--no-store-zip` | skip the store assets a full build normally also produces |
 
 `--check-only` reports each pack separately, because an add-on can be unshippable while the
 base install is fine — and in that case the base should still ship.
 
 The version comes from `<Version>` in `DRIP.csproj`, so bump it there.
+
+---
+
+## The bundle-store assets (developer bootstrap)
+
+Every build also produces — or `--store-only` produces alone — the assets a fresh clone's
+`Setup.cmd` downloads so a new developer needs nothing but clone + double-click:
+
+```
+dist/DRIP-bundle-store-01.zip, -02.zip, ...     the store's bundles, split under GitHub's 2 GiB cap
+dist/DRIP-bundle-store.json                     manifest: part names, file and byte counts
+```
+
+**The three names are stable across releases on purpose.** Setup.cmd fetches
+`<repo>/releases/latest/download/DRIP-bundle-store.json` and then the parts the manifest
+names, so a new developer never has to know the version. Upload them to the same GitHub
+release as the player archives — they are not player installs and the README in them says so.
+
+Each part is a complete zip of a subset of files (not a byte-split join), so extracting is
+just "unzip every part into the store folder"; Setup.cmd verifies each part's CRC before
+extracting it and stops naming the part if one is corrupt. Bundles only — configs come from
+git, and shipping them twice would be one more place for the two to disagree.
+
+The store the assets are cut from is the same one releases are assembled from, so the
+checklist's "regenerate the store after any change to PROMOTIONS/RENAMES" applies to these
+uploads too.
 
 ---
 
@@ -261,6 +289,9 @@ comment templates and the converter, for instance.
       can't change.
 - [ ] `<Version>` in `DRIP.csproj` bumped — it stamps both the archive names and each add-on's
       `pack-info.json`
+- [ ] **The bundle-store assets are uploaded to the release** (`--store-only` if nothing else
+      changed). They are what Setup.cmd installs on a fresh clone; a release without them is
+      a release new developers can't bootstrap from.
 - [ ] Add-on packs rebuilt against the same version, if any are shipping alongside the base
 
 ---
