@@ -76,7 +76,7 @@ Sophia, NOT part of the mechanical port.
 
 - [x] csproj: net10.0, packages 4.1.2, `SptVersion` "~4.1.0" (the field SPT hard-checks)
 - [x] API surface mapped (this doc)
-- [ ] `ModMetadata` -> IModMetadata class
-- [ ] `DRIP.OnLoad` -> `OnLoadAsync(CancellationToken)` + new priority
-- [ ] Nine services: DatabaseService/DatabaseServer/ConfigServer -> table/config injection
+- [x] `ModMetadata` -> IModMetadata class
+- [x] `DRIP.OnLoad` -> `OnLoadAsync(CancellationToken)` + new priority
+- [x] Nine services: DatabaseService/DatabaseServer/ConfigServer -> table/config injection
 - [ ] Build clean, deploy to `F:\SPT\SPT-4.1\user\mods`, server log shows DRIP loading
