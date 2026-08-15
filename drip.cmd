@@ -1,5 +1,6 @@
 @echo off
-REM DRIP content author's tool. Double-click for help, or run from a terminal:
+REM DRIP content author's tool. Double-click for the interactive menu, or run from a
+REM terminal:
 REM
 REM   drip check                 check every content pack for mistakes
 REM   drip new                   make a new item, asking you what you need
@@ -19,9 +20,8 @@ if errorlevel 1 (
 )
 
 if "%~1"=="" (
-  python "%~dp0tools\drip.py" --help
-  echo.
-  pause
+  rem The menu loops on its own, so no pause is needed on the way out.
+  python "%~dp0tools\drip.py" menu
   exit /b 0
 )
 

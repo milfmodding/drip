@@ -999,6 +999,56 @@ def cmd_new(args) -> int:
 
 # ------------------------------------------------------------------------------------------
 
+def cmd_menu(_args):
+    """The double-click entry point: ask what you want, run it.
+
+    Each choice re-enters main() with a real argv, so the menu goes through the
+    identical parsing and validation as the command line - there is no second
+    implementation of anything to drift. Nothing here writes on its own.
+    """
+    while True:
+        print()
+        print("  What would you like to do?")
+        print()
+        print("    1. Check my content packs for mistakes")
+        print("    2. Make a new item")
+        print("    3. Find a vanilla item's ID from its name")
+        print("    4. Read the instructions")
+        print("    5. Exit")
+        print()
+        try:
+            choice = input("  Type a number and press Enter: ").strip()
+        except (EOFError, KeyboardInterrupt):
+            # Closing the window is a fine way to leave.
+            return 0
+        if choice in ("5", "q", "quit", "exit"):
+            return 0
+        def run(argv):
+            """Dispatch one menu action; EOF or Ctrl-C comes back to the menu."""
+            sys.argv = argv
+            try:
+                main()
+            except (EOFError, KeyboardInterrupt):
+                print("\n  Stopped - back to the menu.\n")
+
+        if choice == "1":
+            run(["drip", "check"])
+        elif choice == "2":
+            kind = input("  Making gear, a top, or a bottom? ").strip().lower()
+            run(["drip", "new"] + ([kind] if kind else []))
+        elif choice == "3":
+            words = input("  Part of the item's in-game name (e.g. slick): ").strip()
+            if words:
+                run(["drip", "id"] + words.split())
+            else:
+                print("  Nothing typed - back to the menu.")
+        elif choice == "4":
+            print(__doc__)
+            print("  Full instructions: docs/AUTHORING.md")
+        else:
+            print("  Pick a number from 1 to 5 (5 to exit).")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(
         prog="drip", description=__doc__,
@@ -1030,6 +1080,10 @@ def main() -> int:
     n.add_argument("--based-on", default=None, metavar="NAME_OR_ID",
                    help="the item being retextured - its name ('slick') or its 24-character ID")
     n.set_defaults(func=cmd_new)
+
+    m = sub.add_parser("menu",
+                       help="interactive menu (what you get on a double-click)")
+    m.set_defaults(func=cmd_menu)
 
     args = ap.parse_args()
     try:
