@@ -100,9 +100,16 @@ and the server never scans it (cost an afternoon of "0 server mods" confusion).
   Caretaker, APC/BTR and Storyteller - all four ship assort.json with ZERO items on disk**
   (verified against SPT_Data\database\traders), i.e. 4.1 added three Fence-equivalents
   whose assorts are generated/served at runtime. Same constraint as Fence in 4.0, now
-  multiplied; not a slot choice we can fix. The copied-offer HALVING (215 -> ~115 at equal
-  item count) remains unexplained - needs a comparison boot on the 4.0.13 install to
-  characterise.
+  multiplied; not a slot choice we can fix. **The copied-offer "halving" is ALSO RESOLVED
+  (2026-08-15, comparison boot): NOT a regression at all.** The old 07-31 build on the
+  4.0.13 install with today's pack reproduces today's numbers exactly (115 copied / 325
+  fitted / 35 own-priced / 2854 root offers / 236 quest-locked) - identical to 4.1. The
+  215/627 figures everyone remembered were PRE-MOVE numbers: DRIP.cs's load-order comment
+  already documents "Trader offers drop 217 -> 115" as the measured cost of registering
+  before Fence/generated assorts exist (the 08-01 era traded Fence duplicates for profile
+  survival, adjudicated then). The migration doc quoted that very line when deriving the
+  slot and still filed the delta as unexplained - the record answered the question it was
+  asked. Lesson logged: read your own citations' context.
 - Self-check flags 6 multi-bundle folders with no dependency declared. **ADJUDICATED
   2026-08-15: the flag is REAL, not stale** - the six are exactly the 2026-07-31 render-bug
   set (HALFMASK SMILE1-4, AIRFRAME/RANGERGREEN, FASTMT/USEC), whose missing declarations
