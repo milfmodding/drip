@@ -266,6 +266,17 @@ public class DRIPCustomItemService(
             HandbookPriceRoubles = config.HandbookPrice ?? baseHandbookEntry?.Price,
             FleaPriceRoubles = config.FleaPrice ?? baseFleaPrice,
 
+            // 4.1 regression fixed 2026-08-15: fourteen bases (6B43 x2, THOR, RAID, BLACKJACK,
+            // TROOPER35, WELDINGSHIELD x2, ARMYCAP x4, AIRFRAME, FASTMT) have NO flea price -
+            // they are handbook-only items nobody can list on the flea - so the null price
+            // fell through and CreateItemFromClone rejected the item outright. A retexture of
+            // an unsellable-on-flea item is unsellable on the flea too; that is inherited
+            // behaviour, not an error, so the flea-db entry is simply not added for those.
+            // The 4.0 code got this for free: it cloned the whole template, which carries no
+            // flea-table entry for these bases either.
+            AddToFleaPriceDb = (config.FleaPrice ?? baseFleaPrice) > 0,
+            AddToHandbook = true,
+
             Locales = BuildLocales(config, packName),
             OverrideProperties = overrideProperties
         };
