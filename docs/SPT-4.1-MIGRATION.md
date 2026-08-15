@@ -99,9 +99,13 @@ and the server never scans it (cost an afternoon of "0 server mods" confusion).
   multiplied; not a slot choice we can fix. The copied-offer HALVING (215 -> ~115 at equal
   item count) remains unexplained - needs a comparison boot on the 4.0.13 install to
   characterise.
-- Self-check flags 6 multi-bundle folders with no dependency declared - was 0 on the
-  stripped tree (which needed declarations). Pre-strip bundles are self-contained, so this
-  may be a verifier calibrated to the stripped era; adjudicate with audit_refs.py before
-  acting.
+- Self-check flags 6 multi-bundle folders with no dependency declared. **ADJUDICATED
+  2026-08-15: the flag is REAL, not stale** - the six are exactly the 2026-07-31 render-bug
+  set (HALFMASK SMILE1-4, AIRFRAME/RANGERGREEN, FASTMT/USEC), whose missing declarations
+  were the confirmed-in-client fix for the magenta half-masks and white helmet parts on the
+  REPACKED bundles. The pre-strip restore took the backup's configs (which predate that
+  fix), dropping the declarations. Fix: re-add the six declarations (load-bearing for
+  repacked bundles, redundant-at-worst if self-contained) - via the converter path, not
+  hand-edits, so they survive regeneration; then eye-verify in a client.
 - Headless-launch trap: SPT.Server.exe crashes in Watermark.SetTitle() with no console
   (CREATE_NO_WINDOW/DETACHED). Launch with CREATE_NEW_CONSOLE.
