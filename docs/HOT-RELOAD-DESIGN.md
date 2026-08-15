@@ -1,7 +1,8 @@
 # DRIP texture hot-reload — dev plugin design
 
-**Status:** design, 2026-08-15 late. Client survey measured; decisions locked with Sophia
-(textures-only, Colette and Amber are the audience, preview-only). Not yet built.
+**Status:** v0.2.0 built, 2026-08-15 late. Client survey measured; decisions locked with
+Sophia (textures-only, Colette and Amber are the audience, preview-only, **scoped matching
+required before hand-off**). Compiled and deployed; in-client verification pending (human).
 
 ## The problem it solves
 
@@ -32,9 +33,26 @@ gloss. All are swappable by name; the diffuse is the 90% case.
 **The collision, and why the plugin replaces every match:** three WINTERJACKET variants
 (DRIP, HORNETSTRIPE, SOC) ship the *same* texture names (`Top_BOSS_Shturman_d`) — this is
 the known "one vanilla path claimed by several bundles" property, measured again here.
-A PNG therefore applies to **every loaded Texture2D with that name**. For a preview tool
-that is acceptable and honest: it is visible, harmless, and reversible. If it proves
-annoying in practice, v2 can scope by owning bundle (subfolder per item); not v1.
+
+**Update, Sophia's ruling (23:33):** name-only matching would confuse the content owners —
+it recolours every jacket variant at once — so **scoped matching is required before any
+hand-off** (v0.2.0). The rule: a PNG in a subfolder applies only to bundles whose path
+contains the subfolder (`HotReload/WINTERJACKET/DRIP/Top_BOSS_Shturman_d.png`), which also
+lets several variants be edited side by side. PNGs in the folder root keep name-only,
+all-bundles behaviour (the quick-test case).
+
+How scope is known (measured): Unity gives no back-reference from a loaded Texture2D to
+its bundle, and SPT's client `BundleManager.Bundles` holds only manifest metadata
+(`BundleItem`: filename/CRC/deps — surveyed across spt-*.dll, 2026-08-15), not
+`AssetBundle` instances. So the plugin records paths itself: Harmony postfixes on
+`AssetBundle.LoadFromFile/Async` capture (bundle, path) at load time — engine API, no game
+internals — and a texture→bundle map is built from each bundle's `GetAllAssetNames()`,
+cached and rebuilt when a new bundle finishes loading. Bundles that predate the plugin or
+load from memory are invisible to scoped applies; that is stated in the toast, never
+hidden, and a scoped miss never silently falls back to all-bundles.
+
+For a preview tool the every-match rule (still true for root PNGs) is acceptable and
+honest: it is visible, harmless, and reversible.
 
 ## Design
 
