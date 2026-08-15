@@ -1,0 +1,39 @@
+// Mosin Man
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "Mosin Man",
+  "description": "Jeeesus, already back for more work? Damn workoholics. I know, you just enjoy the challenge, huh? Alright bro, you know those Mosin Nuggets? Nagants... Whatever. Anyways, I've got a problem with some 'raider' guys, yknow who I mean, right? They hang around that army base nearby, the Reserve or whatever. Swiped some shit from my shop and trashed some of my booze. I don't like to deal with them usually, crazies, but you're looking for work. Go wipe em out with those old Mosin rifles. Body shots only. Both make it look more like scavs did it. Thanks homie.",
+  "trader": "moron",
+  "image": "5ae325c586f77444fa45d0de.jpg",
+  "onSuccess": "Got em? Nice. Good shit. Fucking hate those wacko raider dudes. I heard some dude named Glukhar hangs out with them a lot. Heard he's hot, hah! But moreover I heard he's friends with a lot of people, not just the crazies. Anyways, your share of the bounty my guy, don't spend it all in one place, unless it's mine of course. Got some more drip for you too, y'know? Cool, see ya' 'round, space cowboy.",
+  "requires": {
+    "playerLevel": 12,
+    "quest": "HEAD_EYES"
+  },
+  "objectives": [
+    {
+      "kill": "Savage",
+      "count": 1,
+      "text": "Eliminate 6 Raiders with chest or stomach shots using a Mosin Nagant on Reserve.",
+      "at": "RezervBase"
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 7500.0
+    },
+    {
+      "standingWith": "moron",
+      "standing": 0.05
+    },
+    {
+      "item": "5449016a4bdc2d6f028b456f",
+      "itemCount": 50000
+    },
+    {
+      "item": "MUSTACHE_GINGER_FACE",
+      "itemCount": 1
+    }
+  ]
+}

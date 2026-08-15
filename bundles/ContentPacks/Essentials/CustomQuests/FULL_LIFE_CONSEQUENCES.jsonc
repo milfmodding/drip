@@ -1,0 +1,38 @@
+// Full Life Consequences
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "Full Life Consequences",
+  "description": "'Sup man? Say, you like videogames? Like, before all this shit anyways. See, I've got a working computer still, and I've been playing a shit ton of videogames when I'm not doing business. Lately it's been this old shooter. Main dude uses a crowbar as a weapon. Now, I've got some USECs around that owe me money for some gear I lent them that they lost, and I want to send them a message. Go beat the shit outta some of their buddies, three of em, maybe they'll treat other people's shit with some fuckin' respect, then. Thanks, chief.",
+  "trader": "moron",
+  "image": "5ae325c586f77444fa45d0de.jpg",
+  "onSuccess": "Back from breakin' heads, duder? Shit, here's your money, and I actually found you a hoodie from the game for your hard work. You let me know if you find any hard drives or flash drives, and especially solid state drives. Those things could have games, porn, movies, all sorts of shit. Oh, and I guess info, too.",
+  "requires": {
+    "playerLevel": 6
+  },
+  "objectives": [
+    {
+      "kill": "Usec",
+      "count": 1,
+      "text": "Eliminate 3 USECs using a Freeman Crowbar.",
+      "with": "5c07df7f0db834001b73588a"
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 3000.0
+    },
+    {
+      "standingWith": "moron",
+      "standing": 0.03
+    },
+    {
+      "item": "569668774bdc2da2298b4568",
+      "itemCount": 100
+    },
+    {
+      "item": "5e2af4a786f7746d3f3c3400",
+      "itemCount": 2
+    }
+  ]
+}

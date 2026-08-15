@@ -1,0 +1,38 @@
+// Power Supply and Demand
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "Power Supply and Demand",
+  "description": "Yo! How's it goin', dude? Hey, you got a sec before you do your shopping? I've got a friend who also still has a working computer and her power supply just shit itself. She's got a little bit of a friendly feud with Sergey, the one they call Mechanic, so he won't just sell her one unfortunately. Would you be able to pick one up for her? I'll put in a good word with her, she sells stuff just like me but she goes for new stuff. No idea where she gets most of it, but hey, I don't ask questions.",
+  "trader": "moron",
+  "image": "Boozey.png",
+  "onSuccess": "Heyyyy, you got the power supply? You're a lifesaver, I'll take this over to her right away and let her know you're cool, send you her deets later as long as she's cool with it. Thanks again, homie. Here, take some cash for your troubles.",
+  "requires": {
+    "playerLevel": 5,
+    "quest": "LACK_OF_LUBRICATION"
+  },
+  "objectives": [
+    {
+      "handover": "57347c2e24597744902c94a1",
+      "count": 1,
+      "foundInRaid": true,
+      "text": "Find in-raid and handover a Power Supply Unit"
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 3621.0
+    },
+    {
+      "unlock": "georgia"
+    },
+    {
+      "item": "5449016a4bdc2d6f028b456f",
+      "itemCount": 40000
+    },
+    {
+      "item": "TRITON_LES_RIG",
+      "itemCount": 1
+    }
+  ]
+}

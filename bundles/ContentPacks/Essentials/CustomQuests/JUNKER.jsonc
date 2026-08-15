@@ -1,0 +1,39 @@
+// Junker
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "Junker",
+  "description": "Heyyy, there you are. Back for more work, right? Yeah, I thought so, getting to know you, aren't I? Listen, I wanna give you a challenge. You know those shitty single shot rifles, the MP-18 or whatever? Go knock some heads with one. PMCs, no Scavs if you can help it. I may sell to PMCs, but the locals are my people, usually anyways. Take out ten of the fuckers.",
+  "trader": "moron",
+  "image": "5ae325c586f77444fa45d0de.jpg",
+  "onSuccess": "Holy fuck, you actually wiped 10 dudes with one of those dumb shitty rifles? You deserve your reward man, here, take it. A few shirts too, hell they're the same brand as the gun. And some nice pants, too, why not. I'll see you next time homie.",
+  "requires": {
+    "playerLevel": 8,
+    "quest": "THE_MORNING_AFTER"
+  },
+  "objectives": [
+    {
+      "kill": "AnyPmc",
+      "count": 1,
+      "text": "Eliminate 10 PMCs with an MP-18 rifle.",
+      "with": "61f7c9e189e6fb1a5e3ea78d"
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 5000.0
+    },
+    {
+      "standingWith": "moron",
+      "standing": 0.06
+    },
+    {
+      "item": "5449016a4bdc2d6f028b456f",
+      "itemCount": 35000
+    },
+    {
+      "item": "560d61e84bdc2da74d8b4571",
+      "itemCount": 40
+    }
+  ]
+}

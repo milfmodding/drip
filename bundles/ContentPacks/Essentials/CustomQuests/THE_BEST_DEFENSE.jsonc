@@ -1,0 +1,45 @@
+// The Best Defense
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "The Best Defense",
+  "description": "Hey! How's it going? How's my brother doing? Say... I'm dealing with some issues with some jackass from the mall, I guess my brother knows him? Well, some of his guys have found something out about myself and are spreading it to some people who aren't too friendly to me. I was hoping you could bring me along a shotgun for protection. Preferebly a Remington 870, I'm somewhat familiar with them. Bring some magnum buck shells as well, 20 should do. Thank you for this, I'll be here when you've got it.",
+  "trader": "georgia",
+  "image": "Boozey.png",
+  "onSuccess": "You've got the shotgun? Thank you, I was starting to worry a bit. The people Arshavir is spreading this to are not exactly lovely towards people like myself, but fuck em, defend equality and all that. Thanks again, here, have some more equipment, and I've got some clothes for you, too. You should stop by more often, er, I've always got more work, eheh.",
+  "requires": {
+    "playerLevel": 12,
+    "quest": "FIRST_IMPRESSIONS"
+  },
+  "objectives": [
+    {
+      "handover": "5a7828548dc32e5a9c28b516",
+      "count": 1,
+      "foundInRaid": false,
+      "text": "Handover a Remington 870 Shotgun."
+    },
+    {
+      "handover": "5d6e6806a4b936088465b17e",
+      "count": 20,
+      "foundInRaid": false,
+      "text": "Handover 20 rounds of 12 Gauge Magnum Buckshot."
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 4550.0
+    },
+    {
+      "item": "5449016a4bdc2d6f028b456f",
+      "itemCount": 45000
+    },
+    {
+      "item": "HALFMASK_SMILE1",
+      "itemCount": 4
+    },
+    {
+      "standingWith": "georgia",
+      "standing": 0.1
+    }
+  ]
+}

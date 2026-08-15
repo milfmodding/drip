@@ -1,0 +1,51 @@
+// System Destroyer: Part 2
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "System Destroyer: Part 2",
+  "description": "Hey homie, you busy? I know, I know, you just walked in but look, I took a look over my system and I need some new parts. If you've got the spare time, can you bring me some stuff? I need two handfuls of capacitors, four sections of various sized wires, and a long flathead screwdriver. I'd get you something big, man, this system is a huge part of my life. Lets talk business then when you head out just keep an eye out, ok? Thanks.",
+  "trader": "moron",
+  "image": "Drunkard.png",
+  "onSuccess": "You got em? Dude, bro, you are a life saver, I was getting fuckin' depressed about this shit and everything. Check out the front room I have a bunch of clothes laid out for you, take em, for free, they're yours. Come on back for some work soon, I have a bunch of shit I gotta get done, and I'll pay well.",
+  "requires": {
+    "playerLevel": 10,
+    "quest": "SYSTEM_DESTROYER_PART_1"
+  },
+  "objectives": [
+    {
+      "handover": "5c06779c86f77426e00dd782",
+      "count": 4,
+      "foundInRaid": false,
+      "text": "Find and handover four bundles of wires."
+    },
+    {
+      "handover": "5d4042a986f7743185265463",
+      "count": 1,
+      "foundInRaid": false,
+      "text": "Find and handover a long flat screwdriver."
+    },
+    {
+      "handover": "5c06782b86f77426df5407d2",
+      "count": 2,
+      "foundInRaid": false,
+      "text": "Find and handover two sets of capacitors."
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 5000.0
+    },
+    {
+      "standingWith": "moron",
+      "standing": 0.08
+    },
+    {
+      "item": "TROOPER35_BLACK_BAG",
+      "itemCount": 1
+    },
+    {
+      "item": "59faff1d86f7746c51718c9c",
+      "itemCount": 1
+    }
+  ]
+}

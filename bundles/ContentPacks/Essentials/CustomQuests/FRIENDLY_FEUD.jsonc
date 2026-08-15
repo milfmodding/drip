@@ -1,0 +1,45 @@
+// Friendly Feud
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "Friendly Feud",
+  "description": "Heyy, come on in! You been up to much? Been doing more work for my lil' bro? He and I have been playing a lot of games together lately, Sergey the Mechanic set he and I up with some internet, mostly so Sergey and I can communicate back and forth. See, he and I both love tech, and we have a friendly feud going on, if you could get me some parts for my second rig, I'd be super grateful. I can give you cash and some clothes, too. I just need two of the military programmable processors, the Virtex ones, and then two military SAS drives. Thanks again, just swing on back when you've got em.",
+  "trader": "georgia",
+  "image": "Boozey.png",
+  "onSuccess": "Hey, hey! Coming back with the parts so soon? You really do work quick, hmm? No wonder my brother said you were dependable, you must do a lot of work for him. I bet he's got you working real hard... Ehm, anyways, here's some cash for the parts, and I just got some new uniforms in. Thanks again!!",
+  "requires": {
+    "playerLevel": 12,
+    "quest": "THE_BEST_DEFENSE"
+  },
+  "objectives": [
+    {
+      "handover": "5c05308086f7746b2101e90b",
+      "count": 2,
+      "foundInRaid": false,
+      "text": "Find in-raid and handover 2 Virtex Programmable Processor."
+    },
+    {
+      "handover": "590c37d286f77443be3d7827",
+      "count": 2,
+      "foundInRaid": false,
+      "text": "Find in-raid and handover 2 SAS Drives."
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 4550.0
+    },
+    {
+      "item": "5449016a4bdc2d6f028b456f",
+      "itemCount": 45000
+    },
+    {
+      "item": "HALFMASK_SMILE1",
+      "itemCount": 4
+    },
+    {
+      "standingWith": "georgia",
+      "standing": 0.1
+    }
+  ]
+}

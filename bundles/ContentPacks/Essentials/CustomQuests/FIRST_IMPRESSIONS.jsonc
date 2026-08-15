@@ -1,0 +1,43 @@
+// First Impressions
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "First Impressions",
+  "description": "So, you're the one Aiden says is chill, and that you know your stuff, hmm? Thanks for the power supply, again. My name is Georgia, I'm sure like others he introduced me as his friend, but I'm his older sister, I think he's just embarrassed about it sometimes. Anyways, I deal in more modern patterns of equipment, lots of connections to western countries and the sort. Plus quite a bit of field experience, some stuff I have to scavenge to make repairs and whatnot. Lastly, I've got some experience with medicine, and some medical requirements, too. I'm happy to fix your wounds once in a while, and I'd even have a task for you if you're up for it. See, I have to take meds every week, for reasons. I was wondering if you'd mind getting me some more bandages, I'm a bit of a bleeder from my weekly injections. There's some cash and maybe some gear involved as a reward.",
+  "trader": "georgia",
+  "image": "Boozey.png",
+  "onSuccess": "Oh! Back so soon? Cool, cool, thanks for the supplies! These injections suck to have to do, but hey, I'm just lucky I can still get the meds imported in the first place. Here, have some gear and a drink, and say hey to my lil' bro when you see him next, 'kay?",
+  "requires": {
+    "playerLevel": 11,
+    "quest": "POWER_SUPPLY_AND_DEMAND"
+  },
+  "objectives": [
+    {
+      "handover": "5751a25924597722c463c472",
+      "count": 10,
+      "foundInRaid": false,
+      "text": "Handover 10 Army Bandages."
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 4200.0
+    },
+    {
+      "item": "5449016a4bdc2d6f028b456f",
+      "itemCount": 20000
+    },
+    {
+      "item": "COMTAC4_BLACK_HEADSET",
+      "itemCount": 3
+    },
+    {
+      "item": "5d40407c86f774318526545a",
+      "itemCount": 1
+    },
+    {
+      "standingWith": "georgia",
+      "standing": 0.1
+    }
+  ]
+}

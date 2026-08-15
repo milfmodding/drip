@@ -1,0 +1,43 @@
+// Lack of Lubrication
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "Lack of Lubrication",
+  "description": "Hey, homie, you got a sec? Listen, I need some lube of some kind, vaseline will probably be your easiest bet. Make sure it's not used, too. What for? Just find me some, alright? Less questions asked, more money and gear paid.",
+  "trader": "moron",
+  "image": "5ae4a74386f7744748710d72.jpg",
+  "onSuccess": "Fuck, thanks dude. Here, take uhhh, take these hoodies, and some cash, grab the gear by the front door and scram, I got plans for the night and I don't need you sitting out here listening to us.",
+  "requires": {
+    "playerLevel": 10,
+    "quest": "THE_MORNING_AFTER"
+  },
+  "objectives": [
+    {
+      "handover": "5755383e24597772cb798966",
+      "count": 4,
+      "foundInRaid": true,
+      "text": "Find and handover 4 tins of Vaseline."
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 3000.0
+    },
+    {
+      "standingWith": "moron",
+      "standing": 0.03
+    },
+    {
+      "item": "5449016a4bdc2d6f028b456f",
+      "itemCount": 55000
+    },
+    {
+      "item": "FLAKJACKET_OLIVEDRAB_ARMOR",
+      "itemCount": 2
+    },
+    {
+      "item": "SLING_OLIVEDRAB_BAG",
+      "itemCount": 4
+    }
+  ]
+}

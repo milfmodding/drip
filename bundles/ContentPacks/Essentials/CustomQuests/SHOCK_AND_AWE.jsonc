@@ -1,0 +1,43 @@
+// Shock and Awe
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "Shock and Awe",
+  "description": "Ayy, the badass himself. Want some more work? 'Gilla is having trouble with there being a sudden influx of PMCs in the factory area causing problems. Wants it solved but he's busy breaking heads and bringin home the bacon for us. You mind going and wiping down the area? Blow 8 of em away, and use a Remington 870, he'd appreciate the brutality. Thanks a bunch dude, you know how I feel about keeping him and Killa safe.",
+  "trader": "moron",
+  "image": "5ae325c586f77444fa45d0de.jpg",
+  "onSuccess": "Yo I heard from Tagilla about the factory op, nice work homie he appreciates it. Won't save your ass but he appreciates it, haha! Here, a sweet hoodie, and some slick pants I just looted and cleaned up, too. Enjoy the kit.",
+  "requires": {
+    "playerLevel": 6,
+    "quest": "GLOCK_WICK_PART_3"
+  },
+  "objectives": [
+    {
+      "kill": "AnyPmc",
+      "count": 1,
+      "text": "Eliminate 8 PMCs with a Remington 870 on Factory.",
+      "with": "5a7828548dc32e5a9c28b516"
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 4500.0
+    },
+    {
+      "standingWith": "moron",
+      "standing": 0.06
+    },
+    {
+      "item": "5449016a4bdc2d6f028b456f",
+      "itemCount": 42500
+    },
+    {
+      "item": "FLAKJACKET_3COLOURDESERT_VEST",
+      "itemCount": 1
+    },
+    {
+      "item": "5d96141523f0ea1b7f2aacab",
+      "itemCount": 1
+    }
+  ]
+}

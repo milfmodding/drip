@@ -1,0 +1,34 @@
+// A Wild Night
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "A Wild Night",
+  "description": "Heyyy, come in, come in! How's it goin', bro? Need some new gear? Got plenty of stuff from an old milsurp shop recently. Oh, you're looking for work? Shit, I actually do need a favour, I'll pay you good, man. I need some vodka for tonight, I've got a couple, ehm, friends coming over. Just swing by with it whenever. Thanks, homie!",
+  "trader": "moron",
+  "image": "Boozey.png",
+  "onSuccess": "Yooo, you're a badass, dude! Good shit too, cheers bro those two will love this. Here, for the work today, some cash. Keep this up and I'd give you access to some of my nicer gear. Thanks, dude!",
+  "requires": {
+    "playerLevel": 2
+  },
+  "objectives": [
+    {
+      "handover": "5d40407c86f774318526545a",
+      "count": 2,
+      "foundInRaid": true,
+      "text": "Find in-raid and handover two bottles of Vodka."
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 4000.0
+    },
+    {
+      "standingWith": "moron",
+      "standing": 0.03
+    },
+    {
+      "item": "5449016a4bdc2d6f028b456f",
+      "itemCount": 55000
+    }
+  ]
+}

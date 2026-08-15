@@ -140,6 +140,15 @@ QUEST_ID_MAP = {
     "DRIP_18": "669f7b28d1dbbbdb0475e7be",  # Friendly Feud
 }
 
+# New quest id -> the friendly filename the quest now ships under.
+#
+# The friendly format derives its id from the FILENAME, and the legacy blob keys quests by
+# MongoId - the two cannot be derived from each other (a hash is one-way). So the mapping
+# is RECORDED at conversion time, and both directions need it: convert_quests uses it to
+# name each emitted file, and quest prereqs written as filenames resolve back through the
+# same derivation the loader uses. Same one-way-trick shape as PROMOTIONS/RENAMES.
+QUEST_FILENAME = {}
+
 # stem -> (part it lives in, part it should ship in).
 # Converting the destination part pulls the item in; converting the source part leaves it out,
 # so a combined run cannot collide with itself.
@@ -1013,6 +1022,182 @@ def convert_part(part: str, out_root: pathlib.Path, bundle_mode: str,
             rpt.stats[f"{dest} files"] += 1
 
 
+def convert_quest_friendly(legacy_quest: dict, locale_strings: dict) -> dict | None:
+    """Collapse one legacy quest object into the friendly authoring format.
+
+    The inverse of DRIPQuestExpander.Expand: reads a fully-built quest plus the locale
+    strings its fields point at, and emits the decisions-only shape (docs/QUEST-LAYER-DESIGN.md
+    section 'Pipeline', run backwards). Returns None when the quest uses something the friendly
+    vocabulary does not cover - those must stay on the legacy path until the vocabulary grows,
+    and the report says so rather than silently mangling them.
+
+    Ids reverse-derive rather than invert: a quest's own id was a MongoId in 3.x, so the
+    friendly file names it via QUEST_FILENAME, the map recorded at conversion time.
+    """
+    def text_of(key):
+        v = locale_strings.get(key)
+        if v is None and key.endswith(" description"):
+            v = locale_strings.get(key[: -len(" description")] + " startedMessageText")
+        return v
+
+    qid = legacy_quest.get("_id", "")
+    out = {
+        "name": legacy_quest.get("QuestName") or text_of(f"{qid} name") or qid,
+        "trader": legacy_quest.get("traderId", ""),
+    }
+
+    image = legacy_quest.get("image")
+    if image and "/" in image:
+        out["image"] = image.rsplit("/", 1)[-1]
+
+    if text_of(f"{qid} description"):
+        out["description"] = text_of(f"{qid} description")
+    if text_of(f"{qid} successMessageText"):
+        out["onSuccess"] = text_of(f"{qid} successMessageText")
+
+    requires = {}
+    objectives = []
+    for cond in legacy_quest.get("conditions", {}).get("AvailableForStart", []):
+        t = cond.get("conditionType")
+        if t == "Level":
+            requires["playerLevel"] = cond.get("value")
+        elif t == "Quest":
+            # status [4] (Success) is the only status the corpus ever gates on; a wider one
+            # is not representable in the friendly format and forces the legacy path.
+            if cond.get("status") not in ([4], None):
+                return None
+            target = cond.get("target", "")
+            requires["quest"] = QUEST_FILENAME.get(target, target)
+        else:
+            return None
+    if requires:
+        out["requires"] = requires
+
+    for cond in legacy_quest.get("conditions", {}).get("AvailableForFinish", []):
+        t = cond.get("conditionType")
+        if t == "HandoverItem":
+            targets = cond.get("target", [])
+            if len(targets) != 1:
+                return None
+            objectives.append({
+                "handover": targets[0],
+                "count": int(cond.get("value", 1)),
+                "foundInRaid": cond.get("onlyFoundInRaid", True),
+                "text": text_of(cond.get("id", "")),
+            })
+        elif t == "CounterCreator":
+            counter = cond.get("counter", {})
+            kills = None
+            location = None
+            for sub in counter.get("conditions", []):
+                st = sub.get("conditionType")
+                if st == "Kills":
+                    kills = sub
+                elif st == "Location":
+                    targets = sub.get("target", [])
+                    location = targets[0] if len(targets) == 1 else None
+                else:
+                    return None
+            if kills is None:
+                return None
+            obj = {
+                "kill": kills.get("target", ""),
+                "count": int(kills.get("value", 1)),
+                "text": text_of(cond.get("id", "")),
+            }
+            weapons = kills.get("weapon")
+            if weapons and len(weapons) == 1:
+                obj["with"] = weapons[0]
+            if location:
+                obj["at"] = location
+            objectives.append(obj)
+        else:
+            return None
+    out["objectives"] = objectives
+
+    rewards = []
+    for rw in legacy_quest.get("rewards", {}).get("Success", []):
+        t = rw.get("type")
+        if t == "Experience":
+            rewards.append({"experience": float(rw.get("value", 0))})
+        elif t == "TraderStanding":
+            rewards.append({"standingWith": rw.get("target", ""),
+                            "standing": float(rw.get("value", 0))})
+        elif t == "TraderUnlock":
+            rewards.append({"unlock": rw.get("target", "")})
+        elif t == "Item":
+            items = rw.get("items", [])
+            if len(items) != 1:
+                return None
+            stack = items[0]
+            rewards.append({
+                "item": stack.get("_tpl", ""),
+                "itemCount": stack.get("upd", {}).get("StackObjectsCount", 1),
+            })
+        else:
+            return None
+    if legacy_quest.get("rewards", {}).get("Started") or legacy_quest.get("rewards", {}).get("Fail"):
+        # One corpus quest (Glock Wick: Part 1) has a Started Item reward - likely a bug in
+        # the original content (an item granted on ACCEPT rather than completion), but not
+        # ours to silently drop. If the vocabulary ever gains started-rewards, revisit.
+        return None
+    out["rewards"] = rewards
+
+    return out
+
+
+def convert_quests(out_root: pathlib.Path, dry_run: bool, rpt: Report):
+    """Convert every part's quest blob into one friendly file per quest.
+
+    Ids are the tricky direction: the legacy blob keys quests by MongoId, while the friendly
+    format derives its id from the filename. Deriving a filename from a hash is impossible, so
+    the mapping is RECORDED here (QUEST_FILENAME, emitted beside the configs) and read back by
+    the loader's reference resolution - the same one-way-trick PROMOTIONS/RENAMES already use.
+    """
+    for part_dir in PARTS.values():
+        qsrc = LEGACY_ROOT / part_dir / "quests"
+        lsrc = LEGACY_ROOT / part_dir / "locales" / "en"
+        if not qsrc.exists():
+            continue
+
+        # Locale strings live in en.json5 keyed by "<qid> field" or bare condition ids.
+        en_strings = {}
+        for lf in sorted(lsrc.glob("*.json5")):
+            data, _ = read_legacy(lf)
+            en_strings.update(data)
+
+        dest = out_root / "CustomQuests"
+        for qf in sorted(qsrc.glob("*.json5")):
+            blob, _ = read_legacy(qf)
+            converted = kept = 0
+            for qid, legacy_quest in blob.items():
+                friendly = convert_quest_friendly(legacy_quest, en_strings)
+                if friendly is None:
+                    kept += 1
+                    rpt.warn(f"{qf.name}:{qid}",
+                             "uses condition/reward kinds the friendly format does not cover; "
+                             "left on the legacy path")
+                    continue
+                stem = QUEST_FILENAME.get(qid)
+                if stem is None:
+                    # Deterministic and readable: the quest's own name, SCREAMING_SNAKE_CASED.
+                    name = legacy_quest.get("QuestName") or qid
+                    stem = re.sub(r"[^A-Za-z0-9]+", "_", name).strip("_").upper()
+                    QUEST_FILENAME[qid] = stem
+                target = dest / f"{stem}.jsonc"
+                if dry_run:
+                    converted += 1
+                    continue
+                dest.mkdir(parents=True, exist_ok=True)
+                target.write_text(dump_jsonc(
+                    {"$schema": schema_ref(target, out_root), **friendly},
+                    [friendly["name"], "Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md"],
+                ), encoding="utf-8")
+                converted += 1
+            rpt.stats["quests friendly"] += converted
+            rpt.stats["quests legacy-only"] += kept
+
+
 def write_report(path: pathlib.Path, parts: list[str], rpt: Report, dry_run: bool):
     """Per-file record of everything the conversion touched, so the result can be audited."""
     lines = [
@@ -1079,6 +1264,9 @@ def main():
     ap.add_argument("--allow-dependency-loss", action="store_true",
                     help="write even if it would drop bundle dependency declarations that "
                          "this run cannot reproduce (they are not in the 3.x source)")
+    ap.add_argument("--quests", action="store_true",
+                    help="convert every part's quest blob into friendly one-file-per-quest "
+                         "configs (the format docs/QUEST-LAYER-DESIGN.md specifies)")
     ap.add_argument("--capture-origins", action="store_true",
                     help="record every garment's vanilla origin from its bundle and exit")
     ap.add_argument("--report", type=pathlib.Path, default=None,
@@ -1095,6 +1283,16 @@ def main():
 
     parts = args.part or ["1"]
     load_origins()
+
+    if getattr(args, "quests", False):
+        rpt = Report()
+        convert_quests(args.out, args.dry_run, rpt)
+        for k, v in sorted(rpt.stats.items()):
+            print(f"    {v:5d}  {k}")
+        for path, msg in rpt.warnings[:40]:
+            print(f"    {path}: {msg}")
+        print()
+        return 1 if rpt.errors else 0
 
     # Probe first, write second. A conversion overwrites the file that carries a bundle's
     # dependency declarations, and those are not derivable from the 3.x source - they are

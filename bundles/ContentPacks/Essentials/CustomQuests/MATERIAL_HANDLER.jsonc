@@ -1,0 +1,54 @@
+// Material Handler
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "Material Handler",
+  "description": "'Sup, dude? Good to see ya, whatchu up to today? You find something you like? Oh, looking for work? I could use more materials right now, actually. I know, I know, like videogame 'fetch quests' with me - but I'll make it worth your while, and I'll have more work for you soon, ok? Just grab me two jugs of Bleach, a sewing kit, and two sections of fleece, sound good? I'll even make you a couple shirts, on the house. Oh, one more thing before you go, I need them found or produced fresh - don't just go buy shit people have already used or ruined. I'm trying to make these shirts as master copies.",
+  "trader": "moron",
+  "image": "MaterialHandler.png",
+  "onSuccess": "Ayyy, nice work as always, bro. Thanks a ton. I'll get some shirts done up for you. Have some other gear too, on that rack over there for ya. Making some new stylish shit lately. Milsurp doesn't cover everyone's taste, eh? Plus this should help me compete with that asshole Arshavir at the mall. Come back if you need some more work.",
+  "requires": {
+    "playerLevel": 3
+  },
+  "objectives": [
+    {
+      "handover": "59e3556c86f7741776641ac2",
+      "count": 2,
+      "foundInRaid": true,
+      "text": "Find and handover two jugs of Ox Bleach."
+    },
+    {
+      "handover": "61bf83814088ec1a363d7097",
+      "count": 1,
+      "foundInRaid": true,
+      "text": "Find and handover a Krasavchik Sewing Kit."
+    },
+    {
+      "handover": "5e2af47786f7746d404f3aaa",
+      "count": 2,
+      "foundInRaid": true,
+      "text": "Find and handover two sections of Fleece Fabric."
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 9000.0
+    },
+    {
+      "standingWith": "moron",
+      "standing": 0.07
+    },
+    {
+      "item": "5449016a4bdc2d6f028b456f",
+      "itemCount": 100000
+    },
+    {
+      "item": "COMTAC4_BLACK_HEADSET",
+      "itemCount": 1
+    },
+    {
+      "item": "RIG_ZHUK_SIXCOLOURURBAN",
+      "itemCount": 1
+    }
+  ]
+}

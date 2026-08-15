@@ -1,0 +1,42 @@
+// Head, eyes
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "Head, eyes",
+  "description": "There's the beast himself, the destroyer of all dickheads. Listen, you want a real challenge? You know the deal, I'll put my money where my mouth is, you score some sick kills. The PMCs 'round here have been dickheads again lately, even rolling over my buddies and taking some of my clothing shipments to Arshavir. Now, I got a bet with Yegorovich, the hunter guy, about what will happen to the PMCs, you help me rig it I'll split the reward. Just go blast some PMC's heads off with bolt rifles, easy peasy for you. Cheers buddy.",
+  "trader": "moron",
+  "image": "Drunkard.png",
+  "onSuccess": "Hahaaaa, hell yeah, man! Yegorovich already paid up - here's your share, paid in Uncle Sam's finest. Guess Jaeger didn't have a use for USD or something, maybe just light on Roubles. Here, some gifts from me too. Keep up the good work. You've got a good rep around here, man.",
+  "requires": {
+    "playerLevel": 11,
+    "quest": "JUNKER"
+  },
+  "objectives": [
+    {
+      "kill": "AnyPmc",
+      "count": 1,
+      "text": "Eliminate 30 PMCs with headshots using bolt-action weapons."
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 10000.0
+    },
+    {
+      "standingWith": "moron",
+      "standing": 0.07
+    },
+    {
+      "item": "5d403f9186f7743cac3f229b",
+      "itemCount": 2
+    },
+    {
+      "item": "5d1b5e94d7ad1a2b865a96b0",
+      "itemCount": 1
+    },
+    {
+      "item": "5696686a4bdc2da3298b456a",
+      "itemCount": 2500
+    }
+  ]
+}

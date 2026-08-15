@@ -233,15 +233,36 @@ public class DRIPCustomQuestService(
             format.Trader = traderId.ToString();
         }
 
-        foreach (var name in new[] { format.Rewards.Select(r => r.StandingWith),
-                                     format.Rewards.Select(r => r.Unlock) }
-                     .SelectMany(names => names.Where(n => n is not null)!))
+        foreach (var reward in format.Rewards)
         {
-            if (!DripTraders.TryResolve(name, out var resolved))
+            if (reward.StandingWith is not null)
             {
-                logger.Error(
-                    $"[DRIP] {relativeName}: reward names trader \"{name}\", which doesn't resolve.");
-                resolvedEverything = false;
+                if (!DripTraders.TryResolve(reward.StandingWith, out var standingWith))
+                {
+                    logger.Error(
+                        $"[DRIP] {relativeName}: reward names trader \"{reward.StandingWith}\", which doesn't resolve.");
+                    resolvedEverything = false;
+                }
+                else
+                {
+                    // Guard AND rewrite: the expander copies this value straight into the
+                    // TraderStanding target, and CreateQuest validates nothing downstream.
+                    reward.StandingWith = standingWith.ToString();
+                }
+            }
+
+            if (reward.Unlock is not null)
+            {
+                if (!DripTraders.TryResolve(reward.Unlock, out var unlock))
+                {
+                    logger.Error(
+                        $"[DRIP] {relativeName}: reward names trader \"{reward.Unlock}\", which doesn't resolve.");
+                    resolvedEverything = false;
+                }
+                else
+                {
+                    reward.Unlock = unlock.ToString();
+                }
             }
         }
 

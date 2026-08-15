@@ -1,0 +1,50 @@
+// System Destroyer: Part 1
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "System Destroyer: Part 1",
+  "description": "Dude, fuck. Do you remember that fuckhead in the brown jacket that fucked my speakers up last night at the party? No? You probably already left. He fucking pushed my system over with a smile, the little fucking cuck. I think his name is Relish or Rasputin or something... Whatever the fuck his name is, go find him and teach him a lesson. He was waving around a gold pistol with a Roler on his wrist, bring me those as proof.",
+  "trader": "moron",
+  "image": "5ae325c586f77444fa45d0de.jpg",
+  "onSuccess": "Teach that dickhead a lesson, then, eh? Good. I'm still looking around the system to see what's all banged up, but I'll let you know what I need, if you're up for more work. Here, take some clothes and gear as compensation. Radio bag too, never know when it could come in handy. Yeah, I know, not exactly the best fit for an area like Tarkov, but it works well here in the streets.",
+  "requires": {
+    "playerLevel": 10,
+    "quest": "PARTY_CITY"
+  },
+  "objectives": [
+    {
+      "kill": "Savage",
+      "count": 1,
+      "text": "Eliminate Reshala."
+    },
+    {
+      "handover": "5b3b713c5acfc4330140bd8d",
+      "count": 1,
+      "foundInRaid": false,
+      "text": "Find and handover a Golden TT pistol."
+    },
+    {
+      "handover": "59faf7ca86f7740dbe19f6c2",
+      "count": 1,
+      "foundInRaid": false,
+      "text": "Find and handover a Roler Submariner gold wrist watch."
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 8000.0
+    },
+    {
+      "standingWith": "moron",
+      "standing": 0.1
+    },
+    {
+      "item": "5449016a4bdc2d6f028b456f",
+      "itemCount": 65000
+    },
+    {
+      "item": "NICECOMM_3COLOURDESERT_BAG",
+      "itemCount": 1
+    }
+  ]
+}

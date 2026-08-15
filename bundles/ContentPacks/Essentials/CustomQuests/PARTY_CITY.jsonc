@@ -1,0 +1,63 @@
+// Party City
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "Party City",
+  "description": "Ay, what's up homie, back for some gear? Gonna come to the party this week? Hey, speaking of, could you do a job for me? It's easy, promise. I just need some party supplies. Lets see... Grab me another bottle of vodka, I've still got one from last time. Three beers, two of the big cans of that beef stew, I think the call it Tchanka or something. And lastly, four packs of those army crackers. Making dinner for everyone. Oh, and grab a new DVD Drive, mine's busted. Thanks man.",
+  "trader": "moron",
+  "image": "Drunkard.png",
+  "onSuccess": "Back already? What kinda fuckin' stash of goodies do you have that you ain't sharing? Hahaha, thanks homie, I hope to see you at the party. Here, take some sweet prototype drip I found, should be pretty swanky. Hell, wear em to the party if you want.",
+  "requires": {
+    "playerLevel": 8,
+    "quest": "GLOCK_WICK_PART_3"
+  },
+  "objectives": [
+    {
+      "handover": "5d40407c86f774318526545a",
+      "count": 1,
+      "foundInRaid": false,
+      "text": "Handover one bottle of Vodka."
+    },
+    {
+      "handover": "5734781f24597737e04bf32a",
+      "count": 1,
+      "foundInRaid": false,
+      "text": "Handover one DVD Drive."
+    },
+    {
+      "handover": "57347da92459774491567cf5",
+      "count": 2,
+      "foundInRaid": false,
+      "text": "Handover two tall cans of Beef Stew."
+    },
+    {
+      "handover": "62a09f32621468534a797acb",
+      "count": 3,
+      "foundInRaid": false,
+      "text": "Handover three Pevko Light Beers."
+    },
+    {
+      "handover": "5448ff904bdc2d6f028b456e",
+      "count": 4,
+      "foundInRaid": false,
+      "text": "Handover four packs of Army Crackers."
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 4500.0
+    },
+    {
+      "standingWith": "moron",
+      "standing": 0.06
+    },
+    {
+      "item": "GEN4_FULL_DIGITALTIGERSTRIPE",
+      "itemCount": 1
+    },
+    {
+      "item": "RAID_BLACK_BAG",
+      "itemCount": 2
+    }
+  ]
+}

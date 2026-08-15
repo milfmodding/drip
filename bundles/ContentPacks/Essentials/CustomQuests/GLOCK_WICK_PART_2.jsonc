@@ -1,0 +1,43 @@
+// Glock Wick: Part 2
+// Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
+{
+  "$schema": "../../../../docs/drip-item.schema.json",
+  "name": "Glock Wick: Part 2",
+  "description": "Back for more work? That slaughter you did at the mall was good, stirred Arshavir up a bit, bastard. Well, this time use that glock again, but instead I've got an issue with some Scavs over in the Customs area. Typically, I leave the Scav factions alone around here, a lot of them are bros, but sometimes you get a dumbfuck asshole of a gang who has to go and fuck with shit. There's around 10 in their stupid little group, do you mind taking care of em for me? Again, glock, I'll hook you up.",
+  "trader": "moron",
+  "image": "GlockWick.png",
+  "onSuccess": "Fuuuckin' A, dude, nice shit. Already hearing that that gang isn't so much of a problem anymore. Here, some spare rounds for your trouble, and I got you a new hoodie. Keep up the good work.",
+  "requires": {
+    "playerLevel": 5,
+    "quest": "669f759a1c5ee26e33c5afb2"
+  },
+  "objectives": [
+    {
+      "kill": "Savage",
+      "count": 1,
+      "text": "Eliminate 10 Scavs on Customs using a Glock 17, 18, or 19.",
+      "at": "bigmap"
+    }
+  ],
+  "rewards": [
+    {
+      "experience": 6000.0
+    },
+    {
+      "standingWith": "moron",
+      "standing": 0.07
+    },
+    {
+      "item": "569668774bdc2da2298b4568",
+      "itemCount": 275
+    },
+    {
+      "item": "5c925fa22e221601da359b7b",
+      "itemCount": 60
+    },
+    {
+      "item": "5c0d56a986f774449d5de529",
+      "itemCount": 60
+    }
+  ]
+}
