@@ -92,7 +92,13 @@ and the server never scans it (cost an afternoon of "0 server mods" confusion).
   FASTMT - the handbook-only/flea-less bases). 140 -> 126 created. The 4.0 path had a
   fallback; the 4.1 flea-price lookup path needs it restored. Real regression.
 - Trader offers copied: 215 -> 110; own-priced 35 -> 29; and FOUR vanilla traders have no
-  root offers at 450,000 (4.0.13: one, Fence). Assort timing in 4.1 differs at this slot.
+  root offers at 450,000 (4.0.13: one, Fence). **RESOLVED 2026-08-15: the four are Fence,
+  Caretaker, APC/BTR and Storyteller - all four ship assort.json with ZERO items on disk**
+  (verified against SPT_Data\database\traders), i.e. 4.1 added three Fence-equivalents
+  whose assorts are generated/served at runtime. Same constraint as Fence in 4.0, now
+  multiplied; not a slot choice we can fix. The copied-offer HALVING (215 -> ~115 at equal
+  item count) remains unexplained - needs a comparison boot on the 4.0.13 install to
+  characterise.
 - Self-check flags 6 multi-bundle folders with no dependency declared - was 0 on the
   stripped tree (which needed declarations). Pre-strip bundles are self-contained, so this
   may be a verifier calibrated to the stripped era; adjudicate with audit_refs.py before
