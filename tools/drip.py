@@ -1013,15 +1013,16 @@ def cmd_menu(_args):
         print("    1. Check my content packs for mistakes")
         print("    2. Make a new item")
         print("    3. Find a vanilla item's ID from its name")
-        print("    4. Read the instructions")
-        print("    5. Exit")
+        print("    4. Build a release zip (for players to download)")
+        print("    5. Read the instructions")
+        print("    6. Exit")
         print()
         try:
             choice = input("  Type a number and press Enter: ").strip()
         except (EOFError, KeyboardInterrupt):
             # Closing the window is a fine way to leave.
             return 0
-        if choice in ("5", "q", "quit", "exit"):
+        if choice in ("6", "q", "quit", "exit"):
             return 0
         def run(argv):
             """Dispatch one menu action; EOF or Ctrl-C comes back to the menu."""
@@ -1043,10 +1044,21 @@ def cmd_menu(_args):
             else:
                 print("  Nothing typed - back to the menu.")
         elif choice == "4":
+            # The real build tool, run as itself - the menu never reimplements it.
+            # It checks content and release-readiness first, so a broken pack stops
+            # here with a work list rather than shipping.
+            import subprocess
+            print("\n  Building release archives (this checks everything first)...\n")
+            try:
+                subprocess.run([sys.executable, str(HERE / "build-release.py"), "--all"])
+            except KeyboardInterrupt:
+                print("\n  Stopped - back to the menu.\n")
+            print("\n  Output lands in the dist/ folder when it succeeds.\n")
+        elif choice == "5":
             print(__doc__)
             print("  Full instructions: docs/AUTHORING.md")
         else:
-            print("  Pick a number from 1 to 5 (5 to exit).")
+            print("  Pick a number from 1 to 6 (6 to exit).")
 
 
 def main() -> int:
