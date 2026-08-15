@@ -62,18 +62,25 @@ excepted), so our reference-resolution stays authoritative regardless.
 
 ## Open questions, each with a cheap settle
 
-1. **`NewQuestDetails.Locales` shape** — dict of language → *what*? For items it is
-   `Dictionary<string, LocaleDetails>` (`Name`/`ShortName`/`Description`); quests need
-   arbitrary keys (`<questId> name`, `<conditionId>`, `successMessageText`…). *Settle by:*
-   one disassembly of `CustomQuestService.CreateQuest` (ILSpy is on this machine for the
-   client source) or a one-quest experiment on the test install.
-2. **Does CreateQuest validate reward targets?** — if it rejects a bad trader id we can
-   delete our resolution of that class; if not (expected, per `Reward.Target` being a plain
-   string) ours stays. *Settle by:* the same disassembly pass.
+1. **`NewQuestDetails.Locales` shape** — **SETTLED 2026-08-15 by IL disassembly + reflection:**
+   `Dictionary<string, Dictionary<string, string>>` — language → arbitrary key → text. Arbitrary keys
+   is exactly what quests need (`<questId> name`, `<conditionId>`, `successMessageText`…); no
+   LocaleDetails constraint, no schema to fight. `AddQuestLocales` (dumped) iterates the dict,
+   requires each language to exist in `LocaleTable` (`could_not_find_language_key`), rejects empty
+   per-language dicts, and inserts via the same `AddTransformer` our locale service already uses
+   on `LazyLoad` values — so insertion composes with the pack locale pass instead of racing it.
+2. **Does CreateQuest validate reward targets?** — **SETTLED 2026-08-15 by IL disassembly:**
+   `CreateQuest` is 216 bytes of IL and contains exactly three code paths: duplicate-id rejection
+   (`quest_id_already_exists`), empty-locale rejection (`no_languages_for_quest`), then
+   `AddQuestLocales` + `RestrictQuestSide`. **No reward validation whatsoever** — our
+   trader-alias/item resolution stays load-bearing, exactly as the design assumed. Bonus finding:
+   `RestrictQuestSide` validates `LockedToSide` and its error strings are localised — the API is
+   stricter than expected on side, looser than expected on everything else.
 3. **Quest id derivation** — item ids derive via `DripIds.Derive(stem)`; quest ids should
    use the identical function so cross-references (`"quest": "GLOCK_WICK"`) resolve through
    one mechanism. No open question, just the rule.
-4. **LockedToSide** — all 19 current quests are `Pmc`; expose only if someone asks.
+4. **LockedToSide** — all 19 current quests are `Pmc`; expose only if someone asks. Note the
+   API validates it (see 2), so exposing it later costs nothing in safety.
 
 ## What is deliberately NOT here
 
@@ -84,7 +91,8 @@ excepted), so our reference-resolution stays authoritative regardless.
 
 ## Sequencing
 
-1. Settle open questions 1-2 (one sitting, disassembly or experiment).
+1. ~~Settle open questions 1-2~~ **DONE 2026-08-15** — see above; both settled in favour of
+   the design as written, no shape changes needed.
 2. `DRIPQuestFormat` model + loader path in `DRIPCustomQuestService` (new branch, old
    branch kept until the 19 are converted).
 3. Converter `--quests` mode for the existing corpus; flip; retire the old path.
