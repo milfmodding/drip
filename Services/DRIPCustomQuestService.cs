@@ -1,6 +1,7 @@
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using DRIP.Models;
 using DRIP.Utils;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Common;
@@ -26,7 +27,9 @@ public class DRIPCustomQuestService(
     TemplateTable templateTable,
     DRIPBundleService bundleService,
     ImageRouter imageRouter,
-    HashUtil hashUtil
+    HashUtil hashUtil,
+    DRIPQuestExpander questExpander,
+    SPTarkov.Server.Core.Services.Modding.Custom.CustomQuestService customQuestService
 )
 {
     /// <summary>Where the client asks for quest icons.</summary>
@@ -85,6 +88,28 @@ public class DRIPCustomQuestService(
 
             try
             {
+                // Two quest formats share this directory while the corpus converts (design step 3):
+                // the legacy keyed blob (quest id -> quest) and the friendly one-file-per-quest
+                // format. A file that parses as the friendly shape routes to the expander; anything
+                // else is legacy. The discriminator is structural - "objectives" exists only in
+                // the friendly format - so a legacy blob cannot be mistaken for one.
+                var stem = Path.GetFileNameWithoutExtension(file);
+                var friendly = TryReadFriendlyQuest(file);
+
+                if (friendly is not null)
+                {
+                    if (AddFriendlyQuest(friendly, stem, relativeName, ref referencesRemapped))
+                    {
+                        questsAdded++;
+                    }
+                    else
+                    {
+                        questsFailed++;
+                    }
+
+                    continue;
+                }
+
                 // Bound loosely first so that a friendly trader name can be resolved before the strongly-typed
                 // Quest sees it - Quest.TraderId is a MongoId and would reject "moron" outright.
                 //
@@ -149,6 +174,144 @@ public class DRIPCustomQuestService(
         {
             logger.Info($"{summary}.");
         }
+    }
+
+    /// <summary>
+    /// Reads a friendly-format quest file, or returns null when the file is not one. Detection is
+    /// structural (an "objectives" member), so it is also the diagnostic for a broken file: a
+    /// file that fails to bind to the friendly model while carrying objectives is reported,
+    /// not silently routed to the legacy path that would misread it.
+    /// </summary>
+    private DRIPQuestFormat? TryReadFriendlyQuest(string file)
+    {
+        try
+        {
+            var probe = JsonNode.Parse(File.ReadAllText(file), documentOptions: new JsonDocumentOptions
+            {
+                AllowTrailingCommas = true,
+                CommentHandling = JsonCommentHandling.Skip,
+            });
+
+            if (probe is not JsonObject obj || !obj.ContainsKey("objectives"))
+            {
+                return null;
+            }
+
+            return DripJson.DeserializeFile<DRIPQuestFormat>(file);
+        }
+        catch (JsonException)
+        {
+            // Unparseable JSON is the legacy path's to report (it logs line and column).
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Expands and inserts one friendly-format quest through SPT's CreateQuest.
+    ///
+    /// Reference resolution happens on the friendly model BEFORE expansion, because the API
+    /// validates nothing downstream (measured by disassembly: duplicate ids, empty locales,
+    /// side - that is all CreateQuest checks). An unresolved trader on a reward is the exact
+    /// georgia/moron crash class the legacy path guards against, so the same guard applies here:
+    /// reject at load, naming the file, rather than let a quest that bricks the client on
+    /// completion ship.
+    /// </summary>
+    private bool AddFriendlyQuest(
+        DRIPQuestFormat format, string stem, string relativeName, ref int referencesRemapped)
+    {
+        var resolvedEverything = true;
+
+        if (!DripTraders.TryResolve(format.Trader, out var traderId))
+        {
+            logger.Error(
+                $"[DRIP] {relativeName}: trader \"{format.Trader}\" doesn't resolve. " +
+                $"Known names: {string.Join(", ", DripTraders.KnownNames)}. Or use a trader's ID.");
+            resolvedEverything = false;
+        }
+        else
+        {
+            format.Trader = traderId.ToString();
+        }
+
+        foreach (var name in new[] { format.Rewards.Select(r => r.StandingWith),
+                                     format.Rewards.Select(r => r.Unlock) }
+                     .SelectMany(names => names.Where(n => n is not null)!))
+        {
+            if (!DripTraders.TryResolve(name, out var resolved))
+            {
+                logger.Error(
+                    $"[DRIP] {relativeName}: reward names trader \"{name}\", which doesn't resolve.");
+                resolvedEverything = false;
+            }
+        }
+
+        // Item references: pack filenames resolve through the same derivation as the legacy
+        // path; vanilla ids pass through untouched.
+        foreach (var objective in format.Objectives.Where(o => o.Handover is not null))
+        {
+            objective.Handover = ResolveItemReference(objective.Handover!, relativeName, ref referencesRemapped);
+        }
+
+        foreach (var reward in format.Rewards.Where(r => r.Item is not null))
+        {
+            reward.Item = ResolveItemReference(reward.Item!, relativeName, ref referencesRemapped);
+        }
+
+        if (!resolvedEverything)
+        {
+            return false;
+        }
+
+        var (quest, locales) = questExpander.Expand(format, stem, relativeName).GetAwaiter().GetResult();
+
+        var result = customQuestService.CreateQuest(new SPTarkov.Server.Core.Models.Spt.Mod.NewQuestDetails
+        {
+            NewQuest = quest,
+            Locales = locales,
+        });
+
+        if (result.Success != true)
+        {
+            var errors = result.Errors is { Count: > 0 } ? string.Join("; ", result.Errors) : "no reason given";
+            logger.Error($"[DRIP] {relativeName}: CreateQuest rejected the quest - {errors}");
+            return false;
+        }
+
+        _created.Add(new MongoId(quest.Id));
+
+        return true;
+    }
+
+    /// <summary>
+    /// A reference that is already a MongoId passes through; a pack filename resolves through
+    /// the item-id derivation; anything else is left for later validation to name as unresolved.
+    /// </summary>
+    private string ResolveItemReference(string reference, string relativeName, ref int remapped)
+    {
+        if (MongoId.IsValidMongoId(reference))
+        {
+            return reference;
+        }
+
+        var derived = DripIds.Derive(hashUtil, reference).GetAwaiter().GetResult();
+        if (templateTable.Items.ContainsKey(derived))
+        {
+            remapped++;
+            return derived.ToString();
+        }
+
+        // Not a resolvable pack item. If it looks like a filename it is a broken cross-pack
+        // reference - say so now rather than letting it fail as an opaque bind error later.
+        if (reference.Contains('_') && reference.All(c => char.IsAsciiLetterOrDigit(c) || c == '_')
+            && !reference.Any(char.IsLower))
+        {
+            logger.Error(
+                $"[DRIP] {relativeName}: item \"{reference}\" looks like a pack item but no installed pack " +
+                "provides it. Either the item belongs in this pack, or the quest belongs in the pack " +
+                "that ships the item.");
+        }
+
+        return reference;
     }
 
     private bool AddQuest(string questId, JsonElement questElement, string relativeName, ref int referencesRemapped)
