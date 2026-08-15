@@ -1,0 +1,20 @@
+// Door Kicker Boonie hat (CADPAT TW)
+// Converted from DOORKICKER_CADPAT_HAT.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Door Kicker Boonie hat (CADPAT TW)",
+  "shortName": "Door Kicker",
+  "description": "A well-worn \"PriceLess\" boonie hat. It is believed that those who wear it can open any door in this world. CADPAT TW version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": false,
+  "price": 130,
+  "currency": "USD",
+  "loyaltyLevel": 1,
+  "basedOn": "5d96141523f0ea1b7f2aacab"
+}

@@ -1,0 +1,40 @@
+// IOTV Gen4 body armor (Assault Kit, USAF Digital Tiger Stripe)
+// Converted from GEN4_ASSAULT_DIGITALTIGERSTRIPE.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "IOTV Gen4 body armor (Assault Kit, USAF Digital Tiger Stripe)",
+  "shortName": "Gen4 Assault",
+  "description": "The Improved Outer Tactical Vest (IOTV) Gen IV is designed to permit maximum freedom of movement required to assume correct firing positions with the agility to execute and maneuver tasks. Optimal design characteristics ensure the best possible weight distribution of both the ballistic body armor system as well as additional load bearing equipment, thus providing enhanced comfort, wear duration, and mobility. Increased ergonomics assault kit. USAF Digital Tiger Stripe version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": false,
+  "price": 368043,
+  "loyaltyLevel": 4,
+  "basedOn": "5b44cf1486f77431723e3d05",
+  "includedParts": {
+    "Front_plate": "656fa8d700d62bcd2e024084",
+    "Back_plate": "656fa8d700d62bcd2e024084",
+    "Left_side_plate": "6557458f83942d705f0c4962",
+    "Right_side_plate": "6557458f83942d705f0c4962",
+    "Soft_armor_front": "6575c3b3dc9932aed601c5f4",
+    "Soft_armor_back": "6575c3beefc786cd9101a5ed",
+    "Soft_armor_left": "6575c3cdc6700bd6b40e8a90",
+    "soft_armor_right": "6575c3dfdc9932aed601c5f8",
+    "Collar": "6575c3ec52b7f8c76a05ee39",
+    "Shoulder_l": "6575c3fd52b7f8c76a05ee3d",
+    "Shoulder_r": "6575c40c52b7f8c76a05ee41"
+  },
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "GEAR.bundle": [
+      "assets/content/characters/character/vest/materials/item_equipment_armor_iotv_texture.bundle"
+    ]
+  }
+}

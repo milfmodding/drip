@@ -1,0 +1,17 @@
+// Shellback Tactical Banshee plate carrier (Coyote)
+// Converted from RIG_BANSHEE_COYOTE.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Shellback Tactical Banshee plate carrier (Coyote)",
+  "shortName": "Banshee",
+  "description": "The Banshee Rifle Plate Carrier was designed to meet and exceed the needs of law enforcement, military, and tactical operators. This ultra lightweight, low profile, high-quality plate carrier has great load carrying capacity. Ideal for law enforcement patrol officers for use in high threat active shooter situations, multi-assault counter terrorism action capabilities (MACTAC) and counter terrorism direct actions. Coyote version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "639343fce101f4caa40a4ef3"
+}

@@ -1,0 +1,17 @@
+// Light Military Flak Vest (Coyote)
+// Converted from FLAKJACKET_CONTRACTOR_ARMOR.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Light Military Flak Vest (Coyote)",
+  "shortName": "Flak Vest",
+  "description": "Class 3 body armor, commonly referred to as a Flak Vest. Used by militaries, PMCs, and reporters around the world. Coyote version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5ab8e4ed86f7742d8e50c7fa"
+}

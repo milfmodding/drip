@@ -1,0 +1,19 @@
+// Lower half-mask (Coming Undone)
+// Converted from HALFMASK_SMILE4.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Lower half-mask (Coming Undone)",
+  "shortName": "Half-mask",
+  "description": "A piece of cloth, typically a bandana, covering the face from nose and below, is the most typical attribute of a street gang member. Hyena Agenda \"Coming Undone\" version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": false,
+  "price": 1620,
+  "loyaltyLevel": 1,
+  "basedOn": "572b7fa524597762b747ce82"
+}

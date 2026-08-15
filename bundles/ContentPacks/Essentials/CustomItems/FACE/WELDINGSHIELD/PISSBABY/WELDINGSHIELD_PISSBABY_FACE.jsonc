@@ -1,0 +1,19 @@
+// Welding mask "Pissbaby"
+// Converted from WELDINGSHIELD_PISSBABY_FACE.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Welding mask \"Pissbaby\"",
+  "shortName": "Pissbaby",
+  "description": "An armored steel welding mask, seems somebody pulled a prank on their buddy.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": false,
+  "price": 69420,
+  "loyaltyLevel": 3,
+  "basedOn": "60a7ad3a0c5cb24b0134664a"
+}

@@ -1,0 +1,22 @@
+// Gorka-4 - Classic
+// Converted from GORKA4_CLASSIC_PANTS.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "bottom",
+  "name": "Gorka-4 - Classic",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+  "price": 70500,
+  "loyaltyLevel": 1,
+  "profileLevel": 13,
+  "standing": 0,
+  "vanillaOrigin": "assets/content/characters/character/prefabs/pants_security_gorka4.bundle",
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "operator": 1,
+    "civilian": 1,
+    "gorkaclassic": 1
+  }
+}

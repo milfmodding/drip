@@ -1,0 +1,17 @@
+// ANA Tactical M1 plate carrier (ERDL Model E)
+// Converted from RIG_M1_ERDL.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "ANA Tactical M1 plate carrier (ERDL Model E)",
+  "shortName": "ANA M1",
+  "description": "A tactical rig with additional class 4 (Russian GOST) armor plates. The vest is created with the use of the best experience of Russian special forces operators. The versatility of the system makes it possible to use this vest both when carrying out city tasks and when performing tasks on rough terrain. Equipped with additional pouches. Manufactured by ANA Tactical. ERDL Model E version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5c0e722886f7740458316a57"
+}

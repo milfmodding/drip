@@ -1,0 +1,17 @@
+// MIL-TEC boonie hat (TTsKO Forest)
+// Converted from PANAMA_TTSKO5_HAT.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "MIL-TEC boonie hat (TTsKO Forest)",
+  "shortName": "Boonie",
+  "description": "MIL-TEC-produced boonie hat, which can be used for protection from the sun. Or you can operate wearing it like a true SEAL Team Six operator. TTsKO Forest version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5b4327aa5acfc400175496e0"
+}

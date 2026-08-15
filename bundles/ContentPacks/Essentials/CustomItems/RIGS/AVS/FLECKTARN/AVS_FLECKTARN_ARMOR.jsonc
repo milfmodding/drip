@@ -1,0 +1,17 @@
+// Crye Precision AVS plate carrier (Flecktarn)
+// Converted from AVS_FLECKTARN_ARMOR.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Crye Precision AVS plate carrier (Flecktarn)",
+  "shortName": "AVS",
+  "description": "The Crye Precision AVS rig equipped with light armored plates (Russian GOST class 4 protection) from combined materials. One of the most comfortable to wear plate carriers. CADPAT TW version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "544a5caa4bdc2d1a388b4568"
+}

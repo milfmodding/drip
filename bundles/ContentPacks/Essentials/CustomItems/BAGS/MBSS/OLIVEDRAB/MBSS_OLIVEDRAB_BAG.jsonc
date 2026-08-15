@@ -1,0 +1,17 @@
+// Flyye MBSS Backpack (Olive Drab)
+// Converted from MBSS_OLIVEDRAB_BAG.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Flyye MBSS Backpack (Olive Drab)",
+  "shortName": "MBSS",
+  "description": "An extra durable backpack made from 1000D Cordura with a separate pocket for a water bladder and a MOLLE attachment system on the sides. Olive Drab version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "544a5cde4bdc2d39388b456b"
+}

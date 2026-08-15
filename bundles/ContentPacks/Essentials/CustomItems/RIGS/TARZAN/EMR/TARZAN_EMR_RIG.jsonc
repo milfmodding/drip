@@ -1,0 +1,17 @@
+// Splav Tarzan M22 chest rig (EMR)
+// Converted from TARZAN_EMR_RIG.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Splav Tarzan M22 chest rig (EMR)",
+  "shortName": "Tarzan",
+  "description": "A simple and fairly practical tactical rig from 2002. It is still actively used by security and law enforcement agencies and civilian shooters in Russia. EMR version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5e4abfed86f77406a2713cf7"
+}

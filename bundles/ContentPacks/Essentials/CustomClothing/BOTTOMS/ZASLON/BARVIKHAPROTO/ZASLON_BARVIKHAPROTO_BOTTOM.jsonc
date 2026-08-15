@@ -1,0 +1,21 @@
+// Zaslon - Barvikha Prototype
+// Converted from ZASLON_BARVIKHAPROTO_BOTTOM.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "bottom",
+  "name": "Zaslon - Barvikha Prototype",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+  "price": 43000,
+  "loyaltyLevel": 1,
+  "profileLevel": 5,
+  "standing": 0,
+  "vanillaOrigin": "assets/content/characters/character/prefabs/pants_bear_zaslon.bundle",
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "woodland": 1,
+    "barvikhaproto": 1
+  }
+}

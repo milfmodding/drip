@@ -1,0 +1,17 @@
+// UMTBS 6sh112 Scout-Sniper (Izlom)
+// Converted from RIG_6SH112_SKOL.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "UMTBS 6sh112 Scout-Sniper (Izlom)",
+  "shortName": "6sh112 S-S",
+  "description": "The Universal Modular Transport-Combat System (UMTBS) \"Scout-sniper\" is officially part of the equipment of the armed forces of the Russian Federation. The vest is designed with a modular approach and can be transformed to suit various specific combat tasks. This system includes the vest base, various purpose pouches, and backpacks. Due to the fact that the vest is based on the MOLLE system, it can be used with various compatible pouches beyond those included with the kit. The belt system has soft bumper pads, and its inside is made from breathable materials. Izlom version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5929a2a086f7744f4b234d43"
+}

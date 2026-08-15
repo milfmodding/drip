@@ -1,3 +1,34 @@
 .idea
 bin
 obj
+
+# Unity asset bundles are large binaries - 5.6 GB across the three packs - and the repo is
+# not the distribution channel. Players get a release archive; developers see a bundle-less
+# tree and bootstrap from the legacy corpus.
+#
+# The original reason given here was "all scheduled for rebuild against Unity 2022.3.43f1".
+# That rebuild was CANCELLED on 2026-07-31 - all three of its justifications fell without
+# Unity. The exclusion still stands, for size and for the reason above.
+#
+# WHAT THIS MEANS, and it is easy to misread: a commit is NOT a checkpoint of the art.
+# Pointer repairs, externals repacks and mesh strips live only on disk. Their safety net is
+# the pre-strip copy at DRIP-bundles-BEFORE-MESH-STRIP-2026-07-31, the untouched 3.x corpus
+# at DRIP-3.x-main, and the pipeline recorded in docs/STATUS.md - which is reproducible:
+# repack -> remap -> derive -> strip -> verify.
+#
+# The note that four bundles predated this rule is resolved: Kappa untracked them, and
+# `git ls-files '*.bundle'` now returns zero.
+*.bundle
+
+# Python bytecode - machine-generated, never diffable, always stale in a clone.
+__pycache__/
+
+# Generated working file for the price review round-trip, not content.
+Prices to review.xlsx
+
+# Staged release output and archives.
+dist/
+
+# Which SPT install this machine's tools read game data from. Per-machine by construction -
+# written by Setup.cmd, and pointing it at someone else's install is worse than absent.
+tools/spt-path.txt

@@ -1,0 +1,17 @@
+// Camelbak Tri-Zip assault backpack (Six Colour Woodland)
+// Converted from TRIZIP_6COLOURWOODLAND_BAG.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Camelbak Tri-Zip assault backpack (Six Colour Woodland)",
+  "shortName": "Tri-Zip",
+  "description": "A Mid-sized versatile assault pack. Spacious, sturdy and comfortable, this backpack is loved both by military and hikers worldwide. 34L of total space, a hydration system, easy access to side pockets, near-perfect suspension, and a MOLLE attachment system make it a great choice for up to 72 hours of autonomous hiking... or carrying a good load of loot. Strange Six-Colour Woodland version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "545cdae64bdc2d39198b4568"
+}

@@ -1,0 +1,17 @@
+// WARTECH TV-110 plate carrier (Ukrainian MM-14)
+// Converted from RIG_TV110_MM14.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "WARTECH TV-110 plate carrier (Ukrainian MM-14)",
+  "shortName": "TV-110",
+  "description": "A plate carrier with armor plates made of armored steel (Russian GOST class 4 protection) with chest and back protection only, equipped with a set of pouches. Manufactured by WARTECH. Ukrainian MM-14 version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5c0e746986f7741453628fe5"
+}

@@ -1,0 +1,17 @@
+// Crye Precision AirFrame helmet (Ranger Green)
+// Converted from AIRFRAME_RANGERGREEN_HELM.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Crye Precision AirFrame helmet (Ranger Green)",
+  "shortName": "AirFrame",
+  "description": "The AirFrame ballistic helmet sets the standards in protection, comfort, and modularity. The unique overlapping shell design of the AirFrame creates an integrated vent that provides passive cooling and can reduce the damaging effects of explosive blast waves. Highly modular. Manufactured by Crye Precision. Ranger Green version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5c17a7ed2e2216152142459c"
+}

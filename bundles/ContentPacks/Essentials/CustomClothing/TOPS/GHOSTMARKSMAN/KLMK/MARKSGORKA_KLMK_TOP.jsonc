@@ -1,0 +1,32 @@
+// Ghost Marksman - KLMK
+// Converted from MARKSGORKA_KLMK_TOP.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "top",
+  "name": "Ghost Marksman - KLMK",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+  "price": 125000,
+  "loyaltyLevel": 2,
+  "profileLevel": 25,
+  "standing": 0,
+  "vanillaOrigin": "assets/content/characters/character/prefabs/top_bear_ghostmarksman.bundle",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "TOP.bundle": ["assets/content/characters/character/skeleton.bundle"],
+    "HANDS.bundle": [
+      "assets/content/hands/bear/bear_hands_watch_texture.bundles",
+      "assets/content/hands/bear/bear_watch.bundle"
+    ]
+  },
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "woodland": 1,
+    "klmk": 1,
+    "berezkamix": 1
+  }
+}

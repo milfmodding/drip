@@ -1,0 +1,17 @@
+// Tasmanian Tiger Trooper 35 backpack (Black)
+// Converted from TROOPER35_BLACK_BAG.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Tasmanian Tiger Trooper 35 backpack (Black)",
+  "shortName": "Trooper 35",
+  "description": "The TT Trooper Light Pack 35 is a lightweight and functional 35 liter backpack from Tasmanian Tiger with a comfortable and ergonomic PaddenBack suspension system and anatomical shoulder straps. Black version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "639346cc1c8f182ad90c8972"
+}

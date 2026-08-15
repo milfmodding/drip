@@ -1,0 +1,29 @@
+// Birdeye Baja Jacket - Grey
+// Converted from BAJAJACKET_GREY_TOP.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "top",
+  "name": "Birdeye Baja Jacket - Grey",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+  "price": 20000,
+  "loyaltyLevel": 1,
+  "profileLevel": 11,
+  "standing": 0,
+  "questRequirements": ["669f7a04a6bd56d17bae1089"],
+  "vanillaOrigin": "assets/content/characters/character/prefabs/top_boss_birdeye.bundle",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "TOP.bundle": ["assets/content/characters/character/skeleton.bundle"]
+  },
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "black": 1,
+    "grey": 1,
+    "civilian": 1
+  }
+}

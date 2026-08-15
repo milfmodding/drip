@@ -1,0 +1,41 @@
+# Line endings, pinned rather than left to each machine's `core.autocrlf`.
+#
+# WHY THIS EXISTS. Without it, git converts line endings on checkout using a per-machine
+# setting, so the same file can be LF in one clone and CRLF in another. The damage is not
+# corruption - it is that a diff then shows every line of a file as changed when one line was
+# edited. On a repo where the next step is "review the code and demonstrate you understand
+# it", a diff that says 400 lines changed when 3 did is actively harmful: it hides the real
+# edit inside noise, and it makes a squash before release unreadable.
+#
+# `text=auto eol=lf` means: git decides what is text, stores text as LF in history, and
+# checks it out as LF everywhere. One representation, no per-machine drift.
+* text=auto eol=lf
+
+# Windows batch files are the exception and it is not cosmetic. cmd.exe can mis-parse a .cmd
+# with LF endings - a label or a multi-line block silently does the wrong thing - so these
+# must be CRLF on disk no matter what the rest of the tree does. All three of DRIP's
+# double-clickable entry points are .cmd, and they are what the content owners actually use.
+*.cmd text eol=crlf
+
+# Binaries: never convert, never diff as text. A 3 MB bundle rendered as a text diff is a
+# hung terminal, and any "line ending fix" applied to one would corrupt it.
+# `*.bundle` is gitignored as well - this is belt and braces, and it also covers a bundle
+# that someone force-adds to a branch for a one-off comparison.
+*.bundle  binary
+*.resS    binary
+*.png     binary
+*.jpg     binary
+*.dll     binary
+*.pdb     binary
+*.xlsx    binary
+
+# Content and tooling are text and want normal diffs, stated explicitly so nothing here
+# depends on git's heuristics guessing right about a .jsonc or a .json5 it has not seen.
+*.jsonc   text
+*.json    text
+*.json5   text
+*.py      text
+*.cs      text
+*.csproj  text
+*.md      text
+*.tsv     text

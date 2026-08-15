@@ -1,0 +1,51 @@
+// Shellback Tactical Banshee armor (USEC UCP)
+// Converted from BANSHEE_USEC_ARMOR.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Shellback Tactical Banshee armor (USEC UCP)",
+  "shortName": "Banshee",
+  "description": "The Banshee Rifle Plate Carrier was designed to meet and exceed the needs of law enforcement, military, and tactical operators. This ultra lightweight, low profile, high-quality plate carrier has great load carrying capacity. Ideal for law enforcement patrol officers for use in high threat active shooter situations, multi-assault counter terrorism action capabilities (MACTAC) and counter terrorism direct actions.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "fence",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": false,
+  "price": 58000,
+  "loyaltyLevel": 2,
+  "basedOn": "609e8540d5c319764c2bc2e9",
+  "properties": {
+    "Width": 3,
+    "Height": 3,
+    "Weight": 6,
+    "mousePenalty": -1,
+    "speedPenaltyPercent": -2,
+    "weaponErgonomicPenalty": -2
+  },
+  "copyPropertiesFrom": {
+    "639343fce101f4caa40a4ef3": [
+      "ArmorMaterial",
+      "ArmorType",
+      "BluntThroughput",
+      "Durability",
+      "MaxDurability",
+      "RepairCost",
+      "RepairSpeed",
+      "armorClass",
+      "armorZone"
+    ]
+  },
+  "handbookPrice": 58000,
+  "fleaPrice": 58000,
+
+  // Geometry lives in the game's own bundle rather than being copied in
+  // here. The pointer is only half of that: without this the client never loads
+  // the file and the item renders invisible.
+  "bundles": {
+      "GEAR.bundle": [
+          "assets/content/items/equipment/rig_shellback_tactical_banshee/item_equipment_rig_shellback_tactical_banshee.bundle"
+      ]
+  }
+}

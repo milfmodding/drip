@@ -1,0 +1,25 @@
+// Crye Precision AVS MBAV plate carrier (BF4 "Russian Splinter")
+// Converted from RIG_AVSMBAV_RUSPLINTER.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Crye Precision AVS MBAV plate carrier (BF4 \"Russian Splinter\")",
+  "shortName": "AVS MBAV",
+  "description": "Somebody's well-worn plate carrier based on the AVS module system by Crye Precision. It has one front panel with three attached pouches. And that's pretty much it. Nothing more, nothing less. Battlefield 4 \"Russian Splinter\" version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": false,
+  "price": 243844,
+  "loyaltyLevel": 4,
+  "basedOn": "609e860ebd219504d8507525",
+  "includedParts": {
+    "Front_plate": "656fa99800d62bcd2e024088",
+    "Back_plate": "656fa0fb498d1b7e3e071d9c",
+    "Soft_armor_back": "6575f5e1da698a4e98067869",
+    "Soft_armor_front": "6575f5cbf6a13a7b7100b0bf"
+  }
+}

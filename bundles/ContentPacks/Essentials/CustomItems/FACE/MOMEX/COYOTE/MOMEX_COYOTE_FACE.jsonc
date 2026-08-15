@@ -1,0 +1,20 @@
+// Momex balaclava (Coyote)
+// Converted from MOMEX_COYOTE_FACE.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Momex balaclava (Coyote)",
+  "shortName": "Momex",
+  "description": "A tactical balaclava with a single hole for eyes. Coyote version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": false,
+  "price": 150,
+  "currency": "EUR",
+  "loyaltyLevel": 1,
+  "basedOn": "5b432f3d5acfc4704b4a1dfb"
+}

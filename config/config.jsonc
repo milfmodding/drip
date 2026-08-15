@@ -1,0 +1,39 @@
+{
+  // Makes every piece of DRIP clothing free, with no level, standing or quest requirements.
+  // Handy for trying things on; not how the mod is meant to be played.
+  "noClothingRequirements": false,
+
+  // Whether bots can spawn wearing DRIP clothing, and carrying DRIP gear.
+  // Turn these off if you want DRIP to be yours alone - or if raids feel heavy.
+  // Bots wearing DRIP means a lot more high-resolution clothing loaded at once, which
+  // can cost frames on some machines. Turning this off changes nothing else: you still
+  // buy and wear all of it yourself.
+  "addClothingToBots": true,
+  "addEquipmentToBots": true,
+
+  // Rescales what Ragman charges for VANILLA clothing, as a percentage of the usual price.
+  // 100 leaves it alone, 40 makes everything 40% of its normal cost, 0 makes it free.
+  // This does not touch DRIP's own clothing prices.
+  "vanillaClothingPricePercentage": 100,
+
+  // Adds a line to each item's description saying which content pack it came from.
+  "collectionInDescription": true,
+
+  // Puts the content pack's name in front of every item name, so they're easy to spot.
+  // For working on the mod, not for playing it.
+  "debugNames": false,
+
+  // ---------------------------------------------------------------------------------------
+  // Debugging. Leave these alone unless you are reproducing a bug.
+  //
+  // Bots normally pick a random outfit from a weighted pool, which means "I didn't see the
+  // problem" and "I didn't roll the problem" look exactly the same. These make every bot wear
+  // one specific garment, so a raid either shows the bug or rules it out.
+  //
+  // Name a garment by its config filename without the extension, e.g. "TSHIRT_COLETTE_TOP".
+  // A name DRIP doesn't recognise refuses the whole pin and says so - it will never apply
+  // half of what you asked for.
+  //
+  // "debugPinBotTop": "TSHIRT_COLETTE_TOP",
+  // "debugPinBotBottom": "GORKA4_BLACK_PANTS",
+}

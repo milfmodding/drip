@@ -1,0 +1,24 @@
+// Infiltrator - MILF CUM-Night
+// Converted from INFILTRATOR_NIGHTDIGITAL_BOTTOM.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "bottom",
+  "name": "Infiltrator - MILF CUM-Night",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+  "price": 77500,
+  "loyaltyLevel": 1,
+  "profileLevel": 11,
+  "standing": 0,
+  "questRequirements": ["669f7a04a6bd56d17bae1089"],
+  "vanillaOrigin": "assets/content/characters/character/prefabs/pants_usec_cryeprecision.bundle",
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "grey": 1,
+    "urban": 1,
+    "operator": 1,
+    "nightdigital": 1
+  }
+}

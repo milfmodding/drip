@@ -1,0 +1,23 @@
+// Gorka-4 - Black
+// Converted from GORKA4_BLACK_PANTS.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "bottom",
+  "name": "Gorka-4 - Black",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+  "price": 45000,
+  "loyaltyLevel": 1,
+  "profileLevel": 7,
+  "standing": 0,
+  "vanillaOrigin": "assets/content/characters/character/prefabs/pants_security_gorka4.bundle",
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "black": 1,
+    "civilian": 1,
+    "operator": 1,
+    "gorkablack": 1
+  }
+}

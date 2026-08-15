@@ -1,0 +1,18 @@
+{
+  // Gives content authors autocomplete, hover docs and inline error checking on DRIP configs,
+  // including new files that don't have a "$schema" line yet. See docs/CONFIG-SCHEMA-v2.md.
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "/bundles/ContentPacks/*/CustomItems/**/*.jsonc",
+        "/bundles/ContentPacks/*/CustomClothing/**/*.jsonc"
+      ],
+      "url": "./docs/drip-item.schema.json"
+    }
+  ],
+
+  // Content configs are JSON-with-comments: comments and trailing commas are expected.
+  "files.associations": {
+    "*.jsonc": "jsonc"
+  }
+}

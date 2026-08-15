@@ -1,0 +1,32 @@
+// Infiltrator - MG:O "Tiger Stripe"
+// Converted from INFILTRATOR_GRASSY_TIGER_TOP.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "top",
+  "name": "Infiltrator - MG:O \"Tiger Stripe\"",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+  "price": 80000,
+  "loyaltyLevel": 2,
+  "profileLevel": 23,
+  "standing": 0,
+  "vanillaOrigin": "assets/content/characters/character/prefabs/tshirt_usec_combatshirt.bundle",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "TOP.bundle": ["assets/content/characters/character/skeleton.bundle"],
+    "HANDS.bundle": [
+      "assets/content/hands/bear/bear_hands_watch_texture.bundles",
+      "assets/content/hands/bear/bear_watch.bundle",
+      "assets/content/hands/usec/materials/watch_usec_textures"
+    ]
+  },
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "woodland": 1,
+    "grassytigerstripe": 1
+  }
+}

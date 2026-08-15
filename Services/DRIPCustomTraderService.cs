@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using DRIP.Models;
+using DRIP.Utils;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Common;
@@ -34,23 +35,29 @@ public class DRIPCustomTraderService(
 
     /// <summary>
     /// Loads custom trader configs from JSON/JSONC files and registers them to the game database.
-    /// 
-    /// Traders are loaded from the mod's "db/CustomTraders" directory (or a custom path if specified).
     /// </summary>
     /// <param name="assembly">The calling assembly, used to determine the mod folder location</param>
-    /// <param name="relativePath">(OPTIONAL) Custom path relative to the mod folder</param>
+    /// <param name="contentPackPath">
+    /// Path to the content pack's CustomTraders directory, relative to the mod folder - for example
+    /// "bundles/ContentPacks/Essentials/CustomTraders". Already includes the "bundles" segment.
+    /// </param>
     public async Task CreateCustomTraders(Assembly assembly, string contentPackPath)
     {
         if (_database == null) _database = databaseService.GetTables();
 
         var pathToMod = modHelper.GetAbsolutePathToModFolder(assembly);
-        var customTradersDirectory = $"{pathToMod}/bundles/${contentPackPath}";
+        var customTradersDirectory = Path.Combine(pathToMod, contentPackPath);
 
         foreach (var traderFile in Directory.EnumerateFiles(customTradersDirectory, "*.json"))
         {
             var traderId = Path.GetFileNameWithoutExtension(traderFile);
             var traderImagePath = Path.Combine(customTradersDirectory, $"{traderId}.jpeg");
-            var traderBase = modHelper.GetJsonDataFromFile<CustomTraderConfig>(customTradersDirectory, $"{traderId}.json");
+            var traderBase = DripJson.DeserializeFile<CustomTraderConfig>(traderFile);
+            if (traderBase is null)
+            {
+                logger.Error($"[DRIP] Trader config {traderId}.json deserialised to null, skipping.");
+                continue;
+            }
 
             // TODO: hard set the trader avatar, since we have everything we need for it. 
             imageRouter.AddRoute(traderBase.Avatar.Replace(".jpg", ""), traderImagePath);
@@ -66,11 +73,15 @@ public class DRIPCustomTraderService(
                     LoyalLevelItems = new Dictionary<MongoId, int>()
                 },
                 Base = cloner.Clone(traderBase),
+                // These keys MUST be lowercase. The server indexes them unguarded - see
+                // PostDbLoadService.ValidateQuestAssortUnlocksExist, which does QuestAssort["started"] for every
+                // trader in the database - so capitalised keys are a KeyNotFoundException waiting for a load-order
+                // change. Vanilla traders and the 3.x mod both use lowercase.
                 QuestAssort = new()
                 {
-                    { "Started", new() },
-                    { "Success", new() },
-                    { "Fail", new() }
+                    { "started", new() },
+                    { "success", new() },
+                    { "fail", new() }
                 },
                 Dialogue = []
             };

@@ -1,0 +1,22 @@
+// SRVV - Austrian Tarnanzug Neu
+// Converted from TACTICAL_PANTS_TARNANZUG_PANTS.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "bottom",
+  "name": "SRVV - Austrian Tarnanzug Neu",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+  "price": 65000,
+  "loyaltyLevel": 1,
+  "profileLevel": 13,
+  "standing": 0,
+  "vanillaOrigin": "assets/content/characters/character/prefabs/pants_bear_triarius.bundle",
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "desert": 1,
+    "operator": 1,
+    "tarnanzug": 1
+  }
+}

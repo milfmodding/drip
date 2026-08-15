@@ -1,0 +1,33 @@
+// Aggressor TAC - Three Colour Desert
+// Converted from COMBATPARKA_3COLOURDESERT_TOP.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "top",
+  "name": "Aggressor TAC - Three Colour Desert",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+  "price": 46000,
+  "loyaltyLevel": 1,
+  "profileLevel": 8,
+  "standing": 0,
+  "questRequirements": ["669f795b4657ccef2265f1be"],
+  "vanillaOrigin": "assets/content/characters/character/prefabs/top_usec_aggressor_parka.bundle",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "TOP.bundle": ["assets/content/characters/character/skeleton.bundle"],
+    "HANDS.bundle": [
+      "assets/content/hands/bear/bear_hands_watch_texture.bundles",
+      "assets/content/hands/bear/bear_watch.bundle",
+      "assets/content/hands/usec/materials/watch_usec_textures"
+    ]
+  },
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "desert": 1,
+    "threecolourdesert": 1
+  }
+}

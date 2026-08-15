@@ -1,0 +1,17 @@
+// Tac-Kek Heavy Trooper mask for Ops-Core-type helmets (Black)
+// Converted from HELMET_TKHEAVYTROOPER_BLACK.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Tac-Kek Heavy Trooper mask for Ops-Core-type helmets (Black)",
+  "shortName": "TK Heavy Trooper",
+  "description": "The Tac-Kek Heavy Trooper mask is an additional ballistic module for Ops-Core-type helmets, based on the famous movie universe. This is the way. Black version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5ea058e01dbce517f324b3e2"
+}

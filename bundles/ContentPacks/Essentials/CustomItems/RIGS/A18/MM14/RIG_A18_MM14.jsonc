@@ -1,0 +1,17 @@
+// Ars Arma A18 Skanda plate carrier (Ukrainian MM-14)
+// Converted from RIG_A18_MM14.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Ars Arma A18 Skanda plate carrier (Ukrainian MM-14)",
+  "shortName": "A18",
+  "description": "A plate carrier with armor plates (Russian GOST class 4 protection) with chest and back protection. Equipped with a set of pouches. Manufactured by Ars Arma. Ukrainian MM-14 version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5d5d87f786f77427997cfaef"
+}

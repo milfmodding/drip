@@ -1,0 +1,17 @@
+// LBT-1961A Load Bearing Chest Rig (Austrian Tarnanzug Neu)
+// Converted from RIG_LCBR_TARNANZUG.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "LBT-1961A Load Bearing Chest Rig (Austrian Tarnanzug Neu)",
+  "shortName": "LBCR",
+  "description": "A tactical load-bearing system designed to carry magazines, grenades, and special equipment, while using low-profile body armor. Manufactured by London Bridge Trading. Austrian Tarnanzug Neu camo version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5e9db13186f7742f845ee9d3"
+}

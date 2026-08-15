@@ -1,0 +1,25 @@
+// IOTV Gen4 body armor (Full Protection, USAF Digital Tiger Stripe)
+// Converted from GEN4_FULL_DIGITALTIGERSTRIPE.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "IOTV Gen4 body armor (Full Protection, USAF Digital Tiger Stripe)",
+  "shortName": "Gen4 Full",
+  "description": "The Improved Outer Tactical Vest (IOTV) Gen IV is designed to permit maximum freedom of movement required to assume correct firing positions with the agility to execute and maneuver tasks. Optimal design characteristics ensure the best possible weight distribution of both the ballistic body armor system as well as additional load bearing equipment, thus providing enhanced comfort, wear duration, and mobility. Full protection kit. USAF Digital Tiger Stripe version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5b44cd8b86f774503d30cba2",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "GEAR.bundle": [
+      "assets/content/characters/character/vest/materials/item_equipment_armor_iotv_texture.bundle"
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+// Peltor ComTac 4 Hybrid headset (Black)
+// Converted from COMTAC4_BLACK_HEADSET.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Peltor ComTac 4 Hybrid headset (Black)",
+  "shortName": "ComTac 4",
+  "description": "The ComTac IV Hybrid Communication Headset is designed to help reduce exposure to hazardous levels of noise, improve situational awareness and at the same time enable two-way radio communication in noisy environments. The headset's electronics are contained completely inside the headset housing, eliminating the need for a large, heavy external radio control box. The headband mechanically stabilizes the headset to help relieve issues of earplugs dislodging from cable snags and body movement. Designed for comfortable use with a ballistic helmet. Black version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": false,
+  "price": 845,
+  "currency": "USD",
+  "loyaltyLevel": 3,
+  "basedOn": "628e4e576d783146b124c64d"
+}

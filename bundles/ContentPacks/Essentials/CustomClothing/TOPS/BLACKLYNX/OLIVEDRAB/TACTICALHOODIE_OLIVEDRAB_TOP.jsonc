@@ -1,0 +1,32 @@
+// Lynx - Olive Drab
+// Converted from TACTICALHOODIE_OLIVEDRAB_TOP.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "top",
+  "name": "Lynx - Olive Drab",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+  "price": 71500,
+  "loyaltyLevel": 1,
+  "profileLevel": 12,
+  "standing": 0,
+  "questRequirements": ["669f7a46a33b9e7cbda18b33"],
+  "vanillaOrigin": "assets/content/characters/character/prefabs/top_bear_blacklynx.bundle",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "TOP.bundle": ["assets/content/characters/character/skeleton.bundle"],
+    "HANDS.bundle": [
+      "assets/content/hands/bear/bear_hands_watch_texture.bundles",
+      "assets/content/hands/bear/bear_watch.bundle"
+    ]
+  },
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "woodland": 1,
+    "olivedrab": 1
+  }
+}

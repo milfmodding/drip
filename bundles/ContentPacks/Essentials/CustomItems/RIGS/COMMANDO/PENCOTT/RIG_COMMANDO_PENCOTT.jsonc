@@ -1,0 +1,26 @@
+// BlackHawk! Commando chest harness (PenCott GreenZone)
+// Converted from RIG_COMMANDO_PENCOTT.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "BlackHawk! Commando chest harness (PenCott GreenZone)",
+  "shortName": "Commando",
+  "description": "Designed for comfort and quick access, this harness puts a lot of additional magazines at the user's fingertips. Manufactured by BLACKHAWK. PenCott GreenZone camo version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5b44c8ea86f7742d1627baf1",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "GEAR.bundle": [
+      "assets/content/characters/character/tacticalvest/cr_commando_mesh",
+      "assets/content/items/equipment/rig_commando/item_equipment_rig_commando_textures"
+    ]
+  }
+}

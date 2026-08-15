@@ -1,0 +1,22 @@
+// Gen.2 Khyber - Flecktarn
+// Converted from COMBAT_PANTS_FLECKTARN_BOTTOM.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "bottom",
+  "name": "Gen.2 Khyber - Flecktarn",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+  "price": 66000,
+  "loyaltyLevel": 1,
+  "profileLevel": 13,
+  "standing": 0,
+  "questRequirements": ["669f7b28d1dbbbdb0475e7be"],
+  "vanillaOrigin": "assets/content/characters/character/prefabs/pants_usec_gen2.bundle",
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "woodland": 1,
+    "flecktarn": 1
+  }
+}

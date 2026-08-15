@@ -1,0 +1,26 @@
+// Winter Jacket - MGS3 "Hornet Stripe"
+// Converted from WINTERJACKET_HORNETSTRIPE_TOP.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "top",
+  "name": "Winter Jacket - MGS3 \"Hornet Stripe\"",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+  "price": 175000,
+  "loyaltyLevel": 2,
+  "profileLevel": 20,
+  "standing": 0,
+  "vanillaOrigin": "assets/content/characters/character/prefabs/top_boss_shturman_skin.bundle",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "TOP.bundle": ["assets/content/characters/character/skeleton.bundle"]
+  },
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "desert": 1
+  }
+}

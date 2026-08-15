@@ -1,0 +1,17 @@
+// Hexatac HPC Plate Carrier (Czech Vz.95)
+// Converted from HEXATAC_VZ95_ARMOR.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Hexatac HPC Plate Carrier (Czech Vz.95)",
+  "shortName": "HPC",
+  "description": "A plate carrier by Hexatac. A minimalistic version designed to be used with chest rigs. Czech Vz.95 version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "63737f448b28897f2802b874"
+}

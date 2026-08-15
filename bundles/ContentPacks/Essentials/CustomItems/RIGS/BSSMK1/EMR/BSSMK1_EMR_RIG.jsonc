@@ -1,0 +1,23 @@
+// Gear Craft GC-BSS-MK1 chest rig (EMR)
+// Converted from BSSMK1_EMR_RIG.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Gear Craft GC-BSS-MK1 chest rig (EMR)",
+  "shortName": "BSS-MK1",
+  "description": "The new generation shoulder belt system, made for patrol and assault operations. EMR version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5fd4c60f875c30179f5d04c2",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "GEAR.bundle": ["assets/content/characters/character/tacticalvest/cr_commando_mesh"]
+  }
+}

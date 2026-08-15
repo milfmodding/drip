@@ -1,0 +1,24 @@
+// Gen.2 Khyber - Combat Black
+// Converted from COMBAT_PANTS_BLACK_BOTTOM.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "bottom",
+  "name": "Gen.2 Khyber - Combat Black",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+  "price": 66000,
+  "loyaltyLevel": 1,
+  "profileLevel": 3,
+  "standing": 0,
+  "questRequirements": ["669cdb5039f39e1bd6019b56"],
+  "vanillaOrigin": "assets/content/characters/character/prefabs/pants_usec_gen2.bundle",
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "black": 1,
+    "civilian": 1,
+    "operator": 1,
+    "drip": 1
+  }
+}

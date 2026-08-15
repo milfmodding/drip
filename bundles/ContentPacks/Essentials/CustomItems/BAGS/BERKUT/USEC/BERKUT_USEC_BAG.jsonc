@@ -1,0 +1,17 @@
+// WARTECH Berkut BB-102 backpack (USEC UCP)
+// Converted from BERKUT_USEC_BAG.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "WARTECH Berkut BB-102 backpack (USEC UCP)",
+  "shortName": "Berkut",
+  "description": "A tactical backpack with front loading capabilities. Suitable for use by military and security forces, or for military tactical games. Manufactured in WARTECH. USEC UCP Version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5ca20d5986f774331e7c9602"
+}

@@ -1,0 +1,17 @@
+// Spiritus Systems Bank Robber chest rig (Flecktarn)
+// Converted from RIG_BANKROBBER_FLECKTARN.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Spiritus Systems Bank Robber chest rig (Flecktarn)",
+  "shortName": "Bank Robber",
+  "description": "An ultra-compact and lightweight chest rig for mobility and comfort. Manufactured by Spiritus Systems. Flecktarn version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5e4abc1f86f774069619fbaa"
+}

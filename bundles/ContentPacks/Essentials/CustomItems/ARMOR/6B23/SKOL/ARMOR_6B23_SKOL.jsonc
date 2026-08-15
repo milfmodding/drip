@@ -1,0 +1,26 @@
+// 6B23-1 body armor (Izlom)
+// Converted from ARMOR_6B23_SKOL.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "6B23-1 body armor (Izlom)",
+  "shortName": "6B23-1",
+  "description": "The \"Zabralo-8\" main armored vest for personnel of combat units of the ground forces, airborne troops, marines, etc. The vest is designed to protect vital organs from being hit by firearms, shell fragments, mines, grenades, and cold weapons, reducing the severity of armor contusion injury when performing combat missions. Izlom version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5c0e5bab86f77461f55ed1f3",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "GEAR.bundle": [
+      "assets/content/characters/character/vest/ar_6b23_mesh",
+      "assets/content/items/equipment/armor_6b23/item_equipment_armor_6b23_gloss_nrm"
+    ]
+  }
+}

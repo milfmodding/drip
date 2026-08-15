@@ -1,0 +1,28 @@
+// Security Jacket - Finnish M05
+// Converted from SECUIRTY_JACKET_M05_TOP.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "top",
+  "name": "Security Jacket - Finnish M05",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+  "price": 40000,
+  "loyaltyLevel": 1,
+  "profileLevel": 12,
+  "standing": 0,
+  "questRequirements": ["669f7a46a33b9e7cbda18b33"],
+  "vanillaOrigin": "assets/content/characters/character/prefabs/wild_security_body_1.bundle",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "TOP.bundle": ["assets/content/characters/character/skeleton.bundle"]
+  },
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "woodland": 1,
+    "m05woodland": 1
+  }
+}

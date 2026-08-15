@@ -1,46 +1,28 @@
+// Winter Jacket - DRIP
+// Converted from WINTERJACKET_DRIP_TOP.json5 — see docs/CONFIG-SCHEMA-v2.md
 {
-    // "DRIP Jacket" Top
-    // This config file serves as a template for what other CustomItem configs will look like.
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "top",
+  "name": "Winter Jacket - DRIP",
 
-    // "top" and "bottom" are acceptable values here.
-    "type": "top",
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+  "price": 420666,
+  "loyaltyLevel": 3,
+  "profileLevel": 35,
+  "standing": 0,
+  "vanillaOrigin": "assets/content/characters/character/prefabs/top_boss_shturman_skin.bundle",
 
-    // For "top" clothing, this configures the bundles to use for third- and first-person views.
-    "topBundlePath": "TOP.bundle",
-    "handsBundlePath": "HANDS.bundle",
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "TOP.bundle": ["assets/content/characters/character/skeleton.bundle"]
+  },
 
-    // Co-located bundles are automatically loaded for each item- but here we can specify additional dependencies that
-    // those bundles might have.
-    "bundleDependencies": {
-        "HANDS.bundle": [
-            "cubemaps",
-            "shaders"
-        ],
-        "TOP.bundle": [
-            "shaders",
-            "cubemaps",
-            "assets/content/characters/character/skeleton.bundle"
-        ]
-    },
-
-    // These properties define the cost of the clothing.
-    // A normal MongoID can be used here, or two special values are also recognized: "moron" and "georgia"
-    // (casing is important!) which are properly routed to our traders.
-    "traderId": "moron",
-    "loyaltyLevel": 3,
-    "profileLevel": 35,
-    "standing": 0,
-    "currencyId": "MONEY_ROUBLES",
-    "price": 420690,
-
-    // If multiple locales are specified, then they'll be used. Otherwise, all locales will have the "en" items injected.
-    "locales": {
-        "en": {
-            "name": "Winter Jacket - DRIP"
-        }
-    },
-    
-    // These properties define quests or achievements that are needed before you can buy the clothing.
-    "questRequirements": [],
-    "achievementRequirements": []
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "operator": 1,
+    "drip": 1,
+    "supremelydrippy": 1
+  }
 }

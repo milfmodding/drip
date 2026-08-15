@@ -1,0 +1,17 @@
+// Ops-Core FAST MT Super High Cut helmet (USEC UCP)
+// Converted from FASTMT_USEC_MESH.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Ops-Core FAST MT Super High Cut helmet (USEC UCP)",
+  "shortName": "FAST MT",
+  "description": "The Ops-Core FAST ballistic helmet is popular in special forces all around the world. Can be modified with different components. USEC UCP version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5ac8d6885acfc400180ae7b0"
+}

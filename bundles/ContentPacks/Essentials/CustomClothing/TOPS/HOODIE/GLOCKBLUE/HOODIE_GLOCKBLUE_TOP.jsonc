@@ -1,0 +1,34 @@
+// Hoodie - Glock (Blue)
+// Converted from HOODIE_GLOCKBLUE_TOP.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "top",
+  "name": "Hoodie - Glock (Blue)",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+  "price": 35000,
+  "loyaltyLevel": 1,
+  "profileLevel": 5,
+  "standing": 0,
+  "questRequirements": ["669f759a1c5ee26e33c5afb2"],
+  "vanillaOrigin": "assets/content/characters/character/prefabs/top_usec_hoody.bundle",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "TOP.bundle": ["assets/content/characters/character/skeleton.bundle"],
+    "HANDS.bundle": [
+      "assets/content/hands/bear/bear_hands_watch_texture.bundles",
+      "assets/content/hands/bear/bear_watch.bundle",
+      "assets/content/hands/usec/materials/watch_usec_textures"
+    ]
+  },
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "naval": 1,
+    "civilian": 1,
+    "operator": 1
+  }
+}

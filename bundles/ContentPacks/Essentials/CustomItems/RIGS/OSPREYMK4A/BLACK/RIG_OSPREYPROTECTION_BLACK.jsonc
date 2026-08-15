@@ -1,0 +1,23 @@
+// CQC Osprey MK4A plate carrier (Protection, Black)
+// Converted from RIG_OSPREYPROTECTION_BLACK.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "CQC Osprey MK4A plate carrier (Protection, Black)",
+  "shortName": "Osprey MK4A (P)",
+  "description": "The Osprey plate carrier is actively used by the British army and specialists. The Protection preset is provided with heavy armor plates and the optimal number of pouches for ammunition, grenades and special equipment. Black version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "60a3c68c37ea821725773ef5",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "GEAR.bundle": ["assets/content/characters/character/tacticalvest/cr_commando_mesh"]
+  }
+}

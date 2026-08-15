@@ -1,0 +1,17 @@
+// LBT-8005A Day Pack backpack (Hello MILFY)
+// Converted from DAYPACK_HELLOMILFY_BAG.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "LBT-8005A Day Pack backpack (Hello MILFY)",
+  "shortName": "Day Pack",
+  "description": "A simple and reliable 14-liter backpack. Manufactured by London Bridge Trading. Special \"Hello MILFY\" edition.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5e9dcf5986f7746c417435b3"
+}

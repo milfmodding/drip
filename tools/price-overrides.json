@@ -1,0 +1,53 @@
+{
+  "_README": [
+    "Prices decided on top of the 3.x source, which is a read-only reference corpus.",
+    "",
+    "This file is the source of truth for them. Editing a price directly in a content pack",
+    "config works until someone re-runs the converter, which silently puts the old value back.",
+    "Both tools read this file, so a price recorded here survives.",
+    "",
+    "Normally written by the price review tool, not by hand:  Review Prices.cmd"
+  ],
+  "overrides": {
+    "URBANFIGHTER_CADPAT_PANTS": {
+      "price": 32000,
+      "why": "placeholder 0; matches URBANRESPONDER family"
+    },
+    "URBANFIGHTER_SIXCOLOURURBAN_PANTS": {
+      "price": 32000,
+      "why": "placeholder 0; matches URBANRESPONDER family"
+    },
+    "URBANFIGHTER_UCPBRUSH_PANTS": {
+      "price": 32000,
+      "why": "placeholder 0; matches URBANRESPONDER family"
+    },
+    "COMBATPARKA_NAVY_TOP": {
+      "price": 46000,
+      "why": "placeholder 0; matches AGGRESSOR family"
+    },
+    "FIGHTINGJACKET_FLORA_TOP": {
+      "price": 42000,
+      "why": "placeholder 0; matches SUMMERFIELD family"
+    },
+    "FIGHTINGJACKET_SKOL_TOP": {
+      "price": 42000,
+      "why": "placeholder 0; matches SUMMERFIELD family"
+    },
+    "OLDSCHOOL_SKOL_PANTS": {
+      "price": 84000,
+      "why": "placeholder 0; matches OLDSCHOOL family"
+    },
+    "OLDSCHOOL_TARNANZUG_BOTTOM": {
+      "price": 84000,
+      "why": "placeholder 0; matches OLDSCHOOL family"
+    },
+    "GORKA4_SKOL_PANTS": {
+      "price": 57500,
+      "why": "placeholder 0; GORKA4 ladders by level, interpolated at level 10"
+    },
+    "GORKA4_SKOL_TOP": {
+      "price": 57500,
+      "why": "placeholder 0; GORKA4 ladders by level, interpolated at level 10"
+    }
+  }
+}

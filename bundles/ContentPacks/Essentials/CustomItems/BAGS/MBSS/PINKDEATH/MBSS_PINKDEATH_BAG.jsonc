@@ -1,0 +1,17 @@
+// Flyye MEMEBSS Backpack P2W Premium Edition
+// Converted from MBSS_PINKDEATH_BAG.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Flyye MEMEBSS Backpack P2W Premium Edition",
+  "shortName": "MEMEBSS",
+  "description": "An extra durable backpack made from 1000D Cordura with a separate pocket for a water bladder and a MOLLE attachment system on the sides. Special worth to buy P2W Premium Edition.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5b44c6ae86f7742d1627baea"
+}

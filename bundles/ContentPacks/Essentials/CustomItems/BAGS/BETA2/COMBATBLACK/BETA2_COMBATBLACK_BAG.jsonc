@@ -1,0 +1,17 @@
+// ANA Tactical Beta 2 Battle backpack (Black)
+// Converted from BETA2_COMBATBLACK_BAG.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "ANA Tactical Beta 2 Battle backpack (Black)",
+  "shortName": "Beta 2",
+  "description": "A lightweight and capacious backpack from ANA Tactical, in Black. Specially designed for use in dynamic conditions and on rough terrain.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5b44c6ae86f7742d1627baea"
+}

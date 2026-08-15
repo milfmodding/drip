@@ -1,0 +1,17 @@
+// NPP KlASS Korund-VM body armor (TTsKO Forest)
+// Converted from KORUND_TTSKO5_ARMOR.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "NPP KlASS Korund-VM body armor (TTsKO Forest)",
+  "shortName": "Korund-VM",
+  "description": "The NPP KlASS Korund-VM heavy bulletproof vest, adopted by the units of the Ministry of Internal Affairs of Russia. Provides increased protection against bullets and fragments (class 5 GOST). TTsKO Forest version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5f5f41476bdad616ad46d631"
+}

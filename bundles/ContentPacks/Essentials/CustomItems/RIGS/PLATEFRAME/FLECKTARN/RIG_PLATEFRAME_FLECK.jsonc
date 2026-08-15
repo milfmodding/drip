@@ -1,0 +1,31 @@
+// S&S Precision PlateFrame plate carrier (Flecktarn)
+// Converted from RIG_PLATEFRAME_FLECK.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "S&S Precision PlateFrame plate carrier (Flecktarn)",
+  "shortName": "PlateFrame",
+  "description": "Minimalistic, lightweight, semi rigid plastic design provides a rigid mounting platform unlike any other plate carrier on the market. The frame gives the operator the capability to scale their load out up or down to meet operational requirements. The PlateFrame allows for easy attachment of accessory pouches and will accommodate standard MOLLE/PALS pouches. Flecktarn Version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": false,
+  "price": 260953,
+  "loyaltyLevel": 3,
+  "basedOn": "628b9784bcf6e2659e09b8a2",
+  "includedParts": {
+    "Front_plate": "656fae5f7c2d57afe200c0d7",
+    "Back_plate": "656fae5f7c2d57afe200c0d7",
+    "Left_side_plate": "6557458f83942d705f0c4962",
+    "Right_side_plate": "6557458f83942d705f0c4962"
+  },
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "GEAR.bundle": ["assets/content/characters/character/tacticalvest/cr_commando_mesh"]
+  }
+}

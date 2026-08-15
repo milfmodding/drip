@@ -1,0 +1,22 @@
+// Urban Responder - CADPAT TW
+// Converted from URBANFIGHTER_CADPAT_PANTS.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "bottom",
+  "name": "Urban Responder - CADPAT TW",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+  "price": 32000,
+  "loyaltyLevel": 1,
+  "profileLevel": 7,
+  "standing": 0,
+  "questRequirements": ["669f79c7f8b1f185365997e3"],
+  "vanillaOrigin": "assets/content/characters/character/prefabs/pants_usec_urbanresponder.bundle",
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "woodland": 1,
+    "cadpat": 1
+  }
+}

@@ -1,0 +1,29 @@
+// Gorka-4 - S.T.A.L.K.E.R. "Clear Sky"
+// Converted from GORKA4_CLEARSKY_STALKER_TOP.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "top",
+  "name": "Gorka-4 - S.T.A.L.K.E.R. \"Clear Sky\"",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+  "price": 95000,
+  "loyaltyLevel": 2,
+  "profileLevel": 18,
+  "standing": 0,
+  "vanillaOrigin": "assets/content/characters/character/prefabs/top_security_gorka4.bundle",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "TOP.bundle": ["assets/content/characters/character/skeleton.bundle"]
+  },
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "naval": 1,
+    "winter": 1,
+    "urban": 1,
+    "clearsky": 1
+  }
+}

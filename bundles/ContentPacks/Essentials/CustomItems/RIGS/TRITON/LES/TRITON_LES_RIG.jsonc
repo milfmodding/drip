@@ -1,0 +1,17 @@
+// Dynaforce Triton M43-A chest harness (Russian Les)
+// Converted from TRITON_LES_RIG.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Dynaforce Triton M43-A chest harness (Russian Les)",
+  "shortName": "Triton",
+  "description": "The Triton M43-A assault chest rig is designed to store and carry ammunition and equipment for use in moderate and hot climates. Manufactured by Dynaforce. Russian Les version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5ca20abf86f77418567a43f2"
+}

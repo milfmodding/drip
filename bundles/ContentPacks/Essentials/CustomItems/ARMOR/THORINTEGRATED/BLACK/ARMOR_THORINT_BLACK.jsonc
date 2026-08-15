@@ -1,0 +1,17 @@
+// NFM THOR Integrated Carrier body armor (Black)
+// Converted from ARMOR_THORINT_BLACK.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "NFM THOR Integrated Carrier body armor (Black)",
+  "shortName": "THOR IC",
+  "description": "The THOR full protection assault body armor equipped with soft and hard armor elements to protect against shrapnel and bullets of pistol and rifle calibers. Manufactured by NFM. Black version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "60a283193cb70855c43a381d"
+}

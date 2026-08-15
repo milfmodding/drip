@@ -1,0 +1,33 @@
+// USEC base - CADPAT TW
+// Converted from FATIGUES_CADPAT_TOP.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "top",
+  "name": "USEC base - CADPAT TW",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+  "price": 60500,
+  "loyaltyLevel": 1,
+  "profileLevel": 6,
+  "standing": 0,
+  "questRequirements": ["669cdb5039f39e1bd6019b56"],
+  "vanillaOrigin": "assets/content/characters/character/prefabs/tshirt_usec_cryeac.bundle",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "TOP.bundle": ["assets/content/characters/character/skeleton.bundle"],
+    "HANDS.bundle": [
+      "assets/content/hands/bear/bear_hands_watch_texture.bundles",
+      "assets/content/hands/bear/bear_watch.bundle",
+      "assets/content/hands/usec/materials/watch_usec_textures"
+    ]
+  },
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "woodland": 1,
+    "cadpat": 1
+  }
+}

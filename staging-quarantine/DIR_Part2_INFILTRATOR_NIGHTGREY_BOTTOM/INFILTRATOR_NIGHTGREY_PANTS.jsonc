@@ -1,0 +1,33 @@
+// Infiltrator - Night Grey
+// Converted from INFILTRATOR_NIGHTGREY_PANTS.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "bottom",
+  "name": "Infiltrator - Night Grey",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+  "price": 77500,
+  "loyaltyLevel": 2,
+  "profileLevel": 20,
+  "standing": 0,
+  "vanillaOrigin": "assets/content/characters/character/prefabs/pants_usec_cryeprecision.bundle",
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "grey": 1,
+    "civilian": 1,
+    "operator": 1,
+    "drip": 1,
+    "urban": 1
+  },
+
+  // Geometry lives in the game's own bundle rather than being copied in
+  // here. The pointer is only half of that: without this the client never loads
+  // the file and the item renders invisible.
+  "bundles": {
+      "INFILTRATOR_NIGHTGREY_PANTS.bundle": [
+          "assets/content/characters/character/prefabs/pants_usec_cryeprecision.bundle"
+      ]
+  }
+}

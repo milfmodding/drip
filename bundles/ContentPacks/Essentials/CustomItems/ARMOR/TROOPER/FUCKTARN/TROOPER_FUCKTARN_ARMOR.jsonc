@@ -1,0 +1,26 @@
+// HighCom Trooper TFO body armor (Fucktarn)
+// Converted from TROOPER_FUCKTARN_ARMOR.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "HighCom Trooper TFO body armor (Fucktarn)",
+  "shortName": "Trooper",
+  "description": "A plate armor vest by HighCom, popular among USEC PMCs. The lightweight AR500 class 4 (Russian GOST) protection plates cover only the chest and back areas. Custom \"Fucktarn\" made by Moron.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": false,
+  "price": 1360,
+  "currency": "USD",
+  "loyaltyLevel": 3,
+  "basedOn": "5c0e655586f774045612eeb2",
+  "includedParts": {
+    "Soft_armor_front": "6570e025615f54368b04fcb0",
+    "Soft_armor_back": "6570e0610b57c03ec90b96ef",
+    "Front_plate": "656fad8c498d1b7e3e071da0",
+    "Back_plate": "656fad8c498d1b7e3e071da0"
+  }
+}

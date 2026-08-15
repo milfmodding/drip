@@ -1,0 +1,22 @@
+// Knight - M81 Woodland
+// Converted from KNIGHT_M81_BOTTOM.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "bottom",
+  "name": "Knight - M81 Woodland",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+  "price": 95000,
+  "loyaltyLevel": 2,
+  "profileLevel": 27,
+  "standing": 0,
+  "questRequirements": ["669f74d7e7211bf21d8af254"],
+  "vanillaOrigin": "assets/content/characters/character/prefabs/pants_boss_blackknight.bundle",
+
+  // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
+  "tags": {
+    "m81": 1,
+    "woodland": 1
+  }
+}

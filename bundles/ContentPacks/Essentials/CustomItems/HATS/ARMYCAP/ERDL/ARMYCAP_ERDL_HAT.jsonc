@@ -1,0 +1,20 @@
+// Army Cap (ERDL Model E)
+// Converted from ARMYCAP_ERDL_HAT.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Army Cap (ERDL Model E)",
+  "shortName": "Army Cap",
+  "description": "A regular army cap, in ERDL Model E camo.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": false,
+  "price": 100,
+  "currency": "EUR",
+  "loyaltyLevel": 1,
+  "basedOn": "603618feffd42c541047f771"
+}

@@ -1,0 +1,21 @@
+// Fake Mustache (Black)
+// Converted from MUSTACHE_DARKGREY_FACE.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Fake Mustache (Black)",
+  "shortName": "Mustache",
+  "description": "Quite a strange item for current events, but, nevertheless, will allow you to get a real tactical look of a 80-90s spec-ops operator. Black version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "moron",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": false,
+  "price": 100,
+  "currency": "USD",
+  "loyaltyLevel": 1,
+  "questRequirements": ["669f759a1c5ee26e33c5afb2"],
+  "basedOn": "5bd073a586f7747e6f135799"
+}

@@ -1,0 +1,2919 @@
+{
+  "669a1606666bd606fa3f897a": {
+    "QuestName": "A Wild Night",
+    "_id": "669a1606666bd606fa3f897a",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669a1606666bd606fa3f897a changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669a2d0bb5dd3cfc7a97282a",
+          "index": 0,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": true,
+          "parentId": "",
+          "target": [
+            "5d40407c86f774318526545a"
+          ],
+          "value": "2",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669a2d33a50189f1f0e0981d",
+          "index": 0,
+          "parentId": "",
+          "value": 2,
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669a1606666bd606fa3f897a declinePlayerMessage",
+    "description": "669a1606666bd606fa3f897a description",
+    "failMessageText": "669a1606666bd606fa3f897a failMessageText",
+    "image": "/files/quest/icon/Boozey.png",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "any",
+    "name": "669a1606666bd606fa3f897a name",
+    "note": "669a1606666bd606fa3f897a note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669a2d61d5ee3bc9fcfbf23e",
+          "index": 0,
+          "type": "Experience",
+          "value": "4000"
+        },
+        {
+          "id": "669a2d70ec58577f54fd633d",
+          "index": 1,
+          "target": "moron",
+          "type": "TraderStanding",
+          "value": "0.03"
+        },
+        {
+          "findInRaid": true,
+          "id": "669a2d75ce206b0f906bd0dd",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669a2d7cbb0a0d7117737311",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 55000
+              }
+            }
+          ],
+          "target": "669a2d7cbb0a0d7117737311",
+          "type": "Item",
+          "value": "30000"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669a1606666bd606fa3f897a description",
+    "successMessageText": "669a1606666bd606fa3f897a successMessageText",
+    "traderId": "moron",
+    "type": "PickUp"
+  },
+  "669cdb5039f39e1bd6019b56": {
+    "QuestName": "The Morning After",
+    "_id": "669cdb5039f39e1bd6019b56",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669cdb5039f39e1bd6019b56 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669cdb8449653d563539013c",
+          "index": 0,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "5bc9c29cd4351e003562b8a3"
+          ],
+          "value": "2",
+          "visibilityConditions": []
+        },
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669cdba179eb2c513c84c7a6",
+          "index": 1,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "5e2af4d286f7746d4159f07a"
+          ],
+          "value": "1",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669cdbadf0f7d05a7bd28828",
+          "index": 0,
+          "parentId": "",
+          "value": 3,
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669cdbb015ff2a544b6aef8e",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "669a1606666bd606fa3f897a",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669cdb5039f39e1bd6019b56 declinePlayerMessage",
+    "description": "669cdb5039f39e1bd6019b56 description",
+    "failMessageText": "669cdb5039f39e1bd6019b56 failMessageText",
+    "image": "/files/quest/icon/Drunkard.png",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "any",
+    "name": "669cdb5039f39e1bd6019b56 name",
+    "note": "669cdb5039f39e1bd6019b56 note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669cdbb8bc4665fbcc4ad81e",
+          "index": 0,
+          "type": "Experience",
+          "value": "3000"
+        },
+        {
+          "id": "669cdbbbeaf683a74109fa86",
+          "index": 1,
+          "target": "moron",
+          "type": "TraderStanding",
+          "value": "0.05"
+        },
+        {
+          "findInRaid": true,
+          "id": "669cdbbfd32a21956f397dd5",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669cdbc504449367ecbe87bb",
+              "_tpl": "5696686a4bdc2da3298b456a",
+              "upd": {
+                "StackObjectsCount": 350
+              }
+            }
+          ],
+          "target": "669cdbc504449367ecbe87bb",
+          "type": "Item",
+          "value": "350"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669cdb5039f39e1bd6019b56 description",
+    "successMessageText": "669cdb5039f39e1bd6019b56 successMessageText",
+    "traderId": "moron",
+    "type": "PickUp"
+  },
+  "669f74d7e7211bf21d8af254": {
+    "QuestName": "Material Handler",
+    "_id": "669f74d7e7211bf21d8af254",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f74d7e7211bf21d8af254 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f751867c43c9e41c3f445",
+          "index": 0,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": true,
+          "parentId": "",
+          "target": [
+            "59e3556c86f7741776641ac2"
+          ],
+          "value": "2",
+          "visibilityConditions": []
+        },
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7520b7487c74e000f2da",
+          "index": 1,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": true,
+          "parentId": "",
+          "target": [
+            "61bf83814088ec1a363d7097"
+          ],
+          "value": "1",
+          "visibilityConditions": []
+        },
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7528a1db1cddb011f884",
+          "index": 2,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": true,
+          "parentId": "",
+          "target": [
+            "5e2af47786f7746d404f3aaa"
+          ],
+          "value": "2",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7528a1db1cddb011f884",
+          "index": 0,
+          "parentId": "",
+          "value": 3,
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f74d7e7211bf21d8af254 declinePlayerMessage",
+    "description": "669f74d7e7211bf21d8af254 description",
+    "failMessageText": "669f74d7e7211bf21d8af254 failMessageText",
+    "image": "/files/quest/icon/MaterialHandler.png",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "any",
+    "name": "669f74d7e7211bf21d8af254 name",
+    "note": "669f74d7e7211bf21d8af254 note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f753b6a8f6aef62477207",
+          "index": 0,
+          "type": "Experience",
+          "value": "9000"
+        },
+        {
+          "id": "669f757d30784fdf6463f065",
+          "index": 1,
+          "target": "moron",
+          "type": "TraderStanding",
+          "value": "0.07"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f75809725a8fb50262b2f",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f7587f56296c57c68f1e2",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 100000
+              }
+            }
+          ],
+          "target": "669f7587f56296c57c68f1e2",
+          "type": "Item",
+          "value": "100000"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f758a2b0e576776937d1a",
+          "index": 3,
+          "items": [
+            {
+              "_id": "669f758f8fc13af784ba2792",
+              "_tpl": "COMTAC4_BLACK_HEADSET",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "669f758f8fc13af784ba2792",
+          "type": "Item",
+          "value": "1"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7592958dd00c956607c0",
+          "index": 4,
+          "items": [
+            {
+              "_id": "669f7595ff2dce3dcd7d99f3",
+              "_tpl": "RIG_ZHUK_SIXCOLOURURBAN",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "669f7595ff2dce3dcd7d99f3",
+          "type": "Item",
+          "value": "1"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f74d7e7211bf21d8af254 description",
+    "successMessageText": "669f74d7e7211bf21d8af254 successMessageText",
+    "traderId": "moron",
+    "type": "PickUp"
+  },
+  "669f759a1c5ee26e33c5afb2": {
+    "QuestName": "Glock Wick: Part 1",
+    "_id": "669f759a1c5ee26e33c5afb2",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f759a1c5ee26e33c5afb2 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "CounterCreator",
+          "counter": {
+            "conditions": [
+              {
+                "compareMethod": ">=",
+                "conditionType": "Kills",
+                "id": "669f76019fe3e296ed937901",
+                "target": "AnyPmc",
+                "value": "1",
+                "weapon": [
+                  "5a7ae0c351dfba0017554310",
+                  "5b1fa9b25acfc40018633c01",
+                  "63088377b5cd696784087147"
+                ]
+              },
+              {
+                "conditionType": "Location",
+                "id": "669f7605c83900de1a72a789",
+                "target": [
+                  "Interchange"
+                ]
+              }
+            ],
+            "id": "669f75fd7621bf24937e90c0"
+          },
+          "doNotResetIfCounterCompleted": false,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f75b8e334e37d5b5b3819",
+          "index": 0,
+          "oneSessionOnly": false,
+          "parentId": "",
+          "type": "Elimination",
+          "value": "5",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7609cf5fa08ad7929f48",
+          "index": 0,
+          "parentId": "",
+          "value": 5,
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f759a1c5ee26e33c5afb2 declinePlayerMessage",
+    "description": "669f759a1c5ee26e33c5afb2 description",
+    "failMessageText": "669f759a1c5ee26e33c5afb2 failMessageText",
+    "image": "/files/quest/icon/GlockWick.png",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "5714dbc024597771384a510d",
+    "name": "669f759a1c5ee26e33c5afb2 name",
+    "note": "669f759a1c5ee26e33c5afb2 note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [
+        {
+          "findInRaid": true,
+          "id": "669f760e3824d1f047131b27",
+          "index": 0,
+          "items": [
+            {
+              "_id": "669f761cc9ee2f40e0e412aa",
+              "_tpl": "5a7ae0c351dfba0017554310",
+              "upd": {
+                "FireMode": {
+                  "FireMode": "single"
+                },
+                "Repairable": {
+                  "Durability": 100,
+                  "MaxDurability": 100
+                }
+              }
+            },
+            {
+              "_id": "669f7634fe837ee24cd4e15a",
+              "_tpl": "5a6b5e468dc32e001207faf5",
+              "parentId": "669f761cc9ee2f40e0e412aa",
+              "slotId": "mod_barrel"
+            },
+            {
+              "_id": "669f763b30bd504ba21a050a",
+              "_tpl": "5a7b4960e899ef197b331a2d",
+              "parentId": "669f761cc9ee2f40e0e412aa",
+              "slotId": "mod_pistol_grip"
+            },
+            {
+              "_id": "669f76432dbf76cb0a8c1ad2",
+              "_tpl": "5a6f5e048dc32e00094b97da",
+              "parentId": "669f761cc9ee2f40e0e412aa",
+              "slotId": "mod_reciever"
+            },
+            {
+              "_id": "669f76576e77525c1f636ad0",
+              "_tpl": "5a718b548dc32e000d46d262",
+              "parentId": "669f761cc9ee2f40e0e412aa",
+              "slotId": "mod_magazine"
+            },
+            {
+              "_id": "669f765a001910ed37cbf8ca",
+              "_tpl": "5b07dd285acfc4001754240d",
+              "parentId": "669f761cc9ee2f40e0e412aa",
+              "slotId": "mod_tactical",
+              "upd": {
+                "Light": {
+                  "IsActive": true,
+                  "SelectedMode": 0
+                }
+              }
+            },
+            {
+              "_id": "669f76644ad891b164e5a453",
+              "_tpl": "5a6b585a8dc32e5a9c28b4f1",
+              "parentId": "669f7634fe837ee24cd4e15a",
+              "slotId": "mod_muzzle"
+            },
+            {
+              "_id": "669f7669fa8c5405b26683cb",
+              "_tpl": "630765cb962d0247b029dc45",
+              "parentId": "669f76432dbf76cb0a8c1ad2",
+              "slotId": "mod_sight_rear",
+              "upd": {
+                "Sight": {
+                  "ScopesCurrentCalibPointIndexes": [
+                    0
+                  ],
+                  "ScopesSelectedModes": [
+                    0
+                  ],
+                  "SelectedScope": 0
+                }
+              }
+            },
+            {
+              "_id": "669f7673f2eefb8f0a0536c8",
+              "_tpl": "630765777d50ff5e8a1ea718",
+              "parentId": "669f76432dbf76cb0a8c1ad2",
+              "slotId": "mod_sight_front",
+              "upd": {
+                "Sight": {
+                  "ScopesCurrentCalibPointIndexes": [
+                    0
+                  ],
+                  "ScopesSelectedModes": [
+                    0
+                  ],
+                  "SelectedScope": 0
+                }
+              }
+            }
+          ],
+          "target": "669f761cc9ee2f40e0e412aa",
+          "type": "Item",
+          "value": "1"
+        }
+      ],
+      "Success": [
+        {
+          "id": "669f7680504eadd32e397a30",
+          "index": 0,
+          "type": "Experience",
+          "value": "4500"
+        },
+        {
+          "id": "669f7682a342906ad90fcdd5",
+          "index": 1,
+          "target": "moron",
+          "type": "TraderStanding",
+          "value": "0.05"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7684d9814e16e5a6d1b7",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f7692cc56c39e2ffe7341",
+              "_tpl": "5696686a4bdc2da3298b456a",
+              "upd": {
+                "StackObjectsCount": 300
+              }
+            }
+          ],
+          "target": "669f7692cc56c39e2ffe7341",
+          "type": "Item",
+          "value": "300"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f76a238ba1889ab1ce820",
+          "index": 3,
+          "items": [
+            {
+              "_id": "669f76a756777e08f20f2ce1",
+              "_tpl": "MUSTACHE_DARKGREY_FACE",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "669f76a756777e08f20f2ce1",
+          "type": "Item",
+          "value": "1"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f76ac6b00266fce831849",
+          "index": 4,
+          "items": [
+            {
+              "_id": "669f76bcce353112e2c2e529",
+              "_tpl": "5d6d2ef3a4b93618084f58bd",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "669f76bcce353112e2c2e529",
+          "type": "Item",
+          "value": "1"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f76c316313b7f6011a2d0",
+          "index": 4,
+          "items": [
+            {
+              "_id": "669f76c58278ddd7726ea4a8",
+              "_tpl": "62a09f32621468534a797acb",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "669f76c58278ddd7726ea4a8",
+          "type": "Item",
+          "value": "1"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f759a1c5ee26e33c5afb2 description",
+    "successMessageText": "669f759a1c5ee26e33c5afb2 successMessageText",
+    "traderId": "moron",
+    "type": "Elimination"
+  },
+  "669f76cb1fec55b3413b554c": {
+    "QuestName": "Glock Wick: Part 2",
+    "_id": "669f76cb1fec55b3413b554c",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f76cb1fec55b3413b554c changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "CounterCreator",
+          "counter": {
+            "conditions": [
+              {
+                "compareMethod": ">=",
+                "conditionType": "Kills",
+                "id": "669f77092a79c1375f5858eb",
+                "target": "Savage",
+                "value": "1",
+                "weapon": [
+                  "5a7ae0c351dfba0017554310",
+                  "5b1fa9b25acfc40018633c01",
+                  "63088377b5cd696784087147"
+                ]
+              },
+              {
+                "conditionType": "Location",
+                "id": "669f770599595dab81441b23",
+                "target": [
+                  "bigmap"
+                ]
+              }
+            ],
+            "id": "669f77003af4c69297d22721"
+          },
+          "doNotResetIfCounterCompleted": false,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f76df9d894d13c9047bd8",
+          "index": 0,
+          "oneSessionOnly": false,
+          "parentId": "",
+          "type": "Elimination",
+          "value": "10",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f770e4d2cdd7d01874e55",
+          "index": 0,
+          "parentId": "",
+          "value": 5,
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f771033930e26ec1b4e69",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "669f759a1c5ee26e33c5afb2",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f76cb1fec55b3413b554c declinePlayerMessage",
+    "description": "669f76cb1fec55b3413b554c description",
+    "failMessageText": "669f76cb1fec55b3413b554c failMessageText",
+    "image": "/files/quest/icon/GlockWick.png",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "56f40101d2720b2a4d8b45d6",
+    "name": "669f76cb1fec55b3413b554c name",
+    "note": "669f76cb1fec55b3413b554c note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f77181a6994487da1e2eb",
+          "index": 0,
+          "type": "Experience",
+          "value": "6000"
+        },
+        {
+          "id": "669f771bb33b1d82c7dba60e",
+          "index": 1,
+          "target": "moron",
+          "type": "TraderStanding",
+          "value": "0.07"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f771ea4bacbd149b1e76b",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f7723bb8a20bcb4806aba",
+              "_tpl": "569668774bdc2da2298b4568",
+              "upd": {
+                "StackObjectsCount": 275
+              }
+            }
+          ],
+          "target": "669f7723bb8a20bcb4806aba",
+          "type": "Item",
+          "value": "275"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f77262b86002a6d869369",
+          "index": 3,
+          "items": [
+            {
+              "_id": "669f772a805e328c9d573db0",
+              "_tpl": "5c925fa22e221601da359b7b",
+              "upd": {
+                "StackObjectsCount": 60
+              }
+            }
+          ],
+          "target": "669f772a805e328c9d573db0",
+          "type": "Item",
+          "value": "60"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f772fe6e43c92be7f3868",
+          "index": 4,
+          "items": [
+            {
+              "_id": "669f7732047b1c8d0e51ac1b",
+              "_tpl": "5c0d56a986f774449d5de529",
+              "upd": {
+                "StackObjectsCount": 60
+              }
+            }
+          ],
+          "target": "669f7732047b1c8d0e51ac1b",
+          "type": "Item",
+          "value": "60"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f76cb1fec55b3413b554c description",
+    "successMessageText": "669f76cb1fec55b3413b554c successMessageText",
+    "traderId": "moron",
+    "type": "Elimination"
+  },
+  "669f775edfe50ca330aaa91d": {
+    "QuestName": "Glock Wick: Part 3",
+    "_id": "669f775edfe50ca330aaa91d",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f775edfe50ca330aaa91d changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "CounterCreator",
+          "counter": {
+            "conditions": [
+              {
+                "compareMethod": ">=",
+                "conditionType": "Kills",
+                "id": "669f778f0d2ba68fb1212585",
+                "target": "AnyPmc",
+                "value": "1",
+                "weapon": [
+                  "5a7ae0c351dfba0017554310",
+                  "63088377b5cd696784087147"
+                ],
+                "weaponModsInclusive": [
+                  [
+                    "5a32a064c4a28200741e22de"
+                  ],
+                  [
+                    "5c7e8fab2e22165df16b889b"
+                  ],
+                  [
+                    "5c6165902e22160010261b28"
+                  ],
+                  [
+                    "5a33a8ebc4a282000c5a950d"
+                  ],
+                  [
+                    "5a7ad74e51dfba0015068f45"
+                  ]
+                ]
+              },
+              {
+                "conditionType": "Location",
+                "id": "669f77895552c7066685ec82",
+                "target": [
+                  "TarkovStreets"
+                ]
+              }
+            ],
+            "id": "669f7786ebac69648f0b3f6a"
+          },
+          "doNotResetIfCounterCompleted": false,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f777b7362ea20b7b954b6",
+          "index": 0,
+          "oneSessionOnly": false,
+          "parentId": "",
+          "type": "Elimination",
+          "value": "7",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f77962c4e5e578f6a6082",
+          "index": 0,
+          "parentId": "",
+          "value": 5,
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7799611e90e79197f59d",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "669f76cb1fec55b3413b554c",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f775edfe50ca330aaa91d declinePlayerMessage",
+    "description": "669f775edfe50ca330aaa91d description",
+    "failMessageText": "669f775edfe50ca330aaa91d failMessageText",
+    "image": "/files/quest/icon/GlockWick3.png",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "5714dc692459777137212e12",
+    "name": "669f775edfe50ca330aaa91d name",
+    "note": "669f775edfe50ca330aaa91d note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f779d915a4148ebd06f2c",
+          "index": 0,
+          "type": "Experience",
+          "value": "8500"
+        },
+        {
+          "id": "669f77a1b271b8c8ca90a47c",
+          "index": 1,
+          "target": "moron",
+          "type": "TraderStanding",
+          "value": "0.07"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f77a4972505cd1f972374",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f77a96ab27331369a015d",
+              "_tpl": "569668774bdc2da2298b4568",
+              "upd": {
+                "StackObjectsCount": 275
+              }
+            }
+          ],
+          "target": "669f77a96ab27331369a015d",
+          "type": "Item",
+          "value": "275"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f77acb6a6f83771935fc7",
+          "index": 3,
+          "items": [
+            {
+              "_id": "669f77afda44dd3af3a3e95c",
+              "_tpl": "5c925fa22e221601da359b7b",
+              "upd": {
+                "StackObjectsCount": 60
+              }
+            }
+          ],
+          "target": "669f77afda44dd3af3a3e95c",
+          "type": "Item",
+          "value": "60"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f77b394f8efa45f5cdd97",
+          "index": 4,
+          "items": [
+            {
+              "_id": "669f77b70475a18fd96e5c02",
+              "_tpl": "5c0d56a986f774449d5de529",
+              "upd": {
+                "StackObjectsCount": 60
+              }
+            }
+          ],
+          "target": "669f77b70475a18fd96e5c02",
+          "type": "Item",
+          "value": "60"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f775edfe50ca330aaa91d description",
+    "successMessageText": "669f775edfe50ca330aaa91d successMessageText",
+    "traderId": "moron",
+    "type": "Elimination"
+  },
+  "669f77bd952e94e100e88847": {
+    "QuestName": "Full Life Consequences",
+    "_id": "669f77bd952e94e100e88847",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f77bd952e94e100e88847 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "CounterCreator",
+          "counter": {
+            "conditions": [
+              {
+                "compareMethod": ">=",
+                "conditionType": "Kills",
+                "id": "669f77e2ea1203e7df9e9fba",
+                "target": "Usec",
+                "value": "1",
+                "weapon": [
+                  "5c07df7f0db834001b73588a"
+                ]
+              }
+            ],
+            "id": "669f77d8885d7aa26ac5333f"
+          },
+          "doNotResetIfCounterCompleted": false,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f77c8dadbd375e240a057",
+          "index": 0,
+          "oneSessionOnly": false,
+          "parentId": "",
+          "type": "Elimination",
+          "value": "3",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f77e5d20c50e3a8f1a1e0",
+          "index": 0,
+          "parentId": "",
+          "value": 6,
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f77bd952e94e100e88847 declinePlayerMessage",
+    "description": "669f77bd952e94e100e88847 description",
+    "failMessageText": "669f77bd952e94e100e88847 failMessageText",
+    "image": "/files/quest/icon/5ae325c586f77444fa45d0de.jpg",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "any",
+    "name": "669f77bd952e94e100e88847 name",
+    "note": "669f77bd952e94e100e88847 note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f77e9853511207083642d",
+          "index": 0,
+          "type": "Experience",
+          "value": "3000"
+        },
+        {
+          "id": "669f77ee838b04cb28996c2d",
+          "index": 1,
+          "target": "moron",
+          "type": "TraderStanding",
+          "value": "0.03"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f77f1a309b7def94b9498",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f77f31613e2a863bfa900",
+              "_tpl": "569668774bdc2da2298b4568",
+              "upd": {
+                "StackObjectsCount": 100
+              }
+            }
+          ],
+          "target": "669f77f31613e2a863bfa900",
+          "type": "Item",
+          "value": "100"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f77f6fd7b233b29d7db47",
+          "index": 3,
+          "items": [
+            {
+              "_id": "669f77fab5b87c91fa776b6a",
+              "_tpl": "5e2af4a786f7746d3f3c3400",
+              "upd": {
+                "StackObjectsCount": 2
+              }
+            }
+          ],
+          "target": "669f77fab5b87c91fa776b6a",
+          "type": "Item",
+          "value": "2"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f77bd952e94e100e88847 description",
+    "successMessageText": "669f77bd952e94e100e88847 successMessageText",
+    "traderId": "moron",
+    "type": "Elimination"
+  },
+  "669f78036d104f2127da9a3b": {
+    "QuestName": "Shock and Awe",
+    "_id": "669f78036d104f2127da9a3b",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f78036d104f2127da9a3b changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "CounterCreator",
+          "counter": {
+            "conditions": [
+              {
+                "compareMethod": ">=",
+                "conditionType": "Kills",
+                "id": "669f78229bfd56e750207353",
+                "target": "AnyPmc",
+                "value": "1",
+                "weapon": [
+                  "5a7828548dc32e5a9c28b516"
+                ]
+              },
+              {
+                "conditionType": "Location",
+                "id": "669f78206e311c2f1d00b2a1",
+                "target": [
+                  "factory4_day",
+                  "factory4_night"
+                ]
+              }
+            ],
+            "id": "669f781c3e0b7986e3fd41f2"
+          },
+          "doNotResetIfCounterCompleted": false,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f781236b19ae3f62b0571",
+          "index": 0,
+          "oneSessionOnly": false,
+          "parentId": "",
+          "type": "Elimination",
+          "value": "8",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f78261f2d847ac20f7beb",
+          "index": 0,
+          "parentId": "",
+          "value": 6,
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f782a72b77535d7dbdab6",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "669f775edfe50ca330aaa91d",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f78036d104f2127da9a3b declinePlayerMessage",
+    "description": "669f78036d104f2127da9a3b description",
+    "failMessageText": "669f78036d104f2127da9a3b failMessageText",
+    "image": "/files/quest/icon/5ae325c586f77444fa45d0de.jpg",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "any",
+    "name": "669f78036d104f2127da9a3b name",
+    "note": "669f78036d104f2127da9a3b note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f782e1e317379cbdb6690",
+          "index": 0,
+          "type": "Experience",
+          "value": "4500"
+        },
+        {
+          "id": "669f7831f32f29ac3f1cc13f",
+          "index": 1,
+          "target": "moron",
+          "type": "TraderStanding",
+          "value": "0.06"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7833d766f04be149b886",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f78365e7e702121e38b9e",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 42500
+              }
+            }
+          ],
+          "target": "669f78365e7e702121e38b9e",
+          "type": "Item",
+          "value": "42500"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f783960c55b6950e2dc03",
+          "index": 3,
+          "items": [
+            {
+              "_id": "669f783c318b883f7a61ac0a",
+              "_tpl": "FLAKJACKET_3COLOURDESERT_VEST",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "669f783c318b883f7a61ac0a",
+          "type": "Item",
+          "value": "1"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7840817994236e2e9b70",
+          "index": 4,
+          "items": [
+            {
+              "_id": "669f78427d162eaa25aadee9",
+              "_tpl": "5d96141523f0ea1b7f2aacab",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "669f78427d162eaa25aadee9",
+          "type": "Item",
+          "value": "1"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f78036d104f2127da9a3b description",
+    "successMessageText": "669f78036d104f2127da9a3b successMessageText",
+    "traderId": "moron",
+    "type": "Elimination"
+  },
+  "669f78477ebc9a09e44cbd6d": {
+    "QuestName": "Lack of Lubrication",
+    "_id": "669f78477ebc9a09e44cbd6d",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f78477ebc9a09e44cbd6d changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7859c66a2708426ac3d5",
+          "index": 0,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": true,
+          "parentId": "",
+          "target": [
+            "5755383e24597772cb798966"
+          ],
+          "value": "4",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f785c23a20f0e7910d03c",
+          "index": 0,
+          "parentId": "",
+          "value": 10,
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f786728b8da95cba5f4f8",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "669cdb5039f39e1bd6019b56",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f78477ebc9a09e44cbd6d declinePlayerMessage",
+    "description": "669f78477ebc9a09e44cbd6d description",
+    "failMessageText": "669f78477ebc9a09e44cbd6d failMessageText",
+    "image": "/files/quest/icon/5ae4a74386f7744748710d72.jpg",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "any",
+    "name": "669f78477ebc9a09e44cbd6d name",
+    "note": "669f78477ebc9a09e44cbd6d note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f786d7dc2ce9b0b18496e",
+          "index": 0,
+          "type": "Experience",
+          "value": "3000"
+        },
+        {
+          "id": "669f7870894f25f72999d07b",
+          "index": 1,
+          "target": "moron",
+          "type": "TraderStanding",
+          "value": "0.03"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7871e4e356e5c6cd6000",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f787354c815179ce57056",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 55000
+              }
+            }
+          ],
+          "target": "669f787354c815179ce57056",
+          "type": "Item",
+          "value": "55000"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f787785164d6aaba1e41b",
+          "index": 3,
+          "items": [
+            {
+              "_id": "669f7879c402d0213091cdf7",
+              "_tpl": "FLAKJACKET_OLIVEDRAB_ARMOR",
+              "upd": {
+                "StackObjectsCount": 2
+              }
+            }
+          ],
+          "target": "669f7879c402d0213091cdf7",
+          "type": "Item",
+          "value": "2"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f787d871f696b5940fc2a",
+          "index": 4,
+          "items": [
+            {
+              "_id": "669f7882ce4ac61061c3b68c",
+              "_tpl": "SLING_OLIVEDRAB_BAG",
+              "upd": {
+                "StackObjectsCount": 4
+              }
+            }
+          ],
+          "target": "669f7882ce4ac61061c3b68c",
+          "type": "Item",
+          "value": "4"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f78477ebc9a09e44cbd6d description",
+    "successMessageText": "669f78477ebc9a09e44cbd6d successMessageText",
+    "traderId": "moron",
+    "type": "PickUp"
+  },
+  "669f78890cf4da93267775f6": {
+    "QuestName": "Junker",
+    "_id": "669f78890cf4da93267775f6",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f78890cf4da93267775f6 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "CounterCreator",
+          "counter": {
+            "conditions": [
+              {
+                "compareMethod": ">=",
+                "conditionType": "Kills",
+                "id": "669f78abda416fe74e394541",
+                "target": "AnyPmc",
+                "value": "1",
+                "weapon": [
+                  "61f7c9e189e6fb1a5e3ea78d"
+                ]
+              }
+            ],
+            "id": "669f78a8487a96c39b351ec9"
+          },
+          "doNotResetIfCounterCompleted": false,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f789d3f53acf1e58762ab",
+          "index": 0,
+          "oneSessionOnly": false,
+          "parentId": "",
+          "type": "Elimination",
+          "value": "10",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f78ae42bcc1eb6a054d12",
+          "index": 0,
+          "parentId": "",
+          "value": 8,
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f78b1afbe8616721eabb1",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "669cdb5039f39e1bd6019b56",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f78890cf4da93267775f6 declinePlayerMessage",
+    "description": "669f78890cf4da93267775f6 description",
+    "failMessageText": "669f78890cf4da93267775f6 failMessageText",
+    "image": "/files/quest/icon/5ae325c586f77444fa45d0de.jpg",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "any",
+    "name": "669f78890cf4da93267775f6 name",
+    "note": "669f78890cf4da93267775f6 note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f78b3ab2ce345f6d5321f",
+          "index": 0,
+          "type": "Experience",
+          "value": "5000"
+        },
+        {
+          "id": "669f78b72c69a468293500ce",
+          "index": 1,
+          "target": "moron",
+          "type": "TraderStanding",
+          "value": "0.06"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f78b9188ab40baad9bc0e",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f78bc713b8b61103f96f6",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 35000
+              }
+            }
+          ],
+          "target": "669f78bc713b8b61103f96f6",
+          "type": "Item",
+          "value": "35000"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f78c0e72c486d6b23b972",
+          "index": 3,
+          "items": [
+            {
+              "_id": "669f78c231e79943ebb8f97d",
+              "_tpl": "560d61e84bdc2da74d8b4571",
+              "upd": {
+                "StackObjectsCount": 40
+              }
+            }
+          ],
+          "target": "669f78c231e79943ebb8f97d",
+          "type": "Item",
+          "value": "40"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f78890cf4da93267775f6 description",
+    "successMessageText": "669f78890cf4da93267775f6 successMessageText",
+    "traderId": "moron",
+    "type": "Elimination"
+  },
+  "669f78e3ea69f9bde9904a1b": {
+    "QuestName": "Party City",
+    "_id": "669f78e3ea69f9bde9904a1b",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f78e3ea69f9bde9904a1b changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f78f21d8a6d150e205ec3",
+          "index": 0,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "5d40407c86f774318526545a"
+          ],
+          "value": "1",
+          "visibilityConditions": []
+        },
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7914f70ab58329f57927",
+          "index": 1,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "5734781f24597737e04bf32a"
+          ],
+          "value": "1",
+          "visibilityConditions": []
+        },
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f791853f2f457ba2df0c2",
+          "index": 2,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "57347da92459774491567cf5"
+          ],
+          "value": "2",
+          "visibilityConditions": []
+        },
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f791dcb12b641a04887d6",
+          "index": 3,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "62a09f32621468534a797acb"
+          ],
+          "value": "3",
+          "visibilityConditions": []
+        },
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f79241b5701a125a8c44e",
+          "index": 4,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "5448ff904bdc2d6f028b456e"
+          ],
+          "value": "4",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f79386a6ce0b565091d00",
+          "index": 0,
+          "parentId": "",
+          "value": 8,
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f793d758ac00dbe00abc9",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "669f775edfe50ca330aaa91d",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f78e3ea69f9bde9904a1b declinePlayerMessage",
+    "description": "669f78e3ea69f9bde9904a1b description",
+    "failMessageText": "669f78e3ea69f9bde9904a1b failMessageText",
+    "image": "/files/quest/icon/Drunkard.png",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "any",
+    "name": "669f78e3ea69f9bde9904a1b name",
+    "note": "669f78e3ea69f9bde9904a1b note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f7941891e86a9c85001df",
+          "index": 0,
+          "type": "Experience",
+          "value": "4500"
+        },
+        {
+          "id": "669f79433b20683dabd4713d",
+          "index": 1,
+          "target": "moron",
+          "type": "TraderStanding",
+          "value": "0.06"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7945111ba721497504cf",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f794983ab7eac8d5116dc",
+              "_tpl": "GEN4_FULL_DIGITALTIGERSTRIPE",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "669f794983ab7eac8d5116dc",
+          "type": "Item",
+          "value": "1"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f794edc9736a508026168",
+          "index": 3,
+          "items": [
+            {
+              "_id": "669f7951e4500408f87c38a4",
+              "_tpl": "RAID_BLACK_BAG",
+              "upd": {
+                "StackObjectsCount": 2
+              }
+            }
+          ],
+          "target": "669f7951e4500408f87c38a4",
+          "type": "Item",
+          "value": "2"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f78e3ea69f9bde9904a1b description",
+    "successMessageText": "669f78e3ea69f9bde9904a1b successMessageText",
+    "traderId": "moron",
+    "type": "PickUp"
+  },
+  "669f795b4657ccef2265f1be": {
+    "QuestName": "System Destroyer: Part 1",
+    "_id": "669f795b4657ccef2265f1be",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f795b4657ccef2265f1be changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "CounterCreator",
+          "counter": {
+            "conditions": [
+              {
+                "compareMethod": ">=",
+                "conditionType": "Kills",
+                "id": "669f7983c3a2391b3a7559d0",
+                "savageRole": [
+                  "bossBully"
+                ],
+                "target": "Savage",
+                "value": "1",
+                "weapon": []
+              }
+            ],
+            "id": "669f797f50a4a5ef20261108"
+          },
+          "doNotResetIfCounterCompleted": false,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7977fbba90981196120c",
+          "index": 0,
+          "oneSessionOnly": false,
+          "parentId": "",
+          "type": "Elimination",
+          "value": "1",
+          "visibilityConditions": []
+        },
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7989ad69ea82187a589b",
+          "index": 1,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "5b3b713c5acfc4330140bd8d"
+          ],
+          "value": "1",
+          "visibilityConditions": []
+        },
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f798d62838b41b4323d87",
+          "index": 1,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "59faf7ca86f7740dbe19f6c2"
+          ],
+          "value": "1",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7992d3ee781b7a5b6cc0",
+          "index": 0,
+          "parentId": "",
+          "value": 10,
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f79a2880a8ddd824e57fc",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "669f78e3ea69f9bde9904a1b",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f795b4657ccef2265f1be declinePlayerMessage",
+    "description": "669f795b4657ccef2265f1be description",
+    "failMessageText": "669f795b4657ccef2265f1be failMessageText",
+    "image": "/files/quest/icon/5ae325c586f77444fa45d0de.jpg",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "any",
+    "name": "669f795b4657ccef2265f1be name",
+    "note": "669f795b4657ccef2265f1be note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f79b416d25af4699e469c",
+          "index": 0,
+          "type": "Experience",
+          "value": "8000"
+        },
+        {
+          "id": "669f79b8bf68a15a13ffc193",
+          "index": 1,
+          "target": "moron",
+          "type": "TraderStanding",
+          "value": "0.1"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f79bb62e4f0f60f3cbd93",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f79bd41635915712fdc78",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 65000
+              }
+            }
+          ],
+          "target": "669f79bd41635915712fdc78",
+          "type": "Item",
+          "value": "65000"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f79c13d3febc03f6f8718",
+          "index": 3,
+          "items": [
+            {
+              "_id": "669f79c3ed83b176c3a75f81",
+              "_tpl": "NICECOMM_3COLOURDESERT_BAG",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "669f79c3ed83b176c3a75f81",
+          "type": "Item",
+          "value": "1"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f795b4657ccef2265f1be description",
+    "successMessageText": "669f795b4657ccef2265f1be successMessageText",
+    "traderId": "moron",
+    "type": "Elimination"
+  },
+  "669f79c7f8b1f185365997e3": {
+    "QuestName": "System Destroyer: Part 2",
+    "_id": "669f79c7f8b1f185365997e3",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f79c7f8b1f185365997e3 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f79d969838fdca0642f38",
+          "index": 0,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "5c06779c86f77426e00dd782"
+          ],
+          "value": "4",
+          "visibilityConditions": []
+        },
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f79dedb181199f084fed9",
+          "index": 1,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "5d4042a986f7743185265463"
+          ],
+          "value": "1",
+          "visibilityConditions": []
+        },
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f79e2fb96a7e887d37a4c",
+          "index": 2,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "5c06782b86f77426df5407d2"
+          ],
+          "value": "2",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f79e9a371a3b07ac5d6fb",
+          "index": 0,
+          "parentId": "",
+          "value": 10,
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f79ed615e6a856dd4fa8c",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "669f795b4657ccef2265f1be",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f79c7f8b1f185365997e3 declinePlayerMessage",
+    "description": "669f79c7f8b1f185365997e3 description",
+    "failMessageText": "669f79c7f8b1f185365997e3 failMessageText",
+    "image": "/files/quest/icon/Drunkard.png",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "any",
+    "name": "669f79c7f8b1f185365997e3 name",
+    "note": "669f79c7f8b1f185365997e3 note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f79f0ae900ac288b04c26",
+          "index": 0,
+          "type": "Experience",
+          "value": "5000"
+        },
+        {
+          "id": "669f79f3df38fa259c3fffd1",
+          "index": 1,
+          "target": "moron",
+          "type": "TraderStanding",
+          "value": "0.08"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f79f5767680be9bb8db46",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f79f833336f0659a43dac",
+              "_tpl": "TROOPER35_BLACK_BAG",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "669f79f833336f0659a43dac",
+          "type": "Item",
+          "value": "1"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f79fcdba8f3f57be3934b",
+          "index": 3,
+          "items": [
+            {
+              "_id": "669f79ffb1e865348b88b991",
+              "_tpl": "59faff1d86f7746c51718c9c",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "669f79ffb1e865348b88b991",
+          "type": "Item",
+          "value": "1"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f79c7f8b1f185365997e3 description",
+    "successMessageText": "669f79c7f8b1f185365997e3 successMessageText",
+    "traderId": "moron",
+    "type": "PickUp"
+  },
+  "669f7a04a6bd56d17bae1089": {
+    "QuestName": "Head, eyes",
+    "_id": "669f7a04a6bd56d17bae1089",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f7a04a6bd56d17bae1089 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "CounterCreator",
+          "counter": {
+            "conditions": [
+              {
+                "bodyPart": [
+                  "Head"
+                ],
+                "compareMethod": ">=",
+                "conditionType": "Kills",
+                "id": "669f7a1d143683cf9b77b41b",
+                "target": "AnyPmc",
+                "value": "1",
+                "weapon": [
+                  "55801eed4bdc2d89578b4588",
+                  "5de652c31b7e3716273428be",
+                  "588892092459774ac91d4b11",
+                  "5ae08f0a5acfc408fb1398a1",
+                  "5df24cf80dee1b22f862e9bc",
+                  "5bfea6e90db834001b7347f3",
+                  "5bfd297f0db834001a669119",
+                  "61f7c9e189e6fb1a5e3ea78d",
+                  "627e14b21713922ded6f2c15",
+                  "5a38e6bac4a2826c6e06d79b"
+                ]
+              }
+            ],
+            "id": "669f7a19c51fc8141b1bb46e"
+          },
+          "doNotResetIfCounterCompleted": false,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7a12bfcf92eef5f69550",
+          "index": 0,
+          "oneSessionOnly": false,
+          "parentId": "",
+          "type": "Elimination",
+          "value": "30",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7a212c0defa449436f5b",
+          "index": 0,
+          "parentId": "",
+          "value": 11,
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7a23279749a58f3a77ed",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "669f78890cf4da93267775f6",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f7a04a6bd56d17bae1089 declinePlayerMessage",
+    "description": "669f7a04a6bd56d17bae1089 description",
+    "failMessageText": "669f7a04a6bd56d17bae1089 failMessageText",
+    "image": "/files/quest/icon/Drunkard.png",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "any",
+    "name": "669f7a04a6bd56d17bae1089 name",
+    "note": "669f7a04a6bd56d17bae1089 note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f7a27c3fc71d3311ce968",
+          "index": 0,
+          "type": "Experience",
+          "value": "10000"
+        },
+        {
+          "id": "669f7a2a3c066e2d94be6271",
+          "index": 1,
+          "target": "moron",
+          "type": "TraderStanding",
+          "value": "0.07"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7a2c46e5f27d3c65a105",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f7a311aeb761a93fde77e",
+              "_tpl": "5d403f9186f7743cac3f229b",
+              "upd": {
+                "StackObjectsCount": 2
+              }
+            }
+          ],
+          "target": "669f7a311aeb761a93fde77e",
+          "type": "Item",
+          "value": "2"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7a35ce56806b2786d7e6",
+          "index": 3,
+          "items": [
+            {
+              "_id": "669f7a387d7691974ae1890d",
+              "_tpl": "5d1b5e94d7ad1a2b865a96b0",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "669f7a387d7691974ae1890d",
+          "type": "Item",
+          "value": "1"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7a3bf5b0f82ebfbe69d3",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f7a3e92fa48f55a24a580",
+              "_tpl": "5696686a4bdc2da3298b456a",
+              "upd": {
+                "StackObjectsCount": 2500
+              }
+            }
+          ],
+          "target": "669f7a3e92fa48f55a24a580",
+          "type": "Item",
+          "value": "2500"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f7a04a6bd56d17bae1089 description",
+    "successMessageText": "669f7a04a6bd56d17bae1089 successMessageText",
+    "traderId": "moron",
+    "type": "PickUp"
+  },
+  "669f7a46a33b9e7cbda18b33": {
+    "QuestName": "Mosin Man",
+    "_id": "669f7a46a33b9e7cbda18b33",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f7a46a33b9e7cbda18b33 changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "CounterCreator",
+          "counter": {
+            "conditions": [
+              {
+                "bodyPart": [
+                  "Chest",
+                  "Stomach"
+                ],
+                "compareMethod": ">=",
+                "conditionType": "Kills",
+                "id": "669f7a64540d880738fb024f",
+                "savageRole": [
+                  "pmcBot"
+                ],
+                "target": "Savage",
+                "value": "1",
+                "weapon": [
+                  "5bfd297f0db834001a669119",
+                  "5ae08f0a5acfc408fb1398a1"
+                ]
+              },
+              {
+                "conditionType": "Location",
+                "id": "669f7a6062430f520dca024f",
+                "target": [
+                  "RezervBase"
+                ]
+              }
+            ],
+            "id": "669f7a5b023eb31b6dfb09de"
+          },
+          "doNotResetIfCounterCompleted": false,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7a5087fac0191beb5056",
+          "index": 0,
+          "oneSessionOnly": false,
+          "parentId": "",
+          "type": "Elimination",
+          "value": "10",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7a686ce4cb9fef395d64",
+          "index": 0,
+          "parentId": "",
+          "value": 12,
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7a6bc2f35d40faf2b98f",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "669f7a04a6bd56d17bae1089",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f7a46a33b9e7cbda18b33 declinePlayerMessage",
+    "description": "669f7a46a33b9e7cbda18b33 description",
+    "failMessageText": "669f7a46a33b9e7cbda18b33 failMessageText",
+    "image": "/files/quest/icon/5ae325c586f77444fa45d0de.jpg",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "5704e5fad2720bc05b8b4567",
+    "name": "669f7a46a33b9e7cbda18b33 name",
+    "note": "669f7a46a33b9e7cbda18b33 note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f7a71c70f8b09ea3d9bc6",
+          "index": 0,
+          "type": "Experience",
+          "value": "7500"
+        },
+        {
+          "id": "669f7a738c8edcccf2fd5db3",
+          "index": 1,
+          "target": "moron",
+          "type": "TraderStanding",
+          "value": "0.05"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7a76e176102657f2aa51",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f7a7ab302d06548279a63",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 50000
+              }
+            }
+          ],
+          "target": "669f7a7ab302d06548279a63",
+          "type": "Item",
+          "value": "50000"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7a7e2e99f5a3b0ed39d8",
+          "index": 3,
+          "items": [
+            {
+              "_id": "669f7a81bb28da2dc3c95b0b",
+              "_tpl": "MUSTACHE_GINGER_FACE",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "669f7a81bb28da2dc3c95b0b",
+          "type": "Item",
+          "value": "1"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f7a46a33b9e7cbda18b33 description",
+    "successMessageText": "669f7a46a33b9e7cbda18b33 successMessageText",
+    "traderId": "moron",
+    "type": "Elimination"
+  },
+  "669f7a86fd2585b9526ea0ed": {
+    "QuestName": "Power Supply and Demand",
+    "_id": "669f7a86fd2585b9526ea0ed",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f7a86fd2585b9526ea0ed changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7a954b2482a0987e353a",
+          "index": 0,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": true,
+          "parentId": "",
+          "target": [
+            "57347c2e24597744902c94a1"
+          ],
+          "value": "1",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7a9b7c492842435c12b4",
+          "index": 0,
+          "parentId": "",
+          "value": 5,
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7a9f68e8f3f5e19e86be",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "669f78477ebc9a09e44cbd6d",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f7a86fd2585b9526ea0ed declinePlayerMessage",
+    "description": "669f7a86fd2585b9526ea0ed description",
+    "failMessageText": "669f7a86fd2585b9526ea0ed failMessageText",
+    "image": "/files/quest/icon/Boozey.png",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "any",
+    "name": "669f7a86fd2585b9526ea0ed name",
+    "note": "669f7a86fd2585b9526ea0ed note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f7aa25657dae5b1ed2719",
+          "index": 0,
+          "type": "Experience",
+          "value": "3621"
+        },
+        {
+          "id": "669f7aa6b12aa3c43c1ba236",
+          "index": 1,
+          "target": "georgia",
+          "type": "TraderUnlock"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7aa90d0a9ae3752d9271",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f7aac603cd5178b066484",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 40000
+              }
+            }
+          ],
+          "target": "669f7aac603cd5178b066484",
+          "type": "Item",
+          "value": "40000"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7ab0fca15e5400cfd9bf",
+          "index": 3,
+          "items": [
+            {
+              "_id": "669f7ab375f4c379e7b1387a",
+              "_tpl": "TRITON_LES_RIG",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "669f7ab375f4c379e7b1387a",
+          "type": "Item",
+          "value": "1"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f7a86fd2585b9526ea0ed description",
+    "successMessageText": "669f7a86fd2585b9526ea0ed successMessageText",
+    "traderId": "moron",
+    "type": "PickUp"
+  },
+  "669f7ab67cf81b4cfa87028f": {
+    "QuestName": "First Impressions",
+    "_id": "669f7ab67cf81b4cfa87028f",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f7ab67cf81b4cfa87028f changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7ac51ff9eee0f5b4a1be",
+          "index": 0,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "5751a25924597722c463c472"
+          ],
+          "value": "10",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7accaa73e99ac9982c41",
+          "index": 0,
+          "parentId": "",
+          "value": 11,
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7acf361b51f78c7d151c",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "669f7a86fd2585b9526ea0ed",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f7ab67cf81b4cfa87028f declinePlayerMessage",
+    "description": "669f7ab67cf81b4cfa87028f description",
+    "failMessageText": "669f7ab67cf81b4cfa87028f failMessageText",
+    "image": "/files/quest/icon/Boozey.png",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "any",
+    "name": "669f7ab67cf81b4cfa87028f name",
+    "note": "669f7ab67cf81b4cfa87028f note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f7ad3e066895e5674c43b",
+          "index": 0,
+          "type": "Experience",
+          "value": "4200"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7ad976af014ffc2c2ecb",
+          "index": 1,
+          "items": [
+            {
+              "_id": "669f7adcfd301895646235dd",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 20000
+              }
+            }
+          ],
+          "target": "669f7adcfd301895646235dd",
+          "type": "Item",
+          "value": "20000"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7adfdc37c135c7cbec99",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f7ae105c5846487b5e2a4",
+              "_tpl": "COMTAC4_BLACK_HEADSET",
+              "upd": {
+                "StackObjectsCount": 3
+              }
+            }
+          ],
+          "target": "669f7ae105c5846487b5e2a4",
+          "type": "Item",
+          "value": "3"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7ae69c3eda414d59b617",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f7ae9104d195bc458c5f8",
+              "_tpl": "5d40407c86f774318526545a",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "669f7ae9104d195bc458c5f8",
+          "type": "Item",
+          "value": "1"
+        },
+        {
+          "id": "669f7aec77c05afbee2ab818",
+          "index": 3,
+          "target": "georgia",
+          "type": "TraderStanding",
+          "value": "0.1"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f7ab67cf81b4cfa87028f description",
+    "successMessageText": "669f7ab67cf81b4cfa87028f successMessageText",
+    "traderId": "georgia",
+    "type": "PickUp"
+  },
+  "669f7af0dec2d6cd48b2bf1d": {
+    "QuestName": "The Best Defense",
+    "_id": "669f7af0dec2d6cd48b2bf1d",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f7af0dec2d6cd48b2bf1d changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7afdb59ff40e1cb446c2",
+          "index": 0,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "5a7828548dc32e5a9c28b516"
+          ],
+          "value": "1",
+          "visibilityConditions": []
+        },
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7b04b44212163dd1c203",
+          "index": 1,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "5d6e6806a4b936088465b17e"
+          ],
+          "value": "20",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7b09df53b6f96f358b2f",
+          "index": 0,
+          "parentId": "",
+          "value": 12,
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7b0e2b13b6b4db0f7556",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "669f7ab67cf81b4cfa87028f",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f7af0dec2d6cd48b2bf1d declinePlayerMessage",
+    "description": "669f7af0dec2d6cd48b2bf1d description",
+    "failMessageText": "669f7af0dec2d6cd48b2bf1d failMessageText",
+    "image": "/files/quest/icon/Boozey.png",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "any",
+    "name": "669f7af0dec2d6cd48b2bf1d name",
+    "note": "669f7af0dec2d6cd48b2bf1d note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f7b111d38faf889476174",
+          "index": 0,
+          "type": "Experience",
+          "value": "4550"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7b19c60bef4922729d78",
+          "index": 1,
+          "items": [
+            {
+              "_id": "669f7b1b463c574799fe1f19",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 45000
+              }
+            }
+          ],
+          "target": "669f7b1b463c574799fe1f19",
+          "type": "Item",
+          "value": "45000"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7b1e94b21b2d772beb4b",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f7b2260e6cc14ca56a922",
+              "_tpl": "HALFMASK_SMILE1",
+              "upd": {
+                "StackObjectsCount": 4
+              }
+            }
+          ],
+          "target": "669f7b2260e6cc14ca56a922",
+          "type": "Item",
+          "value": "4"
+        },
+        {
+          "id": "669f7b256a963472bcc4ff6b",
+          "index": 3,
+          "target": "georgia",
+          "type": "TraderStanding",
+          "value": "0.1"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f7af0dec2d6cd48b2bf1d description",
+    "successMessageText": "669f7af0dec2d6cd48b2bf1d successMessageText",
+    "traderId": "georgia",
+    "type": "PickUp"
+  },
+  "669f7b28d1dbbbdb0475e7be": {
+    "QuestName": "Friendly Feud",
+    "_id": "669f7b28d1dbbbdb0475e7be",
+    "canShowNotificationsInGame": true,
+    "changeQuestMessageText": "669f7b28d1dbbbdb0475e7be changeQuestMessageText",
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7b300ee938e8df7f4d29",
+          "index": 0,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "5c05308086f7746b2101e90b"
+          ],
+          "value": "2",
+          "visibilityConditions": []
+        },
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7b36e534ecb80aa528e1",
+          "index": 1,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "590c37d286f77443be3d7827"
+          ],
+          "value": "2",
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7b3d70dffaa59ebcb23b",
+          "index": 0,
+          "parentId": "",
+          "value": 12,
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "669f7b40616479f223380195",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "669f7af0dec2d6cd48b2bf1d",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "declinePlayerMessage": "669f7b28d1dbbbdb0475e7be declinePlayerMessage",
+    "description": "669f7b28d1dbbbdb0475e7be description",
+    "failMessageText": "669f7b28d1dbbbdb0475e7be failMessageText",
+    "image": "/files/quest/icon/Boozey.png",
+    "instantComplete": false,
+    "isKey": false,
+    "location": "any",
+    "name": "669f7b28d1dbbbdb0475e7be name",
+    "note": "669f7b28d1dbbbdb0475e7be note",
+    "restartable": false,
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "id": "669f7b4467b55f2382a2795b",
+          "index": 0,
+          "type": "Experience",
+          "value": "4550"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7b4796562216bdf37088",
+          "index": 1,
+          "items": [
+            {
+              "_id": "669f7b497469ab4a9e1841cb",
+              "_tpl": "5449016a4bdc2d6f028b456f",
+              "upd": {
+                "StackObjectsCount": 45000
+              }
+            }
+          ],
+          "target": "669f7b497469ab4a9e1841cb",
+          "type": "Item",
+          "value": "45000"
+        },
+        {
+          "findInRaid": true,
+          "id": "669f7b4ceeafe5800515beb6",
+          "index": 2,
+          "items": [
+            {
+              "_id": "669f7b4f75ffe60520f730c5",
+              "_tpl": "HALFMASK_SMILE1",
+              "upd": {
+                "StackObjectsCount": 4
+              }
+            }
+          ],
+          "target": "669f7b4f75ffe60520f730c5",
+          "type": "Item",
+          "value": "4"
+        },
+        {
+          "id": "669f7b5275382917b0b38fe8",
+          "index": 3,
+          "target": "georgia",
+          "type": "TraderStanding",
+          "value": "0.1"
+        }
+      ]
+    },
+    "secretQuest": false,
+    "side": "Pmc",
+    "startedMessageText": "669f7b28d1dbbbdb0475e7be description",
+    "successMessageText": "669f7b28d1dbbbdb0475e7be successMessageText",
+    "traderId": "georgia",
+    "type": "PickUp"
+  }
+}

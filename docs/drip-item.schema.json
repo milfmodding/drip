@@ -1,0 +1,318 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://milfmodding.gov/drip/drip-item.schema.json",
+  "title": "DRIP content item",
+  "description": "A single piece of DRIP content: a clothing top, a clothing bottom, or a piece of gear. The file's name becomes the item's ID, so name it something unique and descriptive.",
+  "type": "object",
+  "required": [
+    "type",
+    "name",
+    "traderId"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Points your editor at this schema so you get autocomplete. Leave it alone."
+    },
+    "type": {
+      "description": "What kind of content this is. Clothing tops and bottoms are worn; gear is a retexture of an existing item.",
+      "type": "string",
+      "enum": [
+        "top",
+        "bottom",
+        "gear"
+      ]
+    },
+    "id": {
+      "description": "Optional. Overrides the item ID that would otherwise be derived from this file's name. You almost never need this.",
+      "type": "string",
+      "pattern": "^[a-f0-9]{24}$"
+    },
+    "name": {
+      "description": "The item's name as players see it in game. Either plain text, or a map of language code to text (for example {\"en\": \"...\", \"ru\": \"...\"}). English is used for any language you don't provide.",
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[a-z]{2}(-[a-z]{2})?$"
+          },
+          "additionalProperties": {
+            "type": "string"
+          },
+          "required": [
+            "en"
+          ],
+          "minProperties": 1
+        }
+      ]
+    },
+    "shortName": {
+      "description": "Short abbreviation shown on the item in your inventory. Gear only. Either plain text, or a map of language code to text (for example {\"en\": \"...\", \"ru\": \"...\"}). English is used for any language you don't provide.",
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[a-z]{2}(-[a-z]{2})?$"
+          },
+          "additionalProperties": {
+            "type": "string"
+          },
+          "required": [
+            "en"
+          ],
+          "minProperties": 1
+        }
+      ]
+    },
+    "description": {
+      "description": "The flavour text shown when inspecting the item. Gear only. Either plain text, or a map of language code to text (for example {\"en\": \"...\", \"ru\": \"...\"}). English is used for any language you don't provide.",
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[a-z]{2}(-[a-z]{2})?$"
+          },
+          "additionalProperties": {
+            "type": "string"
+          },
+          "required": [
+            "en"
+          ],
+          "minProperties": 1
+        }
+      ]
+    },
+    "traderId": {
+      "description": "Which trader sells this. Use a DRIP trader (moron, georgia), a vanilla trader name (ragman, fence, prapor, therapist, skier, peacekeeper, mechanic, jaeger, lighthousekeeper, btr, ref), or a raw 24-character trader ID.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "moron",
+            "georgia",
+            "prapor",
+            "therapist",
+            "fence",
+            "skier",
+            "peacekeeper",
+            "mechanic",
+            "ragman",
+            "jaeger",
+            "lighthousekeeper",
+            "btr",
+            "ref"
+          ]
+        },
+        {
+          "pattern": "^[a-f0-9]{24}$"
+        }
+      ]
+    },
+    "price": {
+      "description": "What the trader charges. In roubles unless you set 'currency'. Zero loads fine but is usually left over from testing \u2014 drip check will flag it.",
+      "type": "number",
+      "minimum": 0
+    },
+    "currency": {
+      "description": "Currency for 'price'. Defaults to roubles.",
+      "type": "string",
+      "enum": [
+        "RUB",
+        "USD",
+        "EUR"
+      ],
+      "default": "RUB"
+    },
+    "loyaltyLevel": {
+      "description": "Trader loyalty level required to buy this (1 to 4).",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4
+    },
+    "profileLevel": {
+      "description": "Player level required to buy this. Clothing only.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "standing": {
+      "description": "Trader standing required to buy this. Clothing only.",
+      "type": "number"
+    },
+    "questRequirements": {
+      "description": "Quest IDs that must be completed before this unlocks.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "achievementRequirements": {
+      "description": "Achievement IDs that must be earned before this unlocks. Clothing only.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "handbookPrice": {
+      "description": "Optional. Catalogue value. Defaults to the value of the item this is based on.",
+      "type": "number",
+      "minimum": 0
+    },
+    "fleaPrice": {
+      "description": "Optional. Flea market value. Defaults to the value of the item this is based on.",
+      "type": "number",
+      "minimum": 0
+    },
+    "vanillaOrigin": {
+      "description": "Clothing only. The vanilla garment this was cloned from, read out of the bundle itself. DRIP uses it to work out which bots can wear this, so it inherits whatever BSG already decided. Filled in automatically - run 'drip origins' if you add a garment by hand.",
+      "type": "string"
+    },
+    "bundles": {
+      "description": "Optional. Extra dependencies for a bundle, when the defaults aren't enough. Bundles sitting next to this file are found automatically, and shaders / cubemaps / physics materials are always included. Most items don't need this at all.",
+      "type": "object",
+      "propertyNames": {
+        "pattern": "\\.bundle$"
+      },
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "tags": {
+      "description": "Clothing tags, used for matching outfits on bots. Not currently read by DRIP \u2014 kept for the ICUP mod. Safe to leave in place.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "basedOn": {
+      "description": "Gear only. The 24-character ID of the existing item this is a retexture of.",
+      "type": "string",
+      "pattern": "^[a-f0-9]{24}$"
+    },
+    "copyOriginalOffers": {
+      "description": "Gear only. When true (the default), this is sold wherever the original item is sold, at the same price. Set it to false to give it your own price and loyalty level.",
+      "type": "boolean",
+      "default": true
+    },
+    "addToBots": {
+      "description": "Gear only. Whether bots can spawn wearing this.",
+      "type": "boolean",
+      "default": true
+    },
+    "botWeightMultiplier": {
+      "description": "Gear only. How common this is on bots relative to the original item. 1.0 means just as common; 0.5 means half as often.",
+      "type": "number",
+      "minimum": 0,
+      "default": 1.0
+    },
+    "includedParts": {
+      "description": "Gear only. Items that come pre-fitted in the slots of this one \u2014 armour plates, usually. Maps a slot name to an item ID.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{24}$"
+      }
+    },
+    "properties": {
+      "description": "Gear only. Directly override properties on the item, such as Width, Height or Weight.",
+      "type": "object"
+    },
+    "copyPropertiesFrom": {
+      "description": "Gear only. Copy named properties from another item \u2014 handy for giving a retextured vest the armour stats of a different one. Maps an item ID to the list of properties to take from it.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "gear"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "required": [
+          "shortName",
+          "description",
+          "basedOn"
+        ],
+        "properties": {
+          "profileLevel": false,
+          "standing": false
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "enum": [
+              "top",
+              "bottom"
+            ]
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "required": [
+          "price"
+        ],
+        "properties": {
+          "basedOn": false,
+          "copyOriginalOffers": false,
+          "addToBots": false,
+          "botWeightMultiplier": false,
+          "includedParts": false,
+          "properties": false,
+          "copyPropertiesFrom": false
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "copyOriginalOffers": {
+            "const": false
+          }
+        },
+        "required": [
+          "copyOriginalOffers"
+        ]
+      },
+      "then": {
+        "required": [
+          "price",
+          "loyaltyLevel"
+        ]
+      }
+    }
+  ],
+  "additionalProperties": true
+}

@@ -1,0 +1,19 @@
+// Mystery Ranch NICE COMM 3 BVS frame system (Black)
+// Converted from NICECOMM_BLACK_BAG.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Mystery Ranch NICE COMM 3 BVS frame system (Black)",
+  "shortName": "COMM 3",
+  "description": "The NICE Frame special system for carrying oversized or heavy loads with an installed COMM 3 backpack for carrying radio systems. \nThe COMM 3 main bay is designed for PRC117F or G, PRC119F, 152, or ASIP radios. The Hitchhiker and Daypack lid allows you to carry separate gear if needed. The modular NICE COMM 3 system is ready to adapt to changing tasks. An extremely rare thing, for which a real hunt is conducted in Tarkov. Black version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": false,
+  "price": 217999,
+  "loyaltyLevel": 1,
+  "basedOn": "628bc7fb408e2b2e9c0801b1"
+}

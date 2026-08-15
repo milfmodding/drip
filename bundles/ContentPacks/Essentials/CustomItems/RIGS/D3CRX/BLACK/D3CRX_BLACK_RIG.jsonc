@@ -1,0 +1,17 @@
+// Haley Strategic D3CRX Chest Harness (Black)
+// Converted from D3CRX_BLACK_RIG.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Haley Strategic D3CRX Chest Harness (Black)",
+  "shortName": "D3CRX",
+  "description": "The Haley Strategic D3CRX Combat chest rig is one of the most respected PMC rig systems. Ease and comfort of use are supported by the presence of the optimal number of pouches. Black version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "5d5d85c586f774279a21cbdb"
+}

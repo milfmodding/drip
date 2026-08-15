@@ -1,0 +1,17 @@
+// Eagle Industries MMAC plate carrier (AOR2)
+// Converted from RIG_MMAC_AOR2.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Eagle Industries MMAC plate carrier (AOR2)",
+  "shortName": "MMAC",
+  "description": "The Eagle Industries Multi-Mission Tactical Vest (MMAC) is a traditional profile vest offering modularity and scalability. The tactical vest is constructed of MIL-SPEC 500 denier nylon and is fully MOLLE/PALS compatible. It features padded shoulders with detachable retention loops, push-to-talk (PTT) attachment points at upper left and right chest and many other features. AOR2 version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "61bc85697113f767765c7fe7"
+}

@@ -1,0 +1,21 @@
+// Zryachiy's Ghillie Suit
+// Converted from GHILLIE_WOODLAND_TOP.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "top",
+  "name": "Zryachiy's Ghillie Suit",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+  "price": 500000,
+  "loyaltyLevel": 3,
+  "profileLevel": 40,
+  "standing": 0,
+  "vanillaOrigin": "assets/content/characters/character/prefabs/top_boss_zryachi.bundle",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
+  "bundles": {
+    "TOP.bundle": ["assets/content/characters/character/skeleton.bundle"]
+  }
+}

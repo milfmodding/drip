@@ -1,0 +1,17 @@
+// Scav Vest (M81 Woodland)
+// Converted from SCAVVEST_M81.json5 — see docs/CONFIG-SCHEMA-v2.md
+{
+  "$schema": "../../../../../../../docs/drip-item.schema.json",
+  "type": "gear",
+  "name": "Scav Vest (M81 Woodland)",
+  "shortName": "Scav Vest",
+  "description": "A fishermans vest can more or less replace the chest rig, if the need is pressing enough. M81 Woodland version.",
+
+  // Who sells this. 'moron' and 'georgia' are DRIP's own traders.
+  "traderId": "georgia",
+
+  // true  = sold wherever the original item is sold, at the original price.
+  // false = sold by the trader above, at the price below.
+  "copyOriginalOffers": true,
+  "basedOn": "572b7adb24597762ae139821"
+}
