@@ -1,8 +1,0 @@
-drip menu: build a release zip is now option 4
-
-Runs tools/build-release.py --all as a subprocess - the real build
-tool, never reimplemented here. It checks content and release
-readiness first, so a pack with problems stops at a work list
-instead of shipping; verified against the live tree, where it
-correctly refuses on the 13 known DRIP-408 pricing errors.
-Output lands in dist/ once the gates pass.
