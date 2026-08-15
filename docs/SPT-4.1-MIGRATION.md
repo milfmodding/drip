@@ -86,11 +86,15 @@ Sophia, NOT part of the mechanical port.
 `SPT_Runtime\user\mods\`** - the root-level `user\mods\` belongs to the launcher layout
 and the server never scans it (cost an afternoon of "0 server mods" confusion).
 
-**Deltas vs the 4.0.13 baseline that are NOT yet understood/fixed:**
-- **14 items fail to create: `FleaPriceRoubles is null or 0 while trying to add to flea`**
-  (6B43 x2, THORINT, RAID, BLACKJACK, TROOPER35, WELDINGSHIELD x2, ARMYCAP x4, AIRFRAME,
-  FASTMT - the handbook-only/flea-less bases). 140 -> 126 created. The 4.0 path had a
-  fallback; the 4.1 flea-price lookup path needs it restored. Real regression.
+**Deltas vs the 4.0.13 baseline:**
+- **14 items failing on `FleaPriceRoubles is null or 0` - FIXED 2026-08-15 (a96abf1)**:
+  the handbook-only bases (6B43 x2, THORINT, RAID, BLACKJACK, TROOPER35, WELDINGSHIELD
+  x2, ARMYCAP x4, AIRFRAME, FASTMT) have no flea price, and 4.1's CreateItemFromClone
+  rejects a null one outright. Fix: `AddToFleaPriceDb = (config.FleaPrice ??
+  baseFleaPrice) > 0` - a retexture of an unsellable-on-flea item is unsellable on the
+  flea too, so no flea-db entry is attempted. Verified: 140 items, zero failures; flea
+  presets 57 -> 62, conflicts 417 -> 541, bot loadouts 1147 -> 1238 all absorbing the
+  fourteen back.
 - Trader offers copied: 215 -> 110; own-priced 35 -> 29; and FOUR vanilla traders have no
   root offers at 450,000 (4.0.13: one, Fence). **RESOLVED 2026-08-15: the four are Fence,
   Caretaker, APC/BTR and Storyteller - all four ship assort.json with ZERO items on disk**
@@ -105,7 +109,8 @@ and the server never scans it (cost an afternoon of "0 server mods" confusion).
   were the confirmed-in-client fix for the magenta half-masks and white helmet parts on the
   REPACKED bundles. The pre-strip restore took the backup's configs (which predate that
   fix), dropping the declarations. Fix: re-add the six declarations (load-bearing for
-  repacked bundles, redundant-at-worst if self-contained) - via the converter path, not
-  hand-edits, so they survive regeneration; then eye-verify in a client.
+  repacked bundles, redundant-at-worst if self-contained). **DONE 2026-08-15 via the
+  converter's BUNDLE_DEPENDENCIES table** (see commit; survives regeneration). Eye-verify
+  in a client remains the outstanding confirmation.
 - Headless-launch trap: SPT.Server.exe crashes in Watermark.SetTitle() with no console
   (CREATE_NO_WINDOW/DETACHED). Launch with CREATE_NEW_CONSOLE.

@@ -176,6 +176,35 @@ SLOT_FIXES = {
     ("609e860ebd219504d8507525", "Soft_armor_back"): "6575f5e1da698a4e98067869",
 }
 
+# Bundle dependencies the source cannot supply, because they are a fact about the
+# bundles on disk rather than the 3.x config: the co-located TEXTURE bundles that the
+# REPACKED GEAR bundles point at through their externals tables. The client never loads
+# a bundle nothing depends on, so an undeclared pointer is an item that renders as
+# nothing - the 2026-07-31 magenta-half-mask / white-helmet lesson. The converter drops
+# textureGearDependencies ("v2 discovers it") and co-location covers discovery - but
+# not loading. derive_deps.py derives these from the artefacts; this table is the
+# hand-maintained record for the six the derivation missed, so a regeneration re-emits
+# them instead of silently deleting the working arrangement (dependencies_at_risk
+# catches the deletion; this prevents it).
+BUNDLE_DEPENDENCIES = {
+    # Half-masks SMILE1-4: material ships in TEXTURE.bundle, one directory away.
+    "HALFMASK_SMILE1": {"GEAR.bundle": [
+        "ContentPacks/Essentials/CustomItems/FACE/HALFMASK/SMILE1/TEXTURE.bundle"]},
+    "HALFMASK_SMILE2": {"GEAR.bundle": [
+        "ContentPacks/Essentials/CustomItems/FACE/HALFMASK/SMILE2/TEXTURE.bundle"]},
+    "HALFMASK_SMILE3": {"GEAR.bundle": [
+        "ContentPacks/Essentials/CustomItems/FACE/HALFMASK/SMILE3/TEXTURE.bundle"]},
+    "HALFMASK_SMILE4": {"GEAR.bundle": [
+        "ContentPacks/Essentials/CustomItems/FACE/HALFMASK/SMILE4/TEXTURE.bundle"]},
+    # AirFrame Ranger Green: the NVG shroud material reads from TEXTURE.bundle.
+    "AIRFRAME_RANGERGREEN_HELM": {"GEAR.bundle": [
+        "ContentPacks/Essentials/CustomItems/HELM/AIRFRAME/RANGERGREEN/TEXTURE.bundle"]},
+    # FAST MT USEC: shell material in TEXTURE1, shroud+rails in TEXTURE2.
+    "FASTMT_USEC_MESH": {"GEAR.bundle": [
+        "ContentPacks/Essentials/CustomItems/HELM/FASTMT/USEC/TEXTURE1.bundle",
+        "ContentPacks/Essentials/CustomItems/HELM/FASTMT/USEC/TEXTURE2.bundle"]},
+}
+
 def dependencies_at_risk(dest_file: pathlib.Path, new_config: dict) -> list[str]:
     """Bundle dependencies the destination declares that this run would not re-emit.
 
@@ -750,6 +779,22 @@ def convert_one(legacy: dict, src: pathlib.Path, rel: str, rpt: Report) -> dict 
                         + (f", dropped {len(dropped)} dependency(ies) now applied automatically"
                            if dropped else ""),
                    "dependencies moved into 'bundles'")
+    # --- bundle dependencies recorded by hand (see BUNDLE_DEPENDENCIES) ---------------------
+    # These are facts about the bundles on disk, not the 3.x source, so the source cannot
+    # supply them. Merged with - not replacing - anything derived above, and every entry
+    # reported so a regeneration is auditable.
+    declared = BUNDLE_DEPENDENCIES.get(ship_as)
+    if declared:
+        for bundle_name, paths in declared.items():
+            existing = bundles.setdefault(bundle_name, [])
+            for path in paths:
+                if path not in existing:
+                    existing.append(path)
+                    rpt.change(rel, f"bundles: {bundle_name} depends on {path} "
+                                    "(see BUNDLE_DEPENDENCIES in this script)",
+                               "bundle dependency declared")
+        out["bundles"] = bundles
+
     if bundles:
         out["bundles"] = bundles
     else:

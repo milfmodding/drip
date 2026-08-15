@@ -13,5 +13,11 @@
   // true  = sold wherever the original item is sold, at the original price.
   // false = sold by the trader above, at the price below.
   "copyOriginalOffers": true,
-  "basedOn": "5ac8d6885acfc400180ae7b0"
+  "basedOn": "5ac8d6885acfc400180ae7b0",
+  "bundles": {
+      "GEAR.bundle": [
+      "ContentPacks/Essentials/CustomItems/HELM/FASTMT/USEC/TEXTURE1.bundle",
+      "ContentPacks/Essentials/CustomItems/HELM/FASTMT/USEC/TEXTURE2.bundle"
+      ]
+  }
 }

@@ -15,5 +15,10 @@
   "copyOriginalOffers": false,
   "price": 1620,
   "loyaltyLevel": 1,
-  "basedOn": "572b7fa524597762b747ce82"
+  "basedOn": "572b7fa524597762b747ce82",
+  "bundles": {
+      "GEAR.bundle": [
+      "ContentPacks/Essentials/CustomItems/FACE/HALFMASK/SMILE3/TEXTURE.bundle"
+      ]
+  }
 }
