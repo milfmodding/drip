@@ -1,7 +1,7 @@
 // Friendly Feud
 // Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
 {
-  "$schema": "../../../../docs/drip-item.schema.json",
+  "$schema": "../../../../docs/drip-quest.schema.json",
   "name": "Friendly Feud",
   "description": "Heyy, come on in! You been up to much? Been doing more work for my lil' bro? He and I have been playing a lot of games together lately, Sergey the Mechanic set he and I up with some internet, mostly so Sergey and I can communicate back and forth. See, he and I both love tech, and we have a friendly feud going on, if you could get me some parts for my second rig, I'd be super grateful. I can give you cash and some clothes, too. I just need two of the military programmable processors, the Virtex ones, and then two military SAS drives. Thanks again, just swing on back when you've got em.",
   "trader": "georgia",

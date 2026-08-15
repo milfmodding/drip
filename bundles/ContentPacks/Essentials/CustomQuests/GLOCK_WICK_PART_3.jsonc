@@ -1,7 +1,7 @@
 // Glock Wick: Part 3
 // Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
 {
-  "$schema": "../../../../docs/drip-item.schema.json",
+  "$schema": "../../../../docs/drip-quest.schema.json",
   "name": "Glock Wick: Part 3",
   "description": "Hey dude, yo, not a lot of time to talk right now. That work you did before, on the PMCs? They ain't so happy about it, guess they were actually working for Arshavir, got boys all around the city looking for who dunnit right now. Between you and me, we need this hunting crew outta here. They don't know who did it yet, sounds like. Same deal as last time use a Glock and this time keep it hush-hush, go Sam Fisher on their asses and get em outta here.",
   "trader": "moron",

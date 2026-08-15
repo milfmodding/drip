@@ -1,7 +1,7 @@
 // Junker
 // Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
 {
-  "$schema": "../../../../docs/drip-item.schema.json",
+  "$schema": "../../../../docs/drip-quest.schema.json",
   "name": "Junker",
   "description": "Heyyy, there you are. Back for more work, right? Yeah, I thought so, getting to know you, aren't I? Listen, I wanna give you a challenge. You know those shitty single shot rifles, the MP-18 or whatever? Go knock some heads with one. PMCs, no Scavs if you can help it. I may sell to PMCs, but the locals are my people, usually anyways. Take out ten of the fuckers.",
   "trader": "moron",

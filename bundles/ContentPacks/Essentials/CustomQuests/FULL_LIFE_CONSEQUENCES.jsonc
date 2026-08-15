@@ -1,7 +1,7 @@
 // Full Life Consequences
 // Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
 {
-  "$schema": "../../../../docs/drip-item.schema.json",
+  "$schema": "../../../../docs/drip-quest.schema.json",
   "name": "Full Life Consequences",
   "description": "'Sup man? Say, you like videogames? Like, before all this shit anyways. See, I've got a working computer still, and I've been playing a shit ton of videogames when I'm not doing business. Lately it's been this old shooter. Main dude uses a crowbar as a weapon. Now, I've got some USECs around that owe me money for some gear I lent them that they lost, and I want to send them a message. Go beat the shit outta some of their buddies, three of em, maybe they'll treat other people's shit with some fuckin' respect, then. Thanks, chief.",
   "trader": "moron",

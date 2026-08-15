@@ -1,7 +1,7 @@
 // Shock and Awe
 // Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
 {
-  "$schema": "../../../../docs/drip-item.schema.json",
+  "$schema": "../../../../docs/drip-quest.schema.json",
   "name": "Shock and Awe",
   "description": "Ayy, the badass himself. Want some more work? 'Gilla is having trouble with there being a sudden influx of PMCs in the factory area causing problems. Wants it solved but he's busy breaking heads and bringin home the bacon for us. You mind going and wiping down the area? Blow 8 of em away, and use a Remington 870, he'd appreciate the brutality. Thanks a bunch dude, you know how I feel about keeping him and Killa safe.",
   "trader": "moron",

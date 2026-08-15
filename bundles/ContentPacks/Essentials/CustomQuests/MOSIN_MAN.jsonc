@@ -1,7 +1,7 @@
 // Mosin Man
 // Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
 {
-  "$schema": "../../../../docs/drip-item.schema.json",
+  "$schema": "../../../../docs/drip-quest.schema.json",
   "name": "Mosin Man",
   "description": "Jeeesus, already back for more work? Damn workoholics. I know, you just enjoy the challenge, huh? Alright bro, you know those Mosin Nuggets? Nagants... Whatever. Anyways, I've got a problem with some 'raider' guys, yknow who I mean, right? They hang around that army base nearby, the Reserve or whatever. Swiped some shit from my shop and trashed some of my booze. I don't like to deal with them usually, crazies, but you're looking for work. Go wipe em out with those old Mosin rifles. Body shots only. Both make it look more like scavs did it. Thanks homie.",
   "trader": "moron",

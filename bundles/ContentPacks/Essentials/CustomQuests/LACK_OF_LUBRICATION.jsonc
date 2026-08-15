@@ -1,7 +1,7 @@
 // Lack of Lubrication
 // Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
 {
-  "$schema": "../../../../docs/drip-item.schema.json",
+  "$schema": "../../../../docs/drip-quest.schema.json",
   "name": "Lack of Lubrication",
   "description": "Hey, homie, you got a sec? Listen, I need some lube of some kind, vaseline will probably be your easiest bet. Make sure it's not used, too. What for? Just find me some, alright? Less questions asked, more money and gear paid.",
   "trader": "moron",

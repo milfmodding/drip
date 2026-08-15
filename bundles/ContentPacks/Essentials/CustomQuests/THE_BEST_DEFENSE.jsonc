@@ -1,7 +1,7 @@
 // The Best Defense
 // Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
 {
-  "$schema": "../../../../docs/drip-item.schema.json",
+  "$schema": "../../../../docs/drip-quest.schema.json",
   "name": "The Best Defense",
   "description": "Hey! How's it going? How's my brother doing? Say... I'm dealing with some issues with some jackass from the mall, I guess my brother knows him? Well, some of his guys have found something out about myself and are spreading it to some people who aren't too friendly to me. I was hoping you could bring me along a shotgun for protection. Preferebly a Remington 870, I'm somewhat familiar with them. Bring some magnum buck shells as well, 20 should do. Thank you for this, I'll be here when you've got it.",
   "trader": "georgia",

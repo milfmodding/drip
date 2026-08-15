@@ -1,7 +1,7 @@
 // The Morning After
 // Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
 {
-  "$schema": "../../../../docs/drip-item.schema.json",
+  "$schema": "../../../../docs/drip-quest.schema.json",
   "name": "The Morning After",
   "description": "Hey homie, come on in. Try n keep it down, big man's still sleepin, 'gilla already left for the day. Last night got a little wild, you looking for more work? Big man's gonna be hungry, and he's got a few holes in his vest I was gonna patch up for him before he leaves. Could you grab some food and some repair supplies for me? Sprats are his favourite, grab two cans and a section of aramid fabric for me. Thanks dude, see ya soon.",
   "trader": "moron",

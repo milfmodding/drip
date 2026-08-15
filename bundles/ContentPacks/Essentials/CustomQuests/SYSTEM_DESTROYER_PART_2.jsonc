@@ -1,7 +1,7 @@
 // System Destroyer: Part 2
 // Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
 {
-  "$schema": "../../../../docs/drip-item.schema.json",
+  "$schema": "../../../../docs/drip-quest.schema.json",
   "name": "System Destroyer: Part 2",
   "description": "Hey homie, you busy? I know, I know, you just walked in but look, I took a look over my system and I need some new parts. If you've got the spare time, can you bring me some stuff? I need two handfuls of capacitors, four sections of various sized wires, and a long flathead screwdriver. I'd get you something big, man, this system is a huge part of my life. Lets talk business then when you head out just keep an eye out, ok? Thanks.",
   "trader": "moron",

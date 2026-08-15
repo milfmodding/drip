@@ -1,7 +1,7 @@
 // Glock Wick: Part 2
 // Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
 {
-  "$schema": "../../../../docs/drip-item.schema.json",
+  "$schema": "../../../../docs/drip-quest.schema.json",
   "name": "Glock Wick: Part 2",
   "description": "Back for more work? That slaughter you did at the mall was good, stirred Arshavir up a bit, bastard. Well, this time use that glock again, but instead I've got an issue with some Scavs over in the Customs area. Typically, I leave the Scav factions alone around here, a lot of them are bros, but sometimes you get a dumbfuck asshole of a gang who has to go and fuck with shit. There's around 10 in their stupid little group, do you mind taking care of em for me? Again, glock, I'll hook you up.",
   "trader": "moron",

@@ -676,17 +676,20 @@ def find_mod_root(out_root: pathlib.Path) -> pathlib.Path | None:
     return None
 
 
-def schema_ref(dest_file: pathlib.Path, out_root: pathlib.Path) -> str:
-    """Relative path from a config file to the shared schema, for editor autocomplete.
+def schema_ref(dest_file: pathlib.Path, out_root: pathlib.Path,
+               schema_name: str = "drip-item.schema.json") -> str:
+    """Relative path from a config file to a schema, for editor autocomplete.
 
     Derived from where the schema actually is rather than assuming a fixed nesting depth,
     so moving content packs around doesn't silently break every file's autocomplete.
+    The schema NAME became a parameter when quests arrived: a friendly quest file pointing
+    at the item schema gets item tooltips on quest fields, which is worse than none.
     """
     mod_root = find_mod_root(out_root)
     if mod_root is None:
         # No schema in reach: emit a path that at least reads correctly, and say so once.
-        return "../" * (len(dest_file.relative_to(out_root).parts) - 1) + "drip-item.schema.json"
-    schema = mod_root / "docs" / "drip-item.schema.json"
+        return "../" * (len(dest_file.relative_to(out_root).parts) - 1) + schema_name
+    schema = mod_root / "docs" / schema_name
     import os
     return pathlib.PurePath(
         os.path.relpath(schema, dest_file.parent)
@@ -1263,7 +1266,7 @@ def convert_quests(out_root: pathlib.Path, dry_run: bool, rpt: Report):
                     continue
                 dest.mkdir(parents=True, exist_ok=True)
                 target.write_text(dump_jsonc(
-                    {"$schema": schema_ref(target, out_root), **friendly},
+                    {"$schema": schema_ref(target, out_root, "drip-quest.schema.json"), **friendly},
                     [friendly["name"], "Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md"],
                 ), encoding="utf-8")
                 converted += 1

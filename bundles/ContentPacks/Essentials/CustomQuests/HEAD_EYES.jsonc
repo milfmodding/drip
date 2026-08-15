@@ -1,7 +1,7 @@
 // Head, eyes
 // Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
 {
-  "$schema": "../../../../docs/drip-item.schema.json",
+  "$schema": "../../../../docs/drip-quest.schema.json",
   "name": "Head, eyes",
   "description": "There's the beast himself, the destroyer of all dickheads. Listen, you want a real challenge? You know the deal, I'll put my money where my mouth is, you score some sick kills. The PMCs 'round here have been dickheads again lately, even rolling over my buddies and taking some of my clothing shipments to Arshavir. Now, I got a bet with Yegorovich, the hunter guy, about what will happen to the PMCs, you help me rig it I'll split the reward. Just go blast some PMC's heads off with bolt rifles, easy peasy for you. Cheers buddy.",
   "trader": "moron",

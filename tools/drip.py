@@ -561,14 +561,26 @@ def cmd_check(args) -> int:
         # their references resolve against the item table. The legacy blob (DRIP.jsonc and
         # its kind) is the loader's business - a hand-written one is a converter step, not
         # an authoring mistake, and its gates are already covered by DRIP-502 above.
+        # NOTE: a quest file that fails to parse is reported HERE, not by the item scan -
+        # CustomQuests is not one of the item scan's roots, so "the item scan already
+        # reports it" was a wrong comment here until a `drip new quest` scaffold (whose
+        # UPPERCASE placeholders are deliberately not valid JSON) exposed the silence.
         qdir = pack / "CustomQuests"
         if qdir.exists():
             for f in sorted(list(qdir.glob("*.jsonc")) + list(qdir.glob("*.json"))):
                 rel = f.relative_to(base).as_posix()
                 try:
                     data = json.loads(strip_jsonc(f.read_text(encoding="utf-8-sig")))
-                except json.JSONDecodeError:
-                    continue              # the item scan above already reports JSON errors
+                except json.JSONDecodeError as e:
+                    if "objectives" not in f.read_text(encoding="utf-8-sig")[:2000]:
+                        continue          # legacy blob: the loader's business, not ours
+                    all_diags.append(Diag(
+                        "DRIP-001", "error", rel,
+                        f"This file isn't valid JSON - line {e.lineno}, character {e.colno}.",
+                        "A missing comma or quote, or a placeholder that was never replaced "
+                        "(scaffolds ship with deliberately invalid placeholders)."))
+                    checked += 1
+                    continue
                 if isinstance(data, dict) and "objectives" in data:
                     checked += 1
                     every_quest.append((f, rel, data, pack))
@@ -1112,6 +1124,49 @@ def cmd_origins(args) -> int:
 
 PLACEHOLDER_ID = "PUT_THE_24_CHARACTER_ID_HERE"
 
+QUEST_TEMPLATE = """// {name} - a new DRIP quest
+//
+// Everything players and the server need is decided in this one file. Your editor's
+// tooltips (hover any field) explain each one; `drip check` names anything left broken.
+{{
+  "$schema": "{schema}",
+
+  // The quest's own name, as players see it in the journal.
+  "name": "{name}",
+
+  // Who offers the quest. 'moron' and 'georgia' are DRIP's own traders.
+  "trader": "{trader}",
+
+  // What the trader says. Optional, but players read it.
+  "description": "WHAT_THE_TRADER_SAYS_WHEN_OFFERING_THIS_QUEST",
+  "onSuccess": "WHAT_THE_TRADER_SAYS_WHEN_IT_IS_DONE",
+
+  // Uncomment to gate the quest. Delete 'requires' entirely if anyone can start it.
+  // "requires": {{
+  //   "playerLevel": PUT_A_LEVEL_HERE,
+  //   "quest": "PREVIOUS_QUEST_FILENAME"
+  // }},
+
+  // What the player must do. handover = give items; kill = eliminate targets.
+  "objectives": [
+    {{
+      "handover": "ITEM_FILENAME_OR_24_CHARACTER_ID",
+      "count": 1,
+      "foundInRaid": true,
+      "text": "THE_SENTENCE_PLAYERS_READ_IN_THE_JOURNAL"
+    }}
+  ],
+
+  // What the player gets. Mix as many as you like:
+  // {{ "experience": 4000 }},  {{ "standing": 0.03 }},  {{ "unlock": "georgia" }},
+  // {{ "item": "5449016a4bdc2d6f028b456f", "itemCount": 50000 }}   (that one is roubles)
+  "rewards": [
+    {{ "experience": PUT_A_NUMBER_HERE }},
+    {{ "item": "5449016a4bdc2d6f028b456f", "itemCount": PUT_AN_AMOUNT_HERE }}
+  ]
+}}
+"""
+
 
 def resolve_base_item(given: str | None, interactive: bool) -> str:
     """Turn "slick" into 5e4abb5086f77406975c9342.
@@ -1241,6 +1296,46 @@ def cmd_new(args) -> int:
     return 0
 
 
+def cmd_new_quest(args) -> int:
+    """Scaffold a friendly-format quest file - the whole quest is one file of decisions.
+
+    Quests need no bundles and no folders: the file lands directly in the pack's
+    CustomQuests, its name derives the quest's ID, and the placeholders are deliberately
+    obvious so the file reads as unfinished until every decision in it has been made.
+    """
+    interactive = not args.where
+    if interactive:
+        print("\n  Making a new DRIP quest. Press Ctrl-C to stop.\n")
+
+    where = args.where or ask("What's the quest's filename? e.g. THE_BIG_JOB")
+    pack = args.pack or (ask("Which content pack?", "Essentials") if interactive else "Essentials")
+    trader = args.trader or (ask("Which trader offers it?", "georgia") if interactive else "georgia")
+    name = args.name or (ask("What's it called in game?", where.replace("_", " ").title())
+                         if interactive else where.replace("_", " ").title())
+
+    dest = PACKS_ROOT / pack / "CustomQuests" / f"{where}.jsonc"
+    if dest.exists():
+        sys.exit(f"\n  {dest.relative_to(MOD_ROOT)} already exists - pick another name.\n")
+
+    import os
+    schema_rel = pathlib.PurePath(
+        os.path.relpath(MOD_ROOT / "docs" / "drip-quest.schema.json",
+                        dest.parent)).as_posix()
+
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(QUEST_TEMPLATE.format(
+        name=name, trader=trader, schema=schema_rel), encoding="utf-8")
+
+    print(colour(f"\n  Created  {dest.relative_to(MOD_ROOT)}", "green"))
+    print(f"\n  Next:")
+    print(f"    1. Fill in the config - hover any field in your editor for an explanation,")
+    print(f"       and replace every UPPERCASE placeholder. They're deliberate: the file")
+    print(f"       stays visibly broken until every decision is made.")
+    print(f"    2. Optional: drop a <FILENAME>.png beside it and set \"image\" to match.")
+    print(f"    3. Run  drip check  before starting the server.\n")
+    return 0
+
+
 # ------------------------------------------------------------------------------------------
 
 def cmd_menu(_args):
@@ -1279,8 +1374,11 @@ def cmd_menu(_args):
         if choice == "1":
             run(["drip", "check"])
         elif choice == "2":
-            kind = input("  Making gear, a top, or a bottom? ").strip().lower()
-            run(["drip", "new"] + ([kind] if kind else []))
+            kind = input("  Making gear, a top, a bottom, or a quest? ").strip().lower()
+            if kind == "quest":
+                run(["drip", "new", "quest"])
+            else:
+                run(["drip", "new"] + ([kind] if kind else []))
         elif choice == "3":
             words = input("  Part of the item's in-game name (e.g. slick): ").strip()
             if words:
@@ -1327,15 +1425,16 @@ def main() -> int:
     i.add_argument("words", nargs="+", help="part of the item's in-game name")
     i.set_defaults(func=cmd_id)
 
-    n = sub.add_parser("new", help="scaffold a new item config")
-    n.add_argument("type", nargs="?", choices=sorted(TYPE_DIR), help="gear, top or bottom")
+    n = sub.add_parser("new", help="scaffold a new item or quest config")
+    n.add_argument("type", nargs="?", choices=sorted(TYPE_DIR) + ["quest"],
+                   help="gear, top, bottom, or quest")
     n.add_argument("where", nargs="?", help="path within the pack, without the extension")
     n.add_argument("--pack", default=None, help="content pack (default: Essentials)")
     n.add_argument("--trader", default=None, help="who sells it (default: georgia)")
     n.add_argument("--name", default=None, help="in-game name")
     n.add_argument("--based-on", default=None, metavar="NAME_OR_ID",
                    help="the item being retextured - its name ('slick') or its 24-character ID")
-    n.set_defaults(func=cmd_new)
+    n.set_defaults(func=lambda a: cmd_new_quest(a) if a.type == "quest" else cmd_new(a))
 
     m = sub.add_parser("menu",
                        help="interactive menu (what you get on a double-click)")

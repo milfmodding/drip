@@ -1,7 +1,7 @@
 // System Destroyer: Part 1
 // Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
 {
-  "$schema": "../../../../docs/drip-item.schema.json",
+  "$schema": "../../../../docs/drip-quest.schema.json",
   "name": "System Destroyer: Part 1",
   "description": "Dude, fuck. Do you remember that fuckhead in the brown jacket that fucked my speakers up last night at the party? No? You probably already left. He fucking pushed my system over with a smile, the little fucking cuck. I think his name is Relish or Rasputin or something... Whatever the fuck his name is, go find him and teach him a lesson. He was waving around a gold pistol with a Roler on his wrist, bring me those as proof.",
   "trader": "moron",

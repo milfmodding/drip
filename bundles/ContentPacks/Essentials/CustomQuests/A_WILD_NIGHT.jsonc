@@ -1,7 +1,7 @@
 // A Wild Night
 // Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
 {
-  "$schema": "../../../../docs/drip-item.schema.json",
+  "$schema": "../../../../docs/drip-quest.schema.json",
   "name": "A Wild Night",
   "description": "Heyyy, come in, come in! How's it goin', bro? Need some new gear? Got plenty of stuff from an old milsurp shop recently. Oh, you're looking for work? Shit, I actually do need a favour, I'll pay you good, man. I need some vodka for tonight, I've got a couple, ehm, friends coming over. Just swing by with it whenever. Thanks, homie!",
   "trader": "moron",

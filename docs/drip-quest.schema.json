@@ -1,0 +1,225 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://milfmodding.gov/drip/drip-quest.schema.json",
+  "title": "DRIP quest",
+  "description": "A custom quest. The file's name becomes the quest's ID, so name it something unique and descriptive - for example A_WILD_NIGHT.jsonc. Everything mechanical (condition IDs, locale keys, quest structure) is generated from these decisions when the server loads.",
+  "type": "object",
+  "required": [
+    "name",
+    "trader",
+    "objectives",
+    "rewards"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Points your editor at this schema so you get autocomplete. Leave it alone."
+    },
+    "name": {
+      "description": "The quest's name as players see it in their journal.",
+      "type": "string",
+      "minLength": 1
+    },
+    "trader": {
+      "description": "Which trader offers this quest. Use a DRIP trader (moron, georgia), a vanilla trader name (ragman, fence, prapor, therapist, skier, peacekeeper, mechanic, jaeger, lighthousekeeper, btr, ref), or a raw 24-character trader ID.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "moron",
+            "georgia",
+            "prapor",
+            "therapist",
+            "fence",
+            "skier",
+            "peacekeeper",
+            "mechanic",
+            "ragman",
+            "jaeger",
+            "lighthousekeeper",
+            "btr",
+            "ref"
+          ]
+        },
+        {
+          "pattern": "^[a-f0-9]{24}$"
+        }
+      ]
+    },
+    "description": {
+      "description": "What the trader says when they offer the quest. Shown in the journal. Optional, but players will read it.",
+      "type": "string"
+    },
+    "onSuccess": {
+      "description": "What the trader says when the quest is completed. Optional.",
+      "type": "string"
+    },
+    "onFail": {
+      "description": "What the trader says when the quest is failed. Optional and rarely used.",
+      "type": "string"
+    },
+    "image": {
+      "description": "The quest's picture in the journal. Either one of this pack's .png files sitting beside the quest configs (for example \"Boozey.png\"), or a vanilla quest icon's 24-character ID to reuse the game's own art.",
+      "type": "string"
+    },
+    "requires": {
+      "description": "What must be true before the player can start this quest. Delete the whole 'requires' block if anyone can start it.",
+      "type": "object",
+      "properties": {
+        "playerLevel": {
+          "description": "The player level needed before this quest appears.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "quest": {
+          "description": "A quest that must be completed first. Write the other quest's FILENAME (for example \"A_WILD_NIGHT\") or its 24-character ID.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "objectives": {
+      "description": "What the player must do to complete the quest. Each objective is either a 'handover' (give items to the trader) or a 'kill' (eliminate targets). Every objective needs its own 'text' - the sentence players read.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "handover"
+            ],
+            "properties": {
+              "handover": {
+                "description": "The item to hand over. Write a DRIP item's FILENAME (they look like MUSTACHE_DARKGREY_FACE) or a 24-character item ID.",
+                "type": "string",
+                "minLength": 1
+              },
+              "count": {
+                "description": "How many to hand over.",
+                "type": "integer",
+                "minimum": 1,
+                "default": 1
+              },
+              "foundInRaid": {
+                "description": "Whether the items must be found in raid. True is the normal case.",
+                "type": "boolean",
+                "default": true
+              },
+              "text": {
+                "description": "The sentence players read in the journal, for example \"Find in-raid and hand over two bottles of Vodka.\"",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": [
+              "kill"
+            ],
+            "properties": {
+              "kill": {
+                "description": "Who to eliminate. \"Any\" for anyone, or a bot type ID.",
+                "type": "string",
+                "minLength": 1
+              },
+              "count": {
+                "description": "How many to eliminate.",
+                "type": "integer",
+                "minimum": 1,
+                "default": 1
+              },
+              "at": {
+                "description": "Optional. Restrict it to one location, for example \"factory\".",
+                "type": "string"
+              },
+              "with": {
+                "description": "Optional. Restrict it to one weapon, by 24-character item ID.",
+                "type": "string"
+              },
+              "text": {
+                "description": "The sentence players read in the journal, for example \"Eliminate 5 Scavs on Factory.\"",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "rewards": {
+      "description": "What the player receives on completion. Mix as many as you like: experience, standing, unlock, item.",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "experience"
+            ],
+            "properties": {
+              "experience": {
+                "description": "XP granted on completion, for example 4000.",
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": [
+              "standing"
+            ],
+            "properties": {
+              "standing": {
+                "description": "How much standing to grant. 0.03 is a typical amount.",
+                "type": "number"
+              },
+              "standingWith": {
+                "description": "Which trader the standing is with. Leave it out to use the quest's own trader.",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": [
+              "unlock"
+            ],
+            "properties": {
+              "unlock": {
+                "description": "A trader whose full stock becomes available once this quest is done.",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": [
+              "item"
+            ],
+            "properties": {
+              "item": {
+                "description": "The item granted. Write a DRIP item's FILENAME or a 24-character item ID. Roubles are an item too - 5449016a4bdc2d6f028b456f.",
+                "type": "string",
+                "minLength": 1
+              },
+              "itemCount": {
+                "description": "How many of the item. For money, this is the amount.",
+                "type": "integer",
+                "minimum": 1,
+                "default": 1
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

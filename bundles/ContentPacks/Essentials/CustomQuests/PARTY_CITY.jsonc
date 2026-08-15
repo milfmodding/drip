@@ -1,7 +1,7 @@
 // Party City
 // Converted from the legacy quest blob - see docs/QUEST-LAYER-DESIGN.md
 {
-  "$schema": "../../../../docs/drip-item.schema.json",
+  "$schema": "../../../../docs/drip-quest.schema.json",
   "name": "Party City",
   "description": "Ay, what's up homie, back for some gear? Gonna come to the party this week? Hey, speaking of, could you do a job for me? It's easy, promise. I just need some party supplies. Lets see... Grab me another bottle of vodka, I've still got one from last time. Three beers, two of the big cans of that beef stew, I think the call it Tchanka or something. And lastly, four packs of those army crackers. Making dinner for everyone. Oh, and grab a new DVD Drive, mine's busted. Thanks man.",
   "trader": "moron",

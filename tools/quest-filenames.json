@@ -3,13 +3,12 @@
     "Quest id -> friendly filename, recorded when the --quests conversion emitted the",
     "friendly files. The friendly loader derives its id from the filename via",
     "SHA1(stem:quest)[:24], so these ids are DIFFERENT from the legacy MongoIds the",
-    "item questRequirements currently gate on. The flip must rewrite every gate",
-    "MongoId listed here to derive(filename) - atomically with deleting the blob's",
-    "converted entries, or the gates point at nothing.",
+    "item questRequirements used to gate on. convert-legacy.py rewrites every gate",
+    "MongoId listed here to derive(filename) when it re-emits the configs.",
     "",
     "669f759a1c5ee26e33c5afb2 (Glock Wick: Part 1) is absent DELIBERATELY: it stays",
     "on the legacy path (Started Item reward the friendly vocabulary does not carry),",
-    "so its blob entry and its MongoId gates must both survive the flip."
+    "so its blob entry and its MongoId gates must both survive."
   ],
   "669a1606666bd606fa3f897a": "A_WILD_NIGHT",
   "669cdb5039f39e1bd6019b56": "THE_MORNING_AFTER",
