@@ -2,9 +2,8 @@ using DRIP.Utils;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
-using SPTarkov.Server.Core.Models.Spt.Server;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Services;
+using SPTarkov.Common.Models.Logging;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
 
@@ -40,7 +39,8 @@ namespace DRIP.Services;
 [Injectable(InjectionType.Singleton)]
 public class DRIPItemPresetService(
     ISptLogger<DRIPItemPresetService> logger,
-    DatabaseService databaseService,
+    TemplateTable templateTable,
+    GlobalTable globalTable,
     DRIPCustomItemService itemService,
     HashUtil hashUtil,
     ICloner cloner
@@ -66,8 +66,7 @@ public class DRIPItemPresetService(
     /// </summary>
     public async Task ApplyAll()
     {
-        var database = databaseService.GetTables();
-        var presets = database.Globals?.ItemPresets;
+        var presets = globalTable.ItemPresets;
 
         if (presets is null || presets.Count == 0)
         {
@@ -101,7 +100,7 @@ public class DRIPItemPresetService(
                 continue;
             }
 
-            if (await BuildPresetFor(item, basePreset, database, presets))
+            if (await BuildPresetFor(item, basePreset, presets))
             {
                 created++;
             }
@@ -136,7 +135,6 @@ public class DRIPItemPresetService(
     private async Task<bool> BuildPresetFor(
         DRIPCustomItemService.CreatedItem item,
         Preset basePreset,
-        DatabaseTables database,
         Dictionary<MongoId, Preset> presets)
     {
         if (basePreset.Items is not { Count: > 0 })
@@ -154,7 +152,7 @@ public class DRIPItemPresetService(
         // came out of that applies here unchanged. See DripIds.
         var presetId = await DripIds.Derive(hashUtil, stem, "preset");
 
-        if (presets.ContainsKey(presetId) || database.Templates.Items.ContainsKey(presetId))
+        if (presets.ContainsKey(presetId) || templateTable.Items.ContainsKey(presetId))
         {
             logger.Error(
                 $"[DRIP] {item.RelativeName}: preset ID {presetId} is already taken. Two configs with the same " +

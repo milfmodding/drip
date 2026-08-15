@@ -6,9 +6,8 @@ using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SPTarkov.Server.Core.Models.Spt.Server;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Services;
+using SPTarkov.Common.Models.Logging;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 
 namespace DRIP.Services;
 
@@ -25,7 +24,10 @@ namespace DRIP.Services;
 [Injectable(InjectionType.Singleton)]
 public class DRIPVerificationService(
     ISptLogger<DRIPVerificationService> logger,
-    DatabaseService databaseService,
+    TemplateTable templateTable,
+    TradersTable tradersTable,
+    GlobalTable globalTable,
+    LocaleTable localeTable,
     DRIPCustomItemService itemService,
     DRIPCustomQuestService questService,
     DRIPTraderAssortService assortService,
@@ -35,7 +37,6 @@ public class DRIPVerificationService(
     /// <summary>How many offending items to name before summarising the rest.</summary>
     private const int NamesToShow = 5;
 
-    private DatabaseTables? _database;
 
     public void VerifyAll()
     {
@@ -44,7 +45,7 @@ public class DRIPVerificationService(
             return;
         }
 
-        _database = databaseService.GetTables();
+
 
         var stopwatch = Stopwatch.StartNew();
         var problems = new List<string>();
@@ -120,8 +121,8 @@ public class DRIPVerificationService(
                 $"({OnLoadOrder.SaveCallbacks:N0}) where SPT validates every profile against the item database. " +
                 "Any profile owning DRIP items or clothing will have been marked invalid on this start, and the " +
                 "remedy SPT suggests for that error deletes the player's DRIP gear. Move the [Injectable] " +
-                $"TypePriority on the DRIP class to between PostDBModLoader ({OnLoadOrder.PostDBModLoader:N0}) and " +
-                $"SaveCallbacks - see the comment there for why.");
+                $"TypePriority on the DRIP class back into the pre-SaveCallbacks window (see " +
+                "docs/SPT-4.1-MIGRATION.md) - see the comment there for why.");
             return;
         }
 
@@ -168,7 +169,7 @@ public class DRIPVerificationService(
     /// </summary>
     private void VerifyEveryItemIsSoldSomewhere(List<string> problems)
     {
-        var soldTemplates = _database!.Traders.Values
+        var soldTemplates = tradersTable.Values
             .Where(trader => trader.Assort?.Items is not null)
             .SelectMany(trader => trader.Assort!.Items)
             .Select(item => item.Template)
@@ -220,8 +221,8 @@ public class DRIPVerificationService(
 
         foreach (var created in itemService.Created)
         {
-            if (!_database!.Templates.Items.TryGetValue(created.Id, out var item) ||
-                !_database.Templates.Items.TryGetValue(created.BaseTpl, out var baseItem))
+            if (!templateTable.Items.TryGetValue(created.Id, out var item) ||
+                !templateTable.Items.TryGetValue(created.BaseTpl, out var baseItem))
             {
                 continue;
             }
@@ -251,7 +252,7 @@ public class DRIPVerificationService(
 
         foreach (var traderId in new[] { DripTraders.Moron, DripTraders.Georgia })
         {
-            if (!_database!.Traders.TryGetValue(traderId, out var trader) || trader.Suits is null)
+            if (!tradersTable.TryGetValue(traderId, out var trader) || trader.Suits is null)
             {
                 continue;
             }
@@ -276,14 +277,14 @@ public class DRIPVerificationService(
 
         foreach (var questId in questService.Created)
         {
-            if (!_database!.Templates.Quests.TryGetValue(questId, out var quest))
+            if (!templateTable.Quests.TryGetValue(questId, out var quest))
             {
                 continue;
             }
 
             foreach (var target in ItemTargetsOf(quest))
             {
-                if (!_database.Templates.Items.ContainsKey(target))
+                if (!templateTable.Items.ContainsKey(target))
                 {
                     dangling.Add($"{quest.QuestName ?? questId.ToString()} -> {target}");
                 }
@@ -318,7 +319,7 @@ public class DRIPVerificationService(
 
         foreach (var questId in questService.Created)
         {
-            if (!_database!.Templates.Quests.TryGetValue(questId, out var quest))
+            if (!templateTable.Quests.TryGetValue(questId, out var quest))
             {
                 continue;
             }
@@ -327,7 +328,7 @@ public class DRIPVerificationService(
 
             // The quest's own trader. A MongoId on the model, so it cannot be malformed by the time it gets here -
             // only pointed at a trader that does not exist.
-            if (!_database.Traders.ContainsKey(quest.TraderId))
+            if (!tradersTable.ContainsKey(quest.TraderId))
             {
                 dangling.Add($"{name} is sold by {quest.TraderId}, which isn't a trader here");
             }
@@ -351,7 +352,7 @@ public class DRIPVerificationService(
                         continue;
                     }
 
-                    if (!_database.Traders.ContainsKey(new MongoId(reference)))
+                    if (!tradersTable.ContainsKey(new MongoId(reference)))
                     {
                         dangling.Add($"{name} rewards {reward.Type} in {bucket} to {reference}, which isn't a trader here");
                     }
@@ -383,7 +384,7 @@ public class DRIPVerificationService(
     /// </remarks>
     private void VerifyArmourHasAFleaPreset(List<string> problems)
     {
-        var presets = _database!.Globals?.ItemPresets;
+        var presets = globalTable.ItemPresets;
         if (presets is null)
         {
             problems.Add("globals has no ItemPresets table, so nothing sold on the flea can carry its plates.");
@@ -523,7 +524,7 @@ public class DRIPVerificationService(
         var dripItems = itemService.Created.ToDictionary(item => item.Id, item => item.RelativeName);
         var bare = new List<string>();
 
-        foreach (var (traderId, trader) in _database!.Traders)
+        foreach (var (traderId, trader) in tradersTable)
         {
             var assort = trader.Assort?.Items;
             if (assort is null)
@@ -591,7 +592,7 @@ public class DRIPVerificationService(
     {
         var slots = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-        if (!_database!.Templates.Items.TryGetValue(template, out var item))
+        if (!templateTable.Items.TryGetValue(template, out var item))
         {
             return slots;
         }
@@ -626,7 +627,7 @@ public class DRIPVerificationService(
         return field switch
         {
             "target" => reward.Target,
-            "traderId" => reward.TraderId as string,
+            "traderId" => reward.TraderId?.ToString(),
             _ => null
         };
     }
@@ -669,7 +670,7 @@ public class DRIPVerificationService(
     /// </summary>
     private void VerifyEveryItemHasAHandbookPrice(List<string> problems)
     {
-        var handbookIds = _database!.Templates.Handbook.Items
+        var handbookIds = templateTable.Handbook.Items
             .Where(entry => entry.Price is > 0)
             .Select(entry => entry.Id)
             .ToHashSet();
@@ -714,7 +715,7 @@ public class DRIPVerificationService(
     /// </remarks>
     private void VerifyEveryItemHasAName(List<string> problems)
     {
-        if (!_database!.Locales.Global.TryGetValue("en", out var english))
+        if (!localeTable.Global.TryGetValue("en", out var english))
         {
             return;
         }
@@ -759,7 +760,7 @@ public class DRIPVerificationService(
 
         foreach (var created in itemService.Created)
         {
-            if (!_database!.Templates.Items.TryGetValue(created.Id, out var item))
+            if (!templateTable.Items.TryGetValue(created.Id, out var item))
             {
                 continue;
             }
@@ -808,7 +809,7 @@ public class DRIPVerificationService(
 
         foreach (var traderId in new[] { DripTraders.Moron, DripTraders.Georgia })
         {
-            if (!_database!.Traders.TryGetValue(traderId, out var trader) || trader.Suits is null)
+            if (!tradersTable.TryGetValue(traderId, out var trader) || trader.Suits is null)
             {
                 continue;
             }
@@ -832,7 +833,7 @@ public class DRIPVerificationService(
                         continue;
                     }
 
-                    if (!_database.Templates.Quests.ContainsKey(new MongoId(questId)))
+                    if (!templateTable.Quests.ContainsKey(new MongoId(questId)))
                     {
                         dangling.Add($"{suit.SuiteId} -> {questId}");
                     }

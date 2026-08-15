@@ -1,9 +1,8 @@
 using System.Reflection;
 using DRIP.Utils;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
-using SPTarkov.Server.Core.Models.Spt.Server;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Services;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using Path = System.IO.Path;
 
 namespace DRIP.Services;
@@ -17,13 +16,12 @@ namespace DRIP.Services;
 [Injectable(InjectionType.Singleton)]
 public class DRIPCustomLocaleService(
     ISptLogger<DRIPCustomLocaleService> logger,
-    DatabaseService databaseService,
+    // 4.1: LocaleTable injected directly; LazyLoad<>.AddTransformer still exists on it.
+    LocaleTable localeTable,
     DRIPBundleService bundleService
 )
 {
     private const string FallbackLocale = "en";
-
-    private DatabaseTables? _database;
 
     /// <summary>
     /// Loads locale files from one content pack.
@@ -34,8 +32,6 @@ public class DRIPCustomLocaleService(
     /// </param>
     public Task CreateCustomLocales(Assembly assembly, string contentPackPath)
     {
-        _database ??= databaseService.GetTables();
-
         var finalDir = bundleService.GetModPaths(assembly).Resolve(contentPackPath);
         if (!Directory.Exists(finalDir))
         {
@@ -82,7 +78,7 @@ public class DRIPCustomLocaleService(
 
         var localesTouched = 0;
 
-        foreach (var (localeCode, lazyLocale) in _database.Locales.Global)
+        foreach (var (localeCode, lazyLocale) in localeTable.Global)
         {
             // Fall back to English rather than leaving a locale untouched: a Russian player seeing English quest
             // text is a far better outcome than seeing a raw MongoId.

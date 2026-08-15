@@ -1,12 +1,12 @@
 using System.Reflection;
 using DRIP.Models;
 using DRIP.Utils;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
-using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Enums;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Services;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using Path = System.IO.Path;
 
 namespace DRIP.Services;
@@ -18,7 +18,8 @@ namespace DRIP.Services;
 [Injectable(InjectionType.Singleton)]
 public class DripConfigService(
     ISptLogger<DripConfigService> logger,
-    DatabaseService databaseService,
+    // 4.1: no DatabaseService - inject the one table this service touches.
+    TradersTable tradersTable,
     ModHelper modHelper
 )
 {
@@ -84,8 +85,7 @@ public class DripConfigService(
             percentage = 0;
         }
 
-        var database = databaseService.GetTables();
-        if (!database.Traders.TryGetValue(Traders.RAGMAN, out var ragman) || ragman.Suits is null)
+        if (!tradersTable.TryGetValue(Traders.RAGMAN, out var ragman) || ragman.Suits is null)
         {
             logger.Warning("[DRIP] Ragman has no clothing list, so 'vanillaClothingPricePercentage' did nothing.");
             return;

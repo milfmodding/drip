@@ -1,19 +1,23 @@
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
-using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Models.Utils;
 using System.Reflection;
 
 using DRIP.Services;
 
 namespace DRIP
 {
-    public record ModMetadata : AbstractModMetadata
+    // 4.1: mod metadata is the IModMetadata interface, not an abstract record. The interface
+    // wants get;set; on everything, so init-only defaults are gone; values are set in the
+    // constructor instead. IsBundleMod is no longer on the interface - kept as a plain
+    // property because 4.1's BundleLoader serves whatever a mod registers regardless.
+    public class ModMetadata : IModMetadata
     {
-        public override string Name { get; init; } = "DRIP Core";
-        public override string Author { get; init; } = "MILF Modding Team";
-        public override List<string>? Contributors { get; init; } =
+        public string Name { get; init; } = "DRIP Core";
+        public string Author { get; init; } = "MILF Modding Team";
+        public List<string>? Contributors { get; init; } =
         [
             "Sophia",
             "Colette Blackpaw",
@@ -23,17 +27,18 @@ namespace DRIP
             "Virtual"
             // TODO: anyone I missed?
         ];
-        public override SemanticVersioning.Version Version { get; init; } = new("2.0.0");
-        public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.1.0");
+        public SemanticVersioning.Version Version { get; init; } = new("2.0.0");
+        public SemanticVersioning.Range SptVersion { get; init; } = new("~4.1.0");
 
 
-        public override List<string>? Incompatibilities { get; init; }
+        public List<string>? Incompatibilities { get; init; }
 
-        public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; } = new();
-        public override string? Url { get; init; }
-        public override bool? IsBundleMod { get; init; } = true;
-        public override string License { get; init; } = "MIT";
-        public override string ModGuid { get; init; } = "gov.milfmodding.drip.core";
+        public Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; } = new();
+        public string? Url { get; init; }
+        public bool HasPrepatcher { get; init; }
+        public string License { get; init; } = "MIT";
+        public string ModGuid { get; init; } = "gov.milfmodding.drip.core";
+        public bool IsBundleMod = true;
     }
 
     // LOAD ORDER IS LOAD-BEARING. Do not move this later without reading the whole comment.
@@ -82,20 +87,22 @@ namespace DRIP
     // Fixing this properly needs a split - templates registered early, the assort pass late - because the profile
     // constraint (before 700,000) and the Fence constraint (after 800,000) cannot both be met by one slot. That is a
     // real change and not worth making blind; profiles surviving a restart beat Fence duplicates.
-    //
-    // THE "+ 2" IS NOT ARBITRARY - do not renumber it to + 0 or + 1. WTT-ServerCommonLib registers at
-    // PostDBModLoader + 1, and DRIP grew out of the WTT template, so + 2 has always meant "one slot after WTT".
-    // The original priority was PostSptModLoader + 2, which sat one after WTTServerCommonLibPostSptLoad at
-    // PostSptModLoader + 1; keeping the same offset when moving stages preserved that relationship by construction.
-    // DRIP declares no dependency on WTT and vendors what it needs, so this is a convention rather than a
-    // requirement - but it is a convention two mods share, and collapsing it would reorder them silently.
+    // (4.1 note: the old "+2 after WTT-ServerCommonLib" offset is retired - WTT's tooling was an abandoned
+    // pre-4.1 experiment and the slot is now measured against vanilla priorities directly. See
+    // docs/SPT-4.1-MIGRATION.md.)
     //
     // Mods at a HIGHER priority than us are the live version of the cost above, not a hypothetical: on the 4.0.11
     // install EcoAttachmentEmporium loads at PostDBModLoader + 20, i.e. after us. Anything it adds to a trader's
     // assort is invisible to DRIPTraderAssortService. Harmless while the two mods touch different item classes
     // (attachments vs clothing and armour), and the first thing to suspect if a DRIP retexture of an item some other
     // mod sells stops appearing.
-    [Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 2)]
+    // THE 4.1 SLOT IS Routers + 50_000 (= 450,000), derived in docs/SPT-4.1-MIGRATION.md:
+    // 4.1 removed both mod-loader enum slots, so the slot is now measured against vanilla
+    // priorities directly. DRIP needs: after DB hydration, before SaveCallbacks (600,000,
+    // profile validation - the original bug this fixed) and before HandbookCallbacks
+    // (500,000), TraderCallbacks (700,000, resupply stamps) and RagfairCallbacks (900,000,
+    // flea static prices). 450,000 satisfies all with room either side.
+    [Injectable(TypePriority = OnLoadOrder.Routers + 50_000)]
     public class DRIP(
         ISptLogger<DRIP> logger,
         ModHelper modHelper,
@@ -109,7 +116,7 @@ namespace DRIP
         DripConfigService dripConfigService,
         DRIPVerificationService dripVerificationService) : IOnLoad
     {
-        public async Task OnLoad()
+        public async Task OnLoadAsync(CancellationToken cancellationToken)
         {
             var assembly = Assembly.GetExecutingAssembly();
 

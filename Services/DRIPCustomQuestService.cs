@@ -5,10 +5,9 @@ using DRIP.Utils;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SPTarkov.Server.Core.Models.Spt.Server;
-using SPTarkov.Server.Core.Models.Utils;
+using SPTarkov.Common.Models.Logging;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Routers;
-using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
 using Path = System.IO.Path;
 
@@ -24,7 +23,7 @@ namespace DRIP.Services;
 [Injectable(InjectionType.Singleton)]
 public class DRIPCustomQuestService(
     ISptLogger<DRIPCustomQuestService> logger,
-    DatabaseService databaseService,
+    TemplateTable templateTable,
     DRIPBundleService bundleService,
     ImageRouter imageRouter,
     HashUtil hashUtil
@@ -33,7 +32,6 @@ public class DRIPCustomQuestService(
     /// <summary>Where the client asks for quest icons.</summary>
     private const string QuestIconRoute = "/files/quest/icon";
 
-    private DatabaseTables? _database;
 
     /// <summary>
     /// Loads quest configs and icons from one content pack.
@@ -65,7 +63,6 @@ public class DRIPCustomQuestService(
     /// </summary>
     public void ApplyAll()
     {
-        _database ??= databaseService.GetTables();
 
         foreach (var (directory, contentPackPath) in _pending)
         {
@@ -191,14 +188,14 @@ public class DRIPCustomQuestService(
 
         MongoId id = questId;
 
-        if (_database!.Templates.Quests.ContainsKey(id))
+        if (templateTable.Quests.ContainsKey(id))
         {
             logger.Error(
                 $"[DRIP] {relativeName}: quest {questId} already exists - another quest has claimed that ID.");
             return false;
         }
 
-        _database.Templates.Quests[id] = quest;
+        templateTable.Quests[id] = quest;
         _created.Add(id);
 
         return true;
@@ -315,7 +312,7 @@ public class DRIPCustomQuestService(
                 }
 
                 var derived = DripIds.Derive(hashUtil, value).GetAwaiter().GetResult();
-                if (!_database!.Templates.Items.ContainsKey(derived))
+                if (!templateTable.Items.ContainsKey(derived))
                 {
                     return element;
                 }

@@ -56,8 +56,9 @@ old answer was `PostDBModLoader + 2` (400,002). In 4.1 the equivalent window is
 wants to precede `HandbookCallbacks` (500,000), `TraderCallbacks` (700,000, resupply
 timestamps) and `RagfairCallbacks` (900,000, flea static prices). A priority in
 (400,000, 500,000) - e.g. `OnLoadOrder.Routers + 50000` = 450,000 - satisfies every
-constraint with room either side. The "+2 after WTT" convention is void until WTT
-publishes its 4.1 priority; re-derive then.
+constraint with room either side. **The old "+2 after WTT" convention is retired
+outright (Sophia's ruling, 2026-08-15): the WTT tooling was an abandoned pre-4.1
+experiment, so there is nothing to re-derive against.**
 
 **Not yet verified:** whether mods' `IOnLoad` types actually interleave with these
 stages by priority (the enum suggests yes). The proof is running DRIP on the 4.1

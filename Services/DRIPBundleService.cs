@@ -1,10 +1,9 @@
 using System.Reflection;
 using SPTarkov.DI.Annotations;
-using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Loaders;
-using SPTarkov.Server.Core.Models.Spt.Server;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Services;
+using SPTarkov.Server.Core.Models.Spt.Bundles;
+using SPTarkov.Server.Core.Services.Server;
 using Path = System.IO.Path;
 
 namespace DRIP.Services;
@@ -79,7 +78,10 @@ public class DRIPBundleService(
             var fullBundleFile = new FileInfo(bundleFile);
             var bundleKey = Path.GetRelativePath(paths.ModBundlePath, fullBundleFile.FullName).Replace("\\", "/");
             var bundleLocalPath = Path.Join(paths.ModBundlePath, bundleKey).Replace("\\", "/");
-            var bundleHash = await bundleHashCacheService.CalculateMatchAndStoreHash(bundleLocalPath);
+            // 4.1: hash is async and takes a token; bundle registration carries none, so None here means
+            // "not cancellable", same as the 4.0 synchronous call it replaces.
+            var bundleHash = await bundleHashCacheService.CalculateMatchAndStoreHashAsync(
+                bundleLocalPath, CancellationToken.None);
 
             var dependencies = new List<string>(DefaultDependencies);
             if (extraDependencies is not null && extraDependencies.TryGetValue(fullBundleFile.Name, out var extra))
@@ -87,11 +89,17 @@ public class DRIPBundleService(
                 dependencies = [.. dependencies.Concat(extra).Distinct()];
             }
 
-            bundleLoader.AddBundle(bundleKey, new BundleInfo(paths.ModPath, new BundleManifestEntry
+            // 4.1: BundleInfo has no constructor - populate its properties instead.
+            bundleLoader.AddBundle(bundleKey, new BundleInfo
             {
-                Key = bundleKey,
-                DependencyKeys = dependencies
-            }, bundleHash));
+                ModPath = paths.ModPath,
+                Crc = bundleHash,
+                Bundle = new BundleManifestEntry
+                {
+                    Key = bundleKey,
+                    DependencyKeys = dependencies,
+                },
+            });
 
             registered[fullBundleFile.Name] = bundleKey;
         }

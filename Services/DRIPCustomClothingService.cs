@@ -2,12 +2,11 @@ using System.Reflection;
 using System.Text.Json;
 using DRIP.Models;
 using DRIP.Utils;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SPTarkov.Server.Core.Models.Spt.Server;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Services;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
 using Path = System.IO.Path;
@@ -23,7 +22,11 @@ namespace DRIP.Services;
 [Injectable(InjectionType.Singleton)]
 public class DRIPCustomClothingService(
     ISptLogger<DRIPCustomClothingService> logger,
-    DatabaseService databaseService,
+    // 4.1: tables injected directly, replacing DatabaseService.GetTables().
+    TemplateTable templateTable,
+    TradersTable tradersTable,
+    BotTable botTable,
+    LocaleTable localeTable,
     DRIPBundleService bundleService,
     HashUtil hashUtil,
     ICloner cloner,
@@ -130,8 +133,6 @@ public class DRIPCustomClothingService(
     private readonly List<BotGarment> _botBodies = [];
     private readonly List<BotGarment> _botFeet = [];
 
-    private DatabaseTables? _database;
-
     /// <summary>
     /// Loads clothing configs from one content pack.
     /// </summary>
@@ -141,7 +142,6 @@ public class DRIPCustomClothingService(
     /// </param>
     public async Task CreateCustomClothing(Assembly assembly, string contentPackPath)
     {
-        _database ??= databaseService.GetTables();
         _config ??= configService.Get(assembly);
 
         var paths = bundleService.GetModPaths(assembly);
@@ -214,12 +214,6 @@ public class DRIPCustomClothingService(
         DRIPBundleService.ModPaths paths,
         List<string> missingModelBundle)
     {
-        if (_database is null)
-        {
-            logger.Error($"[DRIP] {relativeName}: database is not available.");
-            return false;
-        }
-
         if (config.HasUnrecognisedType)
         {
             logger.Error($"[DRIP] {relativeName}: 'type' must be \"top\" or \"bottom\" - found \"{config.TypeRaw}\".");
@@ -266,7 +260,7 @@ public class DRIPCustomClothingService(
             return false;
         }
 
-        if (!_database.Traders.TryGetValue(traderId, out var trader))
+        if (!tradersTable.TryGetValue(traderId, out var trader))
         {
             logger.Error($"[DRIP] {relativeName}: trader {config.TraderId} resolved to {traderId}, which isn't in the database.");
             return false;
@@ -302,7 +296,7 @@ public class DRIPCustomClothingService(
             return false;
         }
 
-        _database.Templates.Customization[suiteId] = suite;
+        templateTable.Customization[suiteId] = suite;
 
         AddSuiteToTrader(config, trader, traderId, offerId, suiteId);
         AddSuiteLocale(config, suiteId);
@@ -338,14 +332,14 @@ public class DRIPCustomClothingService(
             return null;
         }
 
-        _database!.Templates.Customization[bodyId] = body;
-        _database.Templates.Customization[handsId] = hands;
+        templateTable.Customization[bodyId] = body;
+        templateTable.Customization[handsId] = hands;
 
         // Bots pick a body and a pair of feet independently from weighted pools, so the body id goes in - not the
         // suite. Hands follow whatever body was chosen, so they are not pooled separately.
         _botBodies.Add(new BotGarment(stem, bodyId, config.VanillaOrigin, config.BotTypes));
 
-        var suite = cloner.Clone(_database.Templates.Customization[TopSuiteTemplate]);
+        var suite = cloner.Clone(templateTable.Customization[TopSuiteTemplate]);
         suite.Id = suiteId;
         suite.Name = $"{stem}_suite";
         suite.Properties.Side = AllSides;
@@ -380,11 +374,11 @@ public class DRIPCustomClothingService(
             return null;
         }
 
-        _database!.Templates.Customization[feetId] = feet;
+        templateTable.Customization[feetId] = feet;
 
         _botFeet.Add(new BotGarment(stem, feetId, config.VanillaOrigin, config.BotTypes));
 
-        var suite = cloner.Clone(_database.Templates.Customization[BottomSuiteTemplate]);
+        var suite = cloner.Clone(templateTable.Customization[BottomSuiteTemplate]);
         suite.Id = suiteId;
         suite.Name = $"{stem}_suite";
         suite.Properties.Side = AllSides;
@@ -395,7 +389,7 @@ public class DRIPCustomClothingService(
 
     private CustomizationItem? CloneCustomization(MongoId template, MongoId newId, string name, string bundleKey)
     {
-        if (_database is null || !_database.Templates.Customization.TryGetValue(template, out var source))
+        if (!templateTable.Customization.TryGetValue(template, out var source))
         {
             return null;
         }
@@ -505,7 +499,7 @@ public class DRIPCustomClothingService(
     /// </summary>
     public void ApplyBotAppearance()
     {
-        if (_database is null || (_botBodies.Count == 0 && _botFeet.Count == 0))
+        if (_botBodies.Count == 0 && _botFeet.Count == 0)
         {
             return;
         }
@@ -532,7 +526,7 @@ public class DRIPCustomClothingService(
 
         foreach (var botType in ClothedBotTypes)
         {
-            if (!_database.Bots.Types.TryGetValue(botType, out var bot) || bot.BotAppearance is null)
+            if (!botTable.Types.TryGetValue(botType, out var bot) || bot.BotAppearance is null)
             {
                 missingBotTypes.Add(botType);
                 continue;
@@ -652,7 +646,7 @@ public class DRIPCustomClothingService(
 
         foreach (var customizationId in pool.Keys)
         {
-            if (!_database!.Templates.Customization.TryGetValue(customizationId, out var entry))
+            if (!templateTable.Customization.TryGetValue(customizationId, out var entry))
             {
                 continue;
             }
@@ -800,7 +794,7 @@ public class DRIPCustomClothingService(
         }
 
         // Confirm it genuinely landed in the database, rather than trusting that we recorded it.
-        if (_database is null || !_database.Templates.Customization.ContainsKey(match.Id))
+        if (!templateTable.Customization.ContainsKey(match.Id))
         {
             logger.Error(
                 $"[DRIP] Bot appearance pin names the {what} \"{stem}\", which was loaded but isn't in the " +
@@ -815,12 +809,7 @@ public class DRIPCustomClothingService(
 
     private void AddSuiteLocale(ContentItemConfig config, MongoId suiteId)
     {
-        if (_database is null)
-        {
-            return;
-        }
-
-        foreach (var (localeCode, lazyLocale) in _database.Locales.Global)
+        foreach (var (localeCode, lazyLocale) in localeTable.Global)
         {
             // Captured per locale so the transformer doesn't close over the loop variable.
             var code = localeCode;

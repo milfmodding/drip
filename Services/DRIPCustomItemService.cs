@@ -2,18 +2,15 @@ using System.Reflection;
 using System.Text.Json.Serialization;
 using DRIP.Models;
 using DRIP.Utils;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
-using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Loaders;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Models.Spt.Server;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Servers;
-using SPTarkov.Server.Core.Services;
-using SPTarkov.Server.Core.Services.Mod;
+using SPTarkov.Server.Core.Models.Spt.Tables;
+using SPTarkov.Server.Core.Services.Modding.Custom;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
 using Path = System.IO.Path;
@@ -23,8 +20,11 @@ namespace DRIP.Services;
 [Injectable(InjectionType.Singleton)]
 public class DRIPCustomItemService(
     ISptLogger<DRIPCustomItemService> logger,
+    // 4.1: SPT's own item-creation service moved to Services.Modding.Custom; the database
+    // server is gone and its tables are injected directly.
     CustomItemService customItemService,
-    DatabaseServer databaseServer,
+    TemplateTable templateTable,
+    BotTable botTable,
     DRIPBundleService bundleService,
     DRIPTraderAssortService assortService,
     HashUtil hashUtil,
@@ -32,8 +32,6 @@ public class DRIPCustomItemService(
     DripConfigService configService
 )
 {
-    private DatabaseTables? _database;
-
     private DripConfig? _config;
 
     /// <summary>
@@ -65,7 +63,6 @@ public class DRIPCustomItemService(
     /// </param>
     public async Task CreateCustomItems(Assembly assembly, string contentPackPath)
     {
-        _database ??= databaseServer.GetTables();
         _config ??= configService.Get(assembly);
 
         var paths = bundleService.GetModPaths(assembly);
@@ -147,12 +144,6 @@ public class DRIPCustomItemService(
         string packName,
         List<string> missingModelBundle)
     {
-        if (_database is null)
-        {
-            logger.Error($"[DRIP] {relativeName}: database is not available.");
-            return false;
-        }
-
         if (config.HasUnrecognisedType)
         {
             var hint = config.TypeRaw!.Trim().ToLower() switch
@@ -216,7 +207,7 @@ public class DRIPCustomItemService(
         }
 
         MongoId baseTpl = config.BasedOn;
-        if (!_database.Templates.Items.TryGetValue(baseTpl, out var baseItem))
+        if (!templateTable.Items.TryGetValue(baseTpl, out var baseItem))
         {
             logger.Error($"[DRIP] {relativeName}: 'basedOn' item {baseTpl} is not in the item database.");
             return false;
@@ -228,7 +219,7 @@ public class DRIPCustomItemService(
             ? new MongoId(config.Id)
             : await DripIds.Derive(hashUtil, Path.GetFileNameWithoutExtension(configFile.Name));
 
-        if (_database.Templates.Items.ContainsKey(newItemId))
+        if (templateTable.Items.ContainsKey(newItemId))
         {
             logger.Error(
                 $"[DRIP] {relativeName}: item ID {newItemId} already exists. Another file with the same name has " +
@@ -245,7 +236,7 @@ public class DRIPCustomItemService(
             return false;
         }
 
-        var baseHandbookEntry = _database.Templates.Handbook.Items.FirstOrDefault(entry => entry.Id == baseTpl);
+        var baseHandbookEntry = templateTable.Handbook.Items.FirstOrDefault(entry => entry.Id == baseTpl);
         if (baseHandbookEntry is null && (config.HandbookPrice is null || config.CopyOriginalOffers is not false))
         {
             logger.Warning(
@@ -253,16 +244,23 @@ public class DRIPCustomItemService(
                 "category or price. Set 'handbookPrice' explicitly if it shows up wrong.");
         }
 
-        _database.Templates.Prices.TryGetValue(baseTpl, out var baseFleaPrice);
+        templateTable.Prices.TryGetValue(baseTpl, out var baseFleaPrice);
 
         var itemDetails = new NewItemFromCloneDetails
         {
             ItemTplToClone = baseTpl,
             NewId = newItemId,
 
+            // 4.1 makes this required; it names the entry in SPT's mod-item cache rather than
+            // anything the player reads, so the config filename (already the item's identity)
+            // is the right value.
+            NewItemName = Path.GetFileNameWithoutExtension(configFile.Name),
+
             // Neither of these is author-facing. Both default from the cloned item, which is what 3.x got for free
             // by cloning the whole template and only rewriting its id.
-            ParentId = baseItem.Parent.ToString(),
+            // 4.1: ParentId is a MongoId now, not a string, and the call carries the mod's
+            // assembly so SPT can attribute the item to the mod that created it.
+            ParentId = baseItem.Parent,
             HandbookParentId = baseHandbookEntry?.ParentId.ToString(),
 
             HandbookPriceRoubles = config.HandbookPrice ?? baseHandbookEntry?.Price,
@@ -272,7 +270,8 @@ public class DRIPCustomItemService(
             OverrideProperties = overrideProperties
         };
 
-        var result = customItemService.CreateItemFromClone(itemDetails);
+        var result = customItemService.CreateItemFromClone(
+            itemDetails, Assembly.GetExecutingAssembly());
         if (result.Success != true)
         {
             var errors = result.Errors is { Count: > 0 } ? string.Join("; ", result.Errors) : "no reason given";
@@ -453,12 +452,12 @@ public class DRIPCustomItemService(
     /// </summary>
     private void ApplyCopiedProperties(ContentItemConfig config, MongoId newItemId, string relativeName)
     {
-        if (config.CopyPropertiesFrom is null || _database is null)
+        if (config.CopyPropertiesFrom is null)
         {
             return;
         }
 
-        if (!_database.Templates.Items.TryGetValue(newItemId, out var newItem) || newItem.Properties is null)
+        if (!templateTable.Items.TryGetValue(newItemId, out var newItem) || newItem.Properties is null)
         {
             return;
         }
@@ -466,7 +465,7 @@ public class DRIPCustomItemService(
         foreach (var (sourceTpl, propertyNames) in config.CopyPropertiesFrom)
         {
             if (!MongoId.IsValidMongoId(sourceTpl) ||
-                !_database.Templates.Items.TryGetValue(new MongoId(sourceTpl), out var sourceItem) ||
+                !templateTable.Items.TryGetValue(new MongoId(sourceTpl), out var sourceItem) ||
                 sourceItem.Properties is null)
             {
                 logger.Warning(
@@ -532,7 +531,7 @@ public class DRIPCustomItemService(
     /// </summary>
     public void ApplyInheritedSlotFiltersAndConflicts()
     {
-        if (_database is null || _retexturesByBase.Count == 0)
+        if (_retexturesByBase.Count == 0)
         {
             return;
         }
@@ -540,7 +539,7 @@ public class DRIPCustomItemService(
         var conflictsUpdated = 0;
         var filtersUpdated = 0;
 
-        foreach (var item in _database.Templates.Items.Values)
+        foreach (var item in templateTable.Items.Values)
         {
             var properties = item.Properties;
             if (properties is null)
@@ -608,7 +607,7 @@ public class DRIPCustomItemService(
     /// </summary>
     public void ApplyBotWeightings()
     {
-        if (_database is null || _retexturesByBase.Count == 0)
+        if (_retexturesByBase.Count == 0)
         {
             return;
         }
@@ -623,7 +622,7 @@ public class DRIPCustomItemService(
         var lootEntries = 0;
         var modEntries = 0;
 
-        foreach (var bot in _database.Bots.Types.Values)
+        foreach (var bot in botTable.Types.Values)
         {
             var inventory = bot?.BotInventory;
             if (inventory is null)

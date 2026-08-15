@@ -4,9 +4,8 @@ using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SPTarkov.Server.Core.Models.Spt.Server;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Services;
+using SPTarkov.Common.Models.Logging;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Utils.Cloners;
 
 namespace DRIP.Services;
@@ -27,7 +26,7 @@ namespace DRIP.Services;
 [Injectable(InjectionType.Singleton)]
 public class DRIPTraderAssortService(
     ISptLogger<DRIPTraderAssortService> logger,
-    DatabaseService databaseService,
+    TradersTable tradersTable,
     ICloner cloner
 )
 {
@@ -51,7 +50,6 @@ public class DRIPTraderAssortService(
     /// </summary>
     public IReadOnlyList<UnsoldItem> Unsold => _unsold;
 
-    private DatabaseTables? _database;
 
     /// <summary>An item waiting to be put on sale, recorded during content pack loading.</summary>
     private record PendingOffer(
@@ -100,7 +98,6 @@ public class DRIPTraderAssortService(
             return;
         }
 
-        _database ??= databaseService.GetTables();
 
         var index = BuildIndex();
 
@@ -113,7 +110,7 @@ public class DRIPTraderAssortService(
         {
             try
             {
-                if (!_database.Traders.TryGetValue(pending.TraderId, out var destination))
+                if (!tradersTable.TryGetValue(pending.TraderId, out var destination))
                 {
                     logger.Error($"[DRIP] {pending.RelativeName}: trader {pending.TraderId} isn't in the database.");
                     failed++;
@@ -167,7 +164,7 @@ public class DRIPTraderAssortService(
     {
         var index = new List<TraderAssortIndex>();
 
-        foreach (var (traderId, trader) in _database!.Traders)
+        foreach (var (traderId, trader) in tradersTable)
         {
             if (trader.Assort?.Items is null || traderId == DripTraders.Moron || traderId == DripTraders.Georgia)
             {
