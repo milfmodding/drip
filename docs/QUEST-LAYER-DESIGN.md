@@ -93,12 +93,32 @@ excepted), so our reference-resolution stays authoritative regardless.
 
 1. ~~Settle open questions 1-2~~ **DONE 2026-08-15** — see above; both settled in favour of
    the design as written, no shape changes needed.
-2. `DRIPQuestFormat` model + loader path in `DRIPCustomQuestService` (new branch, old
-   branch kept until the 19 are converted).
-3. Converter `--quests` mode for the existing corpus; flip; retire the old path.
-4. Validation: extend `drip check` (DRIP-5xx) for quest references — proposal §6's list,
-   minus what's now structural (ids can no longer disagree with locale keys by
-   construction).
+2. ~~`DRIPQuestFormat` model + loader path in `DRIPCustomQuestService`~~ **DONE 2026-08-15**
+   (95ba62f) — structural discriminator (`"objectives"` member) routes a file to the
+   expander; the legacy blob path is retained for Glock Wick: Part 1.
+3. ~~Converter `--quests` mode; flip~~ **DONE 2026-08-15** (0b98d20, 322ae3d) — 18/19
+   converted (Glock Wick: Part 1 stays legacy: Started Item reward outside the friendly
+   vocabulary); the flip rewrote 66 item gates to the filename-derived ids and filtered
+   the blob to its one-quest remainder, verified on a live server (19 quests,
+   self-check unchanged). The Python-side derivation was verified byte-for-byte against
+   the real SPTarkov `HashUtil` before rewriting.
+4. ~~Validation: extend `drip check` (DRIP-5xx)~~ **DONE 2026-08-15** — codes below.
 5. `drip new quest` once Colette picks.
 
-Estimated 2-4 afternoons end to end; step 1 first because it can change step 2's shape.
+## drip check codes for quests
+
+All run over the friendly files only; the legacy blob is the converter's business.
+Cross-pack dependencies aggregate to one message per pack (CONFIG-SCHEMA-v2 §8 rule 6).
+
+| Code | Severity | Catches | Example shape |
+|---|---|---|---|
+| `DRIP-503` | error | `trader`, or a `standingWith`/`unlock` reward, names a trader that doesn't resolve | `There's no trader called "gerogia".` + did-you-mean |
+| `DRIP-504` | error | a `handover` or `item` reference is neither a pack filename nor a real item id (checked against the packs plus the game's database when one is found) | `The handover names "SLICK_CADPT_ARMOR", which is neither an item ID nor a DRIP filename.` |
+| `DRIP-505` | error | `requires.quest` is a quest nothing defines — or the quest requiring itself | `This quest requires "A_WILD_NGHT"...` + did-you-mean over the pack's quest filenames |
+| `DRIP-506` | warning | `image` names a pack icon whose `.png` isn't beside the quest configs (MongoId-stemmed names are vanilla icons served by the client — not checked) | `"image" names "Boozy", but there is no Boozy.png...` |
+| `DRIP-507` | warning | an objective has no `text`, so players would read the auto-generated sentence | names the exact auto-text they'd see |
+| `DRIP-508` | warning | one per pack: quests reference items no pack being checked ships | names the items; checking all packs together clears it if they resolve |
+
+`DRIP-502` (item gates naming a quest nothing defines) predates these and now resolves
+both spellings of a friendly quest's id — the derived MongoId or the bare filename —
+because the loader resolves filenames the same way.

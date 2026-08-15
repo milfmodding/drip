@@ -164,12 +164,48 @@ def is_mongo_id(s) -> bool:
     return isinstance(s, str) and len(s) == 24 and all(c in "0123456789abcdef" for c in s)
 
 
+def derive_id(stem: str) -> str:
+    """The id an item filename becomes. Same formula as the server's DripIds (no role)."""
+    import hashlib
+    return hashlib.sha1(stem.encode("utf-8")).hexdigest()[:24].lower()
+
+
+def derive_quest_id(stem: str) -> str:
+    """The id a quest FILENAME becomes: the server's DripIds.Derive(stem, "quest").
+
+    Verified byte-for-byte against the real SPTarkov Server.Core HashUtil on 2026-08-15
+    (one-off C# probe over all 18 friendly stems plus the item-role form). If DripIds
+    ever changes, this must be re-verified the same way - the flip's gates brick
+    silently when the two sides drift. tools/convert-legacy.py carries the same mirror.
+    """
+    import hashlib
+    return hashlib.sha1(f"{stem}:quest".encode("utf-8")).hexdigest()[:24].lower()
+
+
+def looks_like_pack_item(s) -> bool:
+    """SCREAMING_SNAKE_CASE with at least one underscore - the shape every DRIP filename has.
+
+    Only used to decide how to word an error and whether a missing reference is probably
+    a cross-pack one, never to change what loads. Mirrors the C# loader's heuristic.
+    """
+    return (isinstance(s, str) and "_" in s
+            and all(c.isascii() and (c.isalnum() or c == "_") for c in s)
+            and not any(c.islower() for c in s))
+
+
 # ------------------------------------------------------------------------------------------
 # check
 # ------------------------------------------------------------------------------------------
 
 def quest_ids_in(packs) -> set[str]:
-    """Every quest id defined by the packs being checked, from their CustomQuests files."""
+    """Every quest id defined by the packs being checked, from their CustomQuests files.
+
+    Two formats share that folder. A legacy file is a blob keyed by quest id, so its keys
+    are ids. A friendly file is one quest whose id DERIVES from its filename - the same
+    SHA1 rule the loader uses, verified 2026-08-15 - and a hand-written gate may quote
+    either the derived id or the bare filename, so both count. Missing the derivation was
+    the flip's regression: every rewritten gate would have read as undefined.
+    """
     ids: set[str] = set()
     for pack in packs:
         qdir = pack / "CustomQuests"
@@ -180,10 +216,15 @@ def quest_ids_in(packs) -> set[str]:
                 data = json.loads(strip_jsonc(f.read_text(encoding="utf-8-sig")))
             except json.JSONDecodeError:
                 continue
-            if isinstance(data, dict):
-                ids |= set(data)
-                ids |= {v.get("_id") for v in data.values()
-                        if isinstance(v, dict) and v.get("_id")}
+            if not isinstance(data, dict):
+                continue
+            if "objectives" in data:            # friendly: id derives from the filename
+                ids.add(derive_quest_id(f.stem))
+                ids.add(f.stem)                   # may also be named directly
+                continue
+            ids |= set(data)
+            ids |= {v.get("_id") for v in data.values()
+                    if isinstance(v, dict) and v.get("_id")}
     return ids
 
 
@@ -353,9 +394,12 @@ def check_config(data: dict, rel: str, folder: pathlib.Path, schema: dict,
     # An item locked behind a quest that doesn't exist can never unlock, and nothing at runtime
     # says so - the item simply never becomes available. Only checked when the packs being
     # examined actually ship quests, so a content-only pack isn't told its gates are broken.
+    # A gate may quote either spelling of a friendly quest's id - the derived MongoId or the
+    # bare filename - and both resolve, because the loader resolves filenames the same way.
     if quest_ids:
         for wanted in data.get("questRequirements") or []:
-            if wanted not in quest_ids:
+            resolved = wanted if is_mongo_id(wanted) else derive_quest_id(str(wanted))
+            if wanted not in quest_ids and resolved not in quest_ids:
                 d.append(Diag("DRIP-502", "error", rel,
                               f"'questRequirements' needs quest \"{wanted}\", which nothing defines.",
                               "This item can never unlock. Either the quest id changed, or the "
@@ -414,6 +458,7 @@ def cmd_check(args) -> int:
     ids: dict[str, str] = {}
     known_quests = quest_ids_in(packs)
     every_item: list[tuple[str, dict]] = []
+    every_quest: list[tuple[pathlib.Path, str, dict, pathlib.Path]] = []
 
     # Trader definitions are gathered across every pack being checked, not per pack: one pack
     # may legitimately sell through traders another one defines.
@@ -512,26 +557,222 @@ def cmd_check(args) -> int:
             ids.setdefault(stem, rel)
             every_item.append((rel, data))
 
-    game_diags, notes = game_checks(every_item)
+        # Friendly quest files: one quest per file, checked after the items exist because
+        # their references resolve against the item table. The legacy blob (DRIP.jsonc and
+        # its kind) is the loader's business - a hand-written one is a converter step, not
+        # an authoring mistake, and its gates are already covered by DRIP-502 above.
+        qdir = pack / "CustomQuests"
+        if qdir.exists():
+            for f in sorted(list(qdir.glob("*.jsonc")) + list(qdir.glob("*.json"))):
+                rel = f.relative_to(base).as_posix()
+                try:
+                    data = json.loads(strip_jsonc(f.read_text(encoding="utf-8-sig")))
+                except json.JSONDecodeError:
+                    continue              # the item scan above already reports JSON errors
+                if isinstance(data, dict) and "objectives" in data:
+                    checked += 1
+                    every_quest.append((f, rel, data, pack))
+
+    traders: list[str] = []
+    for branch in schema["properties"]["traderId"].get("anyOf", []):
+        traders += branch.get("enum", [])
+
+    game_diags, notes = game_checks(every_item, every_quest, set(ids), known_quests, traders)
     all_diags += game_diags
 
     return report(all_diags, checked, notes)
 
 
-def game_checks(items: list) -> tuple[list[Diag], list[str]]:
+def game_checks(items: list, quests: list | None = None,
+                item_stems: set[str] | None = None,
+                known_quests: set[str] | None = None,
+                traders: list[str] | None = None) -> tuple[list[Diag], list[str]]:
     """The checks that need the game's own database rather than just the schema.
 
     Opened once and shared, so a missing install produces one honest "not checked" note
-    instead of the same apology twice.
+    instead of the same apology twice. The quest checks still run their schema-only half
+    (traders, filenames, images, objective text) when there is no database - only the
+    MongoId-into-the-game half waits.
     """
+    quests = quests or []
+    item_stems = item_stems or set()
+    known_quests = known_quests or set()
+    traders = traders or []
     try:
         db = sptdb.open_database()
     except sptdb.NoDatabase as why:
-        return [], ["Not checked: whether the game actually sells the items these are based "
-                    f"on, and whether the parts listed for them fit.\n{why}"]
+        diags = quest_checks(quests, item_stems, known_quests, None, traders)
+        return diags, ["Not checked: whether the game actually sells the items these are based "
+                      f"on, whether the parts listed for them fit, and whether quest ids point "
+                      f"into the game's own quests.\n{why}"]
     diags, notes = seller_check(items, db)
     diags += parts_check(items, db)
+    diags += quest_checks(quests, item_stems, known_quests, db, traders)
     return diags, notes
+
+
+def quest_checks(quests: list, item_stems: set[str], known_quests: set[str], db,
+                 traders: list[str]):
+    """Validate friendly-format quest files the way the item checks validate item files.
+
+    A broken quest reference doesn't crash - it produces a quest nobody can complete or an
+    item nobody can unlock, which a player discovers halfway through (QUEST-FORMAT-PROPOSAL
+    section 6). These run before the server ever starts.
+
+    Returns (diags, cross-pack-aggregated-packs) - the aggregation is finished by the
+    caller because the pack-level message needs the pack name, which lives one frame up.
+    """
+    diags: list[Diag] = []
+    # pack name -> list of (quest file, reference) that looks like a pack item no
+    # checked pack ships. One message per pack at the end (CONFIG-SCHEMA-v2 section 8,
+    # rule 6), not one per quest - a quest depending on another pack is normal.
+    cross_pack: dict[str, list[tuple[str, str]]] = {}
+    derived_items = {derive_id(s) for s in item_stems}
+
+    for f, rel, data, pack in quests:
+        stem = f.stem
+        own_ids = {derive_quest_id(stem), stem}
+
+        # -- trader --------------------------------------------------------------------
+        # Same names the item check accepts, read from the same schema so the two cannot
+        # drift. A quest's trader is SPT's MongoId field, so an unresolved alias is a load
+        # failure - error, not warning.
+        named = data.get("trader")
+        if not named:
+            diags.append(Diag("DRIP-503", "error", rel,
+                              "'trader' is missing - nobody offers this quest.",
+                              'Add:  "trader": "georgia",'))
+        elif named not in traders and not is_mongo_id(named):
+            hint = suggest(str(named), traders)
+            diags.append(Diag("DRIP-503", "error", rel,
+                              f'There\'s no trader called "{named}".',
+                              f'Did you mean "{hint}"?' if hint
+                              else f"Use one of: {', '.join(traders)} - or a trader's "
+                                   "24-character ID."))
+
+        for reward in data.get("rewards") or []:
+            for field, label in (("standingWith", "a standing reward"),
+                                 ("unlock", "an unlock reward")):
+                named = reward.get(field)
+                if named and named not in traders and not is_mongo_id(named):
+                    hint = suggest(str(named), traders)
+                    diags.append(Diag("DRIP-503", "error", rel,
+                                      f'The quest gives {label} naming trader "{named}", which '
+                                      "doesn't resolve.",
+                                      f'Did you mean "{hint}"?' if hint
+                                      else "Use one of the trader names, or a trader's ID."))
+
+        # -- item references (handover targets, item rewards) ---------------------------
+        refs: list[tuple[str, str]] = []
+        for obj in data.get("objectives") or []:
+            if obj.get("handover"):
+                refs.append(("handover", str(obj["handover"])))
+        for reward in data.get("rewards") or []:
+            if reward.get("item"):
+                refs.append(("item reward", str(reward["item"])))
+
+        for kind, ref in refs:
+            if is_mongo_id(ref):
+                if ref in derived_items:
+                    continue
+                if db is None:
+                    continue          # noted at pack level once - cannot check ids without it
+                if ref in db.items:
+                    continue
+                diags.append(Diag(
+                    "DRIP-504", "error", rel,
+                    f'The {kind} names item "{ref}", which is neither a DRIP item nor one the '
+                    "game knows.",
+                    "A 24-character ID that resolves nowhere is usually a character out - "
+                    "re-copy it, or write the DRIP item's filename instead."))
+            elif ref in item_stems:
+                continue
+            elif looks_like_pack_item(ref):
+                cross_pack.setdefault(pack.name, []).append((rel, ref))
+            else:
+                diags.append(Diag(
+                    "DRIP-504", "error", rel,
+                    f'The {kind} names "{ref}", which is neither an item ID nor a DRIP '
+                    "filename.",
+                    "Write the DRIP item's filename (they look like THIS_ONE) or a vanilla "
+                    "item's 24-character ID."))
+
+        # -- prerequisite quest ---------------------------------------------------------
+        prereq = (data.get("requires") or {}).get("quest")
+        if prereq is not None:
+            if prereq in own_ids:
+                diags.append(Diag(
+                    "DRIP-505", "error", rel,
+                    "This quest requires itself, so no player could ever start it.",
+                    "Name a DIFFERENT quest, or delete 'requires.quest' if this one starts "
+                    "freely."))
+            elif is_mongo_id(prereq):
+                if prereq not in known_quests and db is not None and prereq not in db.quests:
+                    diags.append(Diag(
+                        "DRIP-505", "error", rel,
+                        f"This quest requires quest \"{prereq}\", which nothing defines - not "
+                        "these packs, not the game.",
+                        "A quest nobody can complete gating this one makes both unplayable. "
+                        "Check the ID."))
+            elif prereq not in known_quests:
+                hint = None
+                stems = {q for q in known_quests if not is_mongo_id(q)}
+                if stems:
+                    hint = suggest(str(prereq), stems)
+                diags.append(Diag(
+                    "DRIP-505", "error", rel,
+                    f'This quest requires \"{prereq}\", which is not a quest filename any pack '
+                    "here ships.",
+                    f'Did you mean "{hint}"?' if hint
+                    else 'Quest filenames are the .jsonc names in CustomQuests - e.g. "A_WILD_NIGHT".'))
+
+        # -- image -----------------------------------------------------------------------
+        # "image" either names one of the pack's own icons (a .png beside the quest
+        # configs) or quotes a VANILLA icon - which is a MongoId stem resolved by the
+        # client from its own files, nothing the pack ships. Only the first kind is
+        # checkable here; warning about a vanilla reference would be noise.
+        image = data.get("image")
+        if image:
+            wanted = pathlib.Path(str(image)).stem
+            icons = {p.stem for p in (pack / "CustomQuests").rglob("*.png")} \
+                if (pack / "CustomQuests").exists() else set()
+            if wanted not in icons and not is_mongo_id(wanted):
+                diags.append(Diag(
+                    "DRIP-506", "warning", rel,
+                    f'"image" names "{image}", but there is no {wanted}.png anywhere under '
+                    "this pack's CustomQuests.",
+                    "The quest loads and plays fine - the journal just shows a missing "
+"picture.\nDrop the .png in beside the quest configs, or fix the name."))
+
+        # -- objective text ----------------------------------------------------------------
+        # The expander generates a sensible sentence when text is missing, so this is a
+        # warning, not an error: players would read words nobody wrote.
+        for obj in data.get("objectives") or []:
+            if obj.get("text"):
+                continue
+            what = obj.get("handover") or obj.get("kill") or "?"
+            count = obj.get("count", 1)
+            verb = "Hand over" if obj.get("handover") else "Eliminate"
+            diags.append(Diag(
+                "DRIP-507", "warning", rel,
+                f"An objective has no text, so players would read the auto-generated "
+                f'"{verb} {count} x {what}."',
+                'Add:  "text": "Hand over 2 Glock 17s.",  - the sentence players see in the journal.'))
+
+    # -- cross-pack, aggregated to one message per pack (section 8, rule 6) --------------
+    for pack_name, entries in cross_pack.items():
+        missing = sorted({ref for _, ref in entries})
+        files = sorted({rel for rel, _ in entries})
+        diags.append(Diag(
+            "DRIP-508", "warning", f"{pack_name}  (whole content pack)",
+            f"{len(files)} quest(s) hand over or reward items no pack being checked ships: "
+            f"{', '.join(missing)}.",
+            "Either those items belong in this pack, or the pack that ships them isn't "
+            "installed here.\nA quest depending on another pack is normal - it only breaks "
+            "when that pack is missing. Checking all packs together clears this if they "
+            "resolve."))
+
+    return diags
 
 
 def parts_check(items: list, db) -> list[Diag]:

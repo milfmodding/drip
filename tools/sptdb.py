@@ -187,6 +187,21 @@ class Database:
         self._names = None
         self._traders = None
         self._roots = None
+        self._quests = None
+
+    # -- quests ---------------------------------------------------------------------------
+
+    @property
+    def quests(self) -> set:
+        """Every quest id the game itself ships.
+
+        Read for quest prerequisites: a DRIP quest may legitimately gate behind a vanilla
+        quest, and a MongoId prerequisite is only checkable against the ids that exist.
+        """
+        if self._quests is None:
+            qfile = self.db / "templates" / "quests.json"
+            self._quests = set(json.loads(qfile.read_text(encoding="utf-8")))
+        return self._quests
 
     # -- items ---------------------------------------------------------------------------
 
