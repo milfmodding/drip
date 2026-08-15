@@ -11,7 +11,7 @@
   "loyaltyLevel": 1,
   "profileLevel": 8,
   "standing": 0,
-  "questRequirements": ["669cdb5039f39e1bd6019b56"],
+  "questRequirements": ["55b0f24605877596e6ea8474"],
   "vanillaOrigin": "assets/content/characters/character/prefabs/pants_usec_cryeac.bundle",
 
   // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.

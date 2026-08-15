@@ -11,7 +11,7 @@
   "loyaltyLevel": 1,
   "profileLevel": 3,
   "standing": 0,
-  "questRequirements": ["669cdb5039f39e1bd6019b56"],
+  "questRequirements": ["55b0f24605877596e6ea8474"],
   "vanillaOrigin": "assets/content/characters/character/prefabs/wild_security_body_1.bundle",
 
   // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).

@@ -11,7 +11,7 @@
   "loyaltyLevel": 1,
   "profileLevel": 7,
   "standing": 0,
-  "questRequirements": ["669f78890cf4da93267775f6"],
+  "questRequirements": ["8cddf80eec8b1a35289ac0de"],
   "vanillaOrigin": "assets/content/characters/character/prefabs/pants_usec_urbanresponder.bundle",
 
   // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.

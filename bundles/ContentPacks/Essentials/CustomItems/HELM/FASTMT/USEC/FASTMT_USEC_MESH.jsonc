@@ -14,10 +14,13 @@
   // false = sold by the trader above, at the price below.
   "copyOriginalOffers": true,
   "basedOn": "5ac8d6885acfc400180ae7b0",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
   "bundles": {
-      "GEAR.bundle": [
+    "GEAR.bundle": [
       "ContentPacks/Essentials/CustomItems/HELM/FASTMT/USEC/TEXTURE1.bundle",
       "ContentPacks/Essentials/CustomItems/HELM/FASTMT/USEC/TEXTURE2.bundle"
-      ]
+    ]
   }
 }

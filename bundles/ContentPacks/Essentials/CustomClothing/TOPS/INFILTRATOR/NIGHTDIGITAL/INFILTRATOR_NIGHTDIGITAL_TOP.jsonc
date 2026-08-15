@@ -11,7 +11,7 @@
   "loyaltyLevel": 2,
   "profileLevel": 12,
   "standing": 0,
-  "questRequirements": ["669f7b28d1dbbbdb0475e7be"],
+  "questRequirements": ["87f2ff0b5d7e277e642330bc"],
   "vanillaOrigin": "assets/content/characters/character/prefabs/tshirt_usec_combatshirt.bundle",
 
   // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).

@@ -11,7 +11,7 @@
   "loyaltyLevel": 1,
   "profileLevel": 10,
   "standing": 0,
-  "questRequirements": ["669f78e3ea69f9bde9904a1b"],
+  "questRequirements": ["3c2d875540934244abcbc58e"],
   "vanillaOrigin": "assets/content/characters/character/prefabs/pants_bear_triarius.bundle",
 
   // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.

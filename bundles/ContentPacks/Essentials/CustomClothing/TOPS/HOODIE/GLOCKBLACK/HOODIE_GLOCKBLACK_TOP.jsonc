@@ -11,7 +11,7 @@
   "loyaltyLevel": 1,
   "profileLevel": 5,
   "standing": 0,
-  "questRequirements": ["669f76cb1fec55b3413b554c"],
+  "questRequirements": ["2a31b752cd9bd6f4a801df8c"],
   "vanillaOrigin": "assets/content/characters/character/prefabs/top_usec_hoody.bundle",
 
   // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).

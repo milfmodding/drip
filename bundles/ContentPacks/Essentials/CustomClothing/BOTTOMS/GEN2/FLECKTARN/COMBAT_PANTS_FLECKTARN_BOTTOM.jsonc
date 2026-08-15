@@ -11,7 +11,7 @@
   "loyaltyLevel": 1,
   "profileLevel": 13,
   "standing": 0,
-  "questRequirements": ["669f7b28d1dbbbdb0475e7be"],
+  "questRequirements": ["87f2ff0b5d7e277e642330bc"],
   "vanillaOrigin": "assets/content/characters/character/prefabs/pants_usec_gen2.bundle",
 
   // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.

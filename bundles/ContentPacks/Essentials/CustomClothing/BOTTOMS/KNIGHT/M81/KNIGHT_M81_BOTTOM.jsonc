@@ -11,7 +11,7 @@
   "loyaltyLevel": 2,
   "profileLevel": 27,
   "standing": 0,
-  "questRequirements": ["669f74d7e7211bf21d8af254"],
+  "questRequirements": ["b05a483cc90cb02bc9b090d3"],
   "vanillaOrigin": "assets/content/characters/character/prefabs/pants_boss_blackknight.bundle",
 
   // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.

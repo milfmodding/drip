@@ -144,10 +144,42 @@ QUEST_ID_MAP = {
 #
 # The friendly format derives its id from the FILENAME, and the legacy blob keys quests by
 # MongoId - the two cannot be derived from each other (a hash is one-way). So the mapping
-# is RECORDED at conversion time, and both directions need it: convert_quests uses it to
-# name each emitted file, and quest prereqs written as filenames resolve back through the
-# same derivation the loader uses. Same one-way-trick shape as PROMOTIONS/RENAMES.
-QUEST_FILENAME = {}
+# is RECORDED in tools/quest-filenames.json, and both directions need it: convert_quests
+# uses it to name each emitted file, and quest prereqs written as filenames resolve back
+# through the same derivation the loader uses. Same one-way-trick shape as PROMOTIONS/RENAMES.
+#
+# Loaded rather than in-memory-only because the flip needs it on every run, not just the one
+# that converted the quests: item gates rewrite through this map (see convert_one), and the
+# legacy blob filters through it (see convert_part). --quests runs add newly converted quests
+# to it and write it back, so the record grows instead of diverging from what shipped.
+def _load_quest_filenames() -> dict:
+    f = pathlib.Path(__file__).resolve().parent / "quest-filenames.json"
+    if not f.exists():
+        return {}
+    data = json.loads(f.read_text(encoding="utf-8"))
+    return {k: v for k, v in data.items() if not k.startswith("_")}
+
+
+QUEST_FILENAME = _load_quest_filenames()
+
+QUEST_FILENAME_README = [
+    "Quest id -> friendly filename, recorded when the --quests conversion emitted the",
+    "friendly files. The friendly loader derives its id from the filename via",
+    "SHA1(stem:quest)[:24], so these ids are DIFFERENT from the legacy MongoIds the",
+    "item questRequirements used to gate on. convert-legacy.py rewrites every gate",
+    "MongoId listed here to derive(filename) when it re-emits the configs.",
+    "",
+    "669f759a1c5ee26e33c5afb2 (Glock Wick: Part 1) is absent DELIBERATELY: it stays",
+    "on the legacy path (Started Item reward the friendly vocabulary does not carry),",
+    "so its blob entry and its MongoId gates must both survive.",
+]
+
+
+def save_quest_filenames() -> None:
+    """Write the id map back, keeping its README, after a --quests run grew it."""
+    f = pathlib.Path(__file__).resolve().parent / "quest-filenames.json"
+    f.write_text(json.dumps({"_README": QUEST_FILENAME_README, **QUEST_FILENAME},
+                            indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 # stem -> (part it lives in, part it should ship in).
 # Converting the destination part pulls the item in; converting the source part leaves it out,
@@ -624,6 +656,18 @@ def derive_id(stem: str) -> str:
     return hashlib.sha1(stem.encode("utf-8")).hexdigest()[:24].lower()
 
 
+def derive_quest_id(stem: str) -> str:
+    """Mirror of DripIds.Derive(hashUtil, stem, "quest"): SHA1(stem:quest), first 24, lower.
+
+    Verified byte-for-byte against the C# side on 2026-08-15 by running the real
+    SPTarkov.Server.Core HashUtil over all 18 quest stems (plus the no-role item form) and
+    comparing - a one-off C# probe under Temp, since nothing on the server logs the ids it
+    registered. If DripIds ever changes its formula, this must be re-verified the same way,
+    because item gates silently brick when the two sides drift.
+    """
+    return hashlib.sha1(f"{stem}:quest".encode("utf-8")).hexdigest()[:24].lower()
+
+
 def find_mod_root(out_root: pathlib.Path) -> pathlib.Path | None:
     """Walk up from the output folder looking for the mod root (the folder holding docs/)."""
     for candidate in [out_root, *out_root.resolve().parents]:
@@ -718,6 +762,20 @@ def convert_one(legacy: dict, src: pathlib.Path, rel: str, rpt: Report) -> dict 
                            "quest gate remapped")
             else:
                 gates.append(wanted)
+            # The flip (2026-08-15): a quest that now ships in the friendly format has a
+            # DIFFERENT id, derived from its filename, so the gate must be rewritten through
+            # the same derivation the loader uses or it points at nothing. derive_quest_id
+            # is verified byte-for-byte against the C# DripIds.Derive (probe over the real
+            # HashUtil, all 18 stems, 2026-08-15). A gate naming a quest with no entry in
+            # QUEST_FILENAME - like Glock Wick: Part 1, still legacy-only - passes through
+            # unchanged, which is what keeps that arrangement correct by construction.
+            stem = QUEST_FILENAME.get(gates[-1])
+            if stem is not None:
+                new_id = derive_quest_id(stem)
+                rpt.change(rel, f"questRequirements: '{gates[-1]}' -> '{new_id}' "
+                                f"({stem}.jsonc now ships the quest; see QUEST_FILENAME)",
+                           "quest gate flipped to friendly id")
+                gates[-1] = new_id
         out["questRequirements"] = gates
 
     # --- gear extras ------------------------------------------------------------------------
@@ -1013,6 +1071,21 @@ def convert_part(part: str, out_root: pathlib.Path, bundle_mode: str,
             target.parent.mkdir(parents=True, exist_ok=True)
             if f.suffix == ".json5":
                 data, _ = read_legacy(f)
+                if dest == "CustomQuests":
+                    # The flip (2026-08-15): a quest that ships as a friendly file no longer
+                    # belongs in the legacy blob - leaving it there loads BOTH copies (the
+                    # mid-conversion state measured 37 quests: 19 legacy + 18 friendly
+                    # duplicates), and the two have different ids, so a gate rewritten to the
+                    # friendly id would silently fail against the blob's stale copy. Quests
+                    # the friendly vocabulary cannot express - like Glock Wick: Part 1 - have
+                    # no entry in QUEST_FILENAME and are kept here, which is what keeps that
+                    # arrangement correct by construction.
+                    flipped = {q: quest for q, quest in data.items() if q in QUEST_FILENAME}
+                    kept = len(data) - len(flipped)
+                    if flipped:
+                        rpt.stats["quests flipped out of blob"] += len(flipped)
+                        data = {q: quest for q, quest in data.items() if q not in QUEST_FILENAME}
+                    rpt.stats[f"quests kept in blob ({f.stem})"] = kept
                 if dest == "CustomLocales" and target.exists():
                     data = {**json.loads(target.read_text(encoding="utf-8")), **data}
                 target.write_text(json.dumps(data, indent=2, ensure_ascii=False),
@@ -1291,6 +1364,11 @@ def main():
             print(f"    {v:5d}  {k}")
         for path, msg in rpt.warnings[:40]:
             print(f"    {path}: {msg}")
+        if not args.dry_run:
+            # The id map is the durable record the flip reads on every later run, so a run
+            # that grew it (a new quest converted) writes it back immediately - an in-memory-
+            # only map is one forgotten export away from gates pointing at nothing.
+            save_quest_filenames()
         print()
         return 1 if rpt.errors else 0
 

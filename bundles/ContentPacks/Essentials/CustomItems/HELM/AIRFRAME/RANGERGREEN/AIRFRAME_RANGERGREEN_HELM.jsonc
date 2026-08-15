@@ -14,9 +14,12 @@
   // false = sold by the trader above, at the price below.
   "copyOriginalOffers": true,
   "basedOn": "5c17a7ed2e2216152142459c",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
   "bundles": {
-      "GEAR.bundle": [
+    "GEAR.bundle": [
       "ContentPacks/Essentials/CustomItems/HELM/AIRFRAME/RANGERGREEN/TEXTURE.bundle"
-      ]
+    ]
   }
 }

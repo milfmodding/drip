@@ -16,9 +16,12 @@
   "price": 1620,
   "loyaltyLevel": 1,
   "basedOn": "572b7fa524597762b747ce82",
+
+  // Extra dependencies beyond the automatic ones (shaders, cubemaps, physics materials).
+  // Bundles next to this file are found automatically — you only list extras here.
   "bundles": {
-      "GEAR.bundle": [
+    "GEAR.bundle": [
       "ContentPacks/Essentials/CustomItems/FACE/HALFMASK/SMILE4/TEXTURE.bundle"
-      ]
+    ]
   }
 }

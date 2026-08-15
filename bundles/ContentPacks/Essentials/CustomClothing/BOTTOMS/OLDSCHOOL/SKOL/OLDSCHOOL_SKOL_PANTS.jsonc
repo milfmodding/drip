@@ -11,7 +11,7 @@
   "loyaltyLevel": 1,
   "profileLevel": 10,
   "standing": 0,
-  "questRequirements": ["669f79c7f8b1f185365997e3"],
+  "questRequirements": ["d5fb79830a150e4c596468bd"],
   "vanillaOrigin": "assets/content/characters/character/prefabs/pants_bear_oldschool.bundle",
 
   // Outfit-matching tags. Not read by DRIP right now; kept for ICUP.
