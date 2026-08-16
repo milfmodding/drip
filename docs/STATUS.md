@@ -19,7 +19,7 @@ Last updated: 2026-08-15 by Echo.
 | | Owner | Scope |
 |---|---|---|
 | **Echo** | adjutant | whole-project picture, arbitration, Unity bundle workstream |
-| **Kappa** | codebase | C# loader, services, runtime correctness |
+| **Kappa** | codebase | C# loader, services, runtime correctness. **Stood down after Part 1 went functionally complete (2026-08-15); not on the Record roster — do not wait on that address.** The row and the section below are the record of his landed work. |
 | **Tau** | DX | config schema, converter, validation, authoring tools, docs |
 
 ---
@@ -1821,6 +1821,15 @@ Consequence is narrow: the repack covered it (it is in the 365 above and it reso
 rebuild driven from `manifest.json` would silently skip it. **Re-run `extract_art2.py` before
 the rebuild**, and treat "manifest count == on-disk bundle count" as a precondition of the
 rebuild rather than something to check afterwards, since promotions change the corpus.
+
+### Which install — SUPERSEDED: DRIP tests on `F:/SPT/SPT-4.1` (see docs/SPT-4.1-MIGRATION.md)
+
+> **2026-08-16 superseding note (Echo):** this section and the shared-port note below
+> describe the pre-port era. Since the 4.1 port (2026-08-15, verified on a running
+> server) DRIP tests on `F:/SPT/SPT-4.1`, server mods at `SPT_Runtime\user\mods\`
+> — NOT the root `user\mods`, which that server never scans. `F:/SPT/Base` is kept
+> below as history. The SPT4.0.13 prohibition is unchanged and permanent: it is
+> Framesaver's measurement corpus.
 
 ### Which install — DRIP tests on `F:/SPT/Base`, never on `F:/SPT/SPT4.0.13`
 
